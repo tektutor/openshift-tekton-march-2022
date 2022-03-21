@@ -10,3 +10,4 @@
 - When Trainer asks, Did you complete the lab exercise? Shall we move no to the next topic?  Please respond via chat or speak up
 - When Trainer asks, do you have any doubts on the topics covered so far, please be expressive.
 - If the lab machine isn't accessible, please inform the trainer.
+- At any point of time, please feel to share your screen in case you are struck or would like to demonstrate that you have completed an exercise.
