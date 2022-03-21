@@ -12,9 +12,13 @@ https://medium.com/tektutor
 
 ### My Articles
 https://medium.com/tektutor/kubernetes-3-node-cluster-setup-50943378be41
+
 https://medium.com/tektutor/using-metal-lb-on-a-bare-metal-onprem-kubernetes-setup-6d036af1d20c
+
 https://medium.com/tektutor/using-nginx-ingress-controller-in-kubernetes-bare-metal-setup-890eb4e7772
+
 https://medium.com/tektutor/deploying-stateful-applications-in-kubernetes-8ffd46920b55
+
 https://medium.com/tektutor/container-engine-vs-container-runtime-667a99042f3
 
 ## Requests and suggestions to the participants
