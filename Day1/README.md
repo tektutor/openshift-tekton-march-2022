@@ -327,7 +327,325 @@ oc logs -f buildconfig/rails-postgresql-example
 ```
 The expected output is
 <pre>
+(jegan@tektutor.org)$ <b>oc logs -f buildconfig/rails-postgresql-example</b>
+Cloning "https://github.com/sclorg/rails-ex.git" ...
+	Commit:	7214e7cad3695d51f17a247afcae48cd9ac37efa (Fix s2i assemble failing with Ruby 2.6.)
+	Author:	Jarek Prokop <jprokop@redhat.com>
+	Date:	Mon Feb 28 15:42:12 2022 +0100
+time="2022-03-21T13:38:54Z" level=info msg="Not using native diff for overlay, this may cause degraded performance for building images: kernel has CONFIG_OVERLAY_FS_REDIRECT_DIR enabled"
+I0321 13:38:54.335666       1 defaults.go:102] Defaulting to storage driver "overlay" with options [mountopt=metacopy=on].
+Caching blobs under "/var/cache/blobs".
+Trying to pull image-registry.openshift-image-registry.svc:5000/openshift/ruby@sha256:7e3204d6f79a375c4a8fe6e29b76df426a8c024e3a93d0af02a00ff89d2b10c9...
+Getting image source signatures
+Copying blob sha256:aad543859364662ddb264ad5752fd9449d47410b9efa0278463c0a9c578b79c6
+Copying blob sha256:25da00f4424f2fd3211cf49a8ee67241041bfb2b50fe1f9306e6674a3a2a8f0b
+Copying blob sha256:5dcbdc60ea6b60326f98e2b49d6ebcb7771df4b70c6297ddf2d7dede6692df6e
+Copying blob sha256:8671113e1c57d3106acaef2383f9bbfe1c45a26eacb03ec82786a494e15956c3
+Copying blob sha256:79a56ba04a301eb949644bca29f18b1879b6f305091ef1eb8068a0f5828db863
+Copying config sha256:f64fbb25bd2c5d66ce748b338e09ce97497d89bd23676326adb5761ba2625f78
+Writing manifest to image destination
+Storing signatures
+Generating dockerfile with builder image image-registry.openshift-image-registry.svc:5000/openshift/ruby@sha256:7e3204d6f79a375c4a8fe6e29b76df426a8c024e3a93d0af02a00ff89d2b10c9
+Replaced Dockerfile FROM image image-registry.openshift-image-registry.svc:5000/openshift/ruby@sha256:7e3204d6f79a375c4a8fe6e29b76df426a8c024e3a93d0af02a00ff89d2b10c9
+Adding transient rw bind mount for /run/secrets/rhsm
+[1/3] STEP 1/10: FROM image-registry.openshift-image-registry.svc:5000/openshift/ruby@sha256:7e3204d6f79a375c4a8fe6e29b76df426a8c024e3a93d0af02a00ff89d2b10c9 AS appimage7b848b6bf22841f18718de2197d76d49
+[1/3] STEP 2/10: LABEL "io.openshift.build.commit.date"="Mon Feb 28 15:42:12 2022 +0100"       "io.openshift.build.commit.id"="7214e7cad3695d51f17a247afcae48cd9ac37efa"       "io.openshift.build.commit.ref"="master"       "io.openshift.build.commit.message"="Fix s2i assemble failing with Ruby 2.6."       "io.openshift.build.source-location"="https://github.com/sclorg/rails-ex.git"       "io.openshift.build.image"="image-registry.openshift-image-registry.svc:5000/openshift/ruby@sha256:7e3204d6f79a375c4a8fe6e29b76df426a8c024e3a93d0af02a00ff89d2b10c9"       "io.openshift.build.commit.author"="Jarek Prokop <jprokop@redhat.com>"
+[1/3] STEP 3/10: ENV OPENSHIFT_BUILD_NAME="rails-postgresql-example-1"     OPENSHIFT_BUILD_NAMESPACE="jegan"     OPENSHIFT_BUILD_SOURCE="https://github.com/sclorg/rails-ex.git"     OPENSHIFT_BUILD_COMMIT="7214e7cad3695d51f17a247afcae48cd9ac37efa"     RUBYGEM_MIRROR=""
+[1/3] STEP 4/10: USER root
+[1/3] STEP 5/10: COPY upload/scripts /tmp/scripts
+[1/3] STEP 6/10: COPY upload/src /tmp/src
+[1/3] STEP 7/10: RUN chown -R 1001:0 /tmp/scripts /tmp/src
+[1/3] STEP 8/10: USER 1001
+[1/3] STEP 9/10: RUN /tmp/scripts/assemble
+/tmp/src ~
+---> Building your Ruby application from source ...
+You are replacing the current local value of deployment, which is currently nil
+You are replacing the current local value of without, which is currently nil
+---> Running 'bundle install --retry 2' ...
+You are replacing the current local value of path, which is currently nil
+The dependency tzinfo-data (>= 0) will be unused by any of the platforms Bundler is installing for. Bundler is installing for ruby but the dependency is only for x86-mingw32, x86-mswin32, x64-mingw32, java. To add those platforms to the bundle, run `bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java`.
+Fetching gem metadata from https://rubygems.org/..........
+Fetching rake 13.0.3
+Installing rake 13.0.3
+Fetching concurrent-ruby 1.1.8
+Installing concurrent-ruby 1.1.8
+Fetching i18n 1.8.10
+Installing i18n 1.8.10
+Fetching minitest 5.14.4
+Installing minitest 5.14.4
+Fetching tzinfo 2.0.4
+Installing tzinfo 2.0.4
+Fetching zeitwerk 2.4.2
+Installing zeitwerk 2.4.2
+Fetching activesupport 6.1.3.1
+Installing activesupport 6.1.3.1
+Fetching builder 3.2.4
+Installing builder 3.2.4
+Fetching erubi 1.10.0
+Installing erubi 1.10.0
+Fetching mini_portile2 2.5.1
+Installing mini_portile2 2.5.1
+Fetching racc 1.5.2
+Installing racc 1.5.2 with native extensions
+Fetching nokogiri 1.11.3 (x86_64-linux)
+Installing nokogiri 1.11.3 (x86_64-linux)
+Fetching rails-dom-testing 2.0.3
+Installing rails-dom-testing 2.0.3
+Fetching crass 1.0.6
+Installing crass 1.0.6
+Fetching loofah 2.9.1
+Installing loofah 2.9.1
+Fetching rails-html-sanitizer 1.3.0
+Installing rails-html-sanitizer 1.3.0
+Fetching actionview 6.1.3.1
+Installing actionview 6.1.3.1
+Fetching rack 2.2.3
+Installing rack 2.2.3
+Fetching rack-test 1.1.0
+Installing rack-test 1.1.0
+Fetching actionpack 6.1.3.1
+Installing actionpack 6.1.3.1
+Fetching nio4r 2.5.7
+Installing nio4r 2.5.7 with native extensions
+Fetching websocket-extensions 0.1.5
+Installing websocket-extensions 0.1.5
+Fetching websocket-driver 0.7.3
+Installing websocket-driver 0.7.3 with native extensions
+Fetching actioncable 6.1.3.1
+Installing actioncable 6.1.3.1
+Fetching globalid 0.4.2
+Installing globalid 0.4.2
+Fetching activejob 6.1.3.1
+Installing activejob 6.1.3.1
+Fetching activemodel 6.1.3.1
+Installing activemodel 6.1.3.1
+Fetching activerecord 6.1.3.1
+Installing activerecord 6.1.3.1
+Fetching marcel 1.0.1
+Installing marcel 1.0.1
+Fetching mini_mime 1.0.3
+Installing mini_mime 1.0.3
+Fetching activestorage 6.1.3.1
+Installing activestorage 6.1.3.1
+Fetching mail 2.7.1
+Installing mail 2.7.1
+Fetching actionmailbox 6.1.3.1
+Installing actionmailbox 6.1.3.1
+Fetching actionmailer 6.1.3.1
+Installing actionmailer 6.1.3.1
+Fetching actiontext 6.1.3.1
+Installing actiontext 6.1.3.1
+Using bundler 1.17.2
+Fetching coffee-script-source 1.12.2
+Installing coffee-script-source 1.12.2
+Fetching execjs 2.7.0
+Installing execjs 2.7.0
+Fetching coffee-script 2.4.1
+Installing coffee-script 2.4.1
+Fetching method_source 1.0.0
+Installing method_source 1.0.0
+Fetching thor 1.1.0
+Installing thor 1.1.0
+Fetching railties 6.1.3.1
+Installing railties 6.1.3.1
+Fetching coffee-rails 5.0.0
+Installing coffee-rails 5.0.0
+Fetching ffi 1.15.0
+Installing ffi 1.15.0 with native extensions
+Fetching jbuilder 2.11.2
+Installing jbuilder 2.11.2
+Fetching rb-fsevent 0.10.4
+Installing rb-fsevent 0.10.4
+Fetching rb-inotify 0.10.1
+Installing rb-inotify 0.10.1
+Fetching listen 3.5.1
+Installing listen 3.5.1
+Fetching pg 1.2.3
+Installing pg 1.2.3 with native extensions
+Fetching puma 5.2.2
+Installing puma 5.2.2 with native extensions
+Fetching sprockets 4.0.2
+Installing sprockets 4.0.2
+Fetching sprockets-rails 3.2.2
+Installing sprockets-rails 3.2.2
+Fetching rails 6.1.3.1
+Installing rails 6.1.3.1
+Fetching redis 4.2.5
+Installing redis 4.2.5
+Fetching sassc 2.4.0
+Installing sassc 2.4.0 with native extensions
+Fetching tilt 2.0.10
+Installing tilt 2.0.10
+Fetching sassc-rails 2.1.2
+Installing sassc-rails 2.1.2
+Fetching sass-rails 6.0.0
+Installing sass-rails 6.0.0
+Fetching sqlite3 1.4.2
+Installing sqlite3 1.4.2 with native extensions
+Fetching turbolinks-source 5.2.0
+Installing turbolinks-source 5.2.0
+Fetching turbolinks 5.2.1
+Installing turbolinks 5.2.1
+Fetching uglifier 4.2.0
+Installing uglifier 4.2.0
+Bundle complete! 18 Gemfile dependencies, 62 gems now installed.
+Gems in the groups development and test were not installed.
+Bundled gems are installed into `./bundle`
+---> Cleaning up unused ruby gems ...
+Running `bundle clean --verbose` with bundler 1.17.2
+Frozen, using resolution from the lockfile
+The dependency tzinfo-data (>= 0) will be unused by any of the platforms Bundler is installing for. Bundler is installing for ruby but the dependency is only for x86-mingw32, x86-mswin32, x64-mingw32, java. To add those platforms to the bundle, run `bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java`.
+---> No master key present in environment, generating ...
+Adding config/master.key to store the encryption key: 83f92cfb0ca6d6602cc6c2fa8c40568e
 
+Save this in a password manager your team can access.
+
+If you lose the key, no one, including you, can access anything encrypted with it.
+
+      create  config/master.key
+
+File encrypted and saved.
+~
+---> Installing application source ...
+---> Building your Ruby application from source ...
+---> Running 'bundle install --retry 2 --deployment --without development:test' ...
+The dependency tzinfo-data (>= 0) will be unused by any of the platforms Bundler is installing for. Bundler is installing for ruby but the dependency is only for x86-mingw32, x86-mswin32, x64-mingw32, java. To add those platforms to the bundle, run `bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java`.
+Using rake 13.0.3
+Using concurrent-ruby 1.1.8
+Using i18n 1.8.10
+Using minitest 5.14.4
+Using tzinfo 2.0.4
+Using zeitwerk 2.4.2
+Using activesupport 6.1.3.1
+Using builder 3.2.4
+Using erubi 1.10.0
+Using mini_portile2 2.5.1
+Using racc 1.5.2
+Using nokogiri 1.11.3 (x86_64-linux)
+Using rails-dom-testing 2.0.3
+Using crass 1.0.6
+Using loofah 2.9.1
+Using rails-html-sanitizer 1.3.0
+Using actionview 6.1.3.1
+Using rack 2.2.3
+Using rack-test 1.1.0
+Using actionpack 6.1.3.1
+Using nio4r 2.5.7
+Using websocket-extensions 0.1.5
+Using websocket-driver 0.7.3
+Using actioncable 6.1.3.1
+Using globalid 0.4.2
+Using activejob 6.1.3.1
+Using activemodel 6.1.3.1
+Using activerecord 6.1.3.1
+Using marcel 1.0.1
+Using mini_mime 1.0.3
+Using activestorage 6.1.3.1
+Using mail 2.7.1
+Using actionmailbox 6.1.3.1
+Using actionmailer 6.1.3.1
+Using actiontext 6.1.3.1
+Using bundler 1.17.2
+Using coffee-script-source 1.12.2
+Using execjs 2.7.0
+Using coffee-script 2.4.1
+Using method_source 1.0.0
+Using thor 1.1.0
+Using railties 6.1.3.1
+Using coffee-rails 5.0.0
+Using ffi 1.15.0
+Using jbuilder 2.11.2
+Using rb-fsevent 0.10.4
+Using rb-inotify 0.10.1
+Using listen 3.5.1
+Using pg 1.2.3
+Using puma 5.2.2
+Using sprockets 4.0.2
+Using sprockets-rails 3.2.2
+Using rails 6.1.3.1
+Using redis 4.2.5
+Using sassc 2.4.0
+Using tilt 2.0.10
+Using sassc-rails 2.1.2
+Using sass-rails 6.0.0
+Using sqlite3 1.4.2
+Using turbolinks-source 5.2.0
+Using turbolinks 5.2.1
+Using uglifier 4.2.0
+Bundle complete! 18 Gemfile dependencies, 62 gems now installed.
+Gems in the groups development and test were not installed.
+Bundled gems are installed into `./bundle`
+---> Cleaning up unused ruby gems ...
+Running `bundle clean --verbose` with bundler 1.17.2
+Frozen, using resolution from the lockfile
+The dependency tzinfo-data (>= 0) will be unused by any of the platforms Bundler is installing for. Bundler is installing for ruby but the dependency is only for x86-mingw32, x86-mswin32, x64-mingw32, java. To add those platforms to the bundle, run `bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java`.
+---> Starting asset compilation ...
+I, [2022-03-21T13:42:47.586096 #1026]  INFO -- : Writing /opt/app-root/src/public/assets/manifest-dad05bf766af0fe3d79dd746db3c1361c0583026cdf35d6a2921bccaea835331.js
+I, [2022-03-21T13:42:47.586847 #1026]  INFO -- : Writing /opt/app-root/src/public/assets/manifest-dad05bf766af0fe3d79dd746db3c1361c0583026cdf35d6a2921bccaea835331.js.gz
+I, [2022-03-21T13:42:47.587831 #1026]  INFO -- : Writing /opt/app-root/src/public/assets/application-6867c76f0b1d4cfaaed1eca5a99a7c9cf930ed33669a918fec1f63bec3bb2c30.js
+I, [2022-03-21T13:42:47.588599 #1026]  INFO -- : Writing /opt/app-root/src/public/assets/application-6867c76f0b1d4cfaaed1eca5a99a7c9cf930ed33669a918fec1f63bec3bb2c30.js.gz
+I, [2022-03-21T13:42:47.589327 #1026]  INFO -- : Writing /opt/app-root/src/public/assets/articles-27cfb9694c5e92d25d972c2b4a2d2e222ad088aef866823f772241c1db423402.js
+I, [2022-03-21T13:42:47.589976 #1026]  INFO -- : Writing /opt/app-root/src/public/assets/articles-27cfb9694c5e92d25d972c2b4a2d2e222ad088aef866823f772241c1db423402.js.gz
+I, [2022-03-21T13:42:47.590366 #1026]  INFO -- : Writing /opt/app-root/src/public/assets/cable-4a60fefcb48f6ca6f45704415249958dd0b022103e785061d603107d88509a5e.js
+I, [2022-03-21T13:42:47.591681 #1026]  INFO -- : Writing /opt/app-root/src/public/assets/cable-4a60fefcb48f6ca6f45704415249958dd0b022103e785061d603107d88509a5e.js.gz
+I, [2022-03-21T13:42:47.592032 #1026]  INFO -- : Writing /opt/app-root/src/public/assets/comments-27cfb9694c5e92d25d972c2b4a2d2e222ad088aef866823f772241c1db423402.js
+I, [2022-03-21T13:42:47.592540 #1026]  INFO -- : Writing /opt/app-root/src/public/assets/comments-27cfb9694c5e92d25d972c2b4a2d2e222ad088aef866823f772241c1db423402.js.gz
+I, [2022-03-21T13:42:47.593068 #1026]  INFO -- : Writing /opt/app-root/src/public/assets/welcome-27cfb9694c5e92d25d972c2b4a2d2e222ad088aef866823f772241c1db423402.js
+I, [2022-03-21T13:42:47.593532 #1026]  INFO -- : Writing /opt/app-root/src/public/assets/welcome-27cfb9694c5e92d25d972c2b4a2d2e222ad088aef866823f772241c1db423402.js.gz
+I, [2022-03-21T13:42:47.594327 #1026]  INFO -- : Writing /opt/app-root/src/public/assets/application-30e2c46de053e7de3812037627d684e34d284d750d562538351e4629c5244306.css
+I, [2022-03-21T13:42:47.596354 #1026]  INFO -- : Writing /opt/app-root/src/public/assets/application-30e2c46de053e7de3812037627d684e34d284d750d562538351e4629c5244306.css.gz
+I, [2022-03-21T13:42:47.599006 #1026]  INFO -- : Writing /opt/app-root/src/public/assets/articles-04024382391bb910584145d8113cf35ef376b55d125bb4516cebeb14ce788597.css
+I, [2022-03-21T13:42:47.600033 #1026]  INFO -- : Writing /opt/app-root/src/public/assets/articles-04024382391bb910584145d8113cf35ef376b55d125bb4516cebeb14ce788597.css.gz
+I, [2022-03-21T13:42:47.600312 #1026]  INFO -- : Writing /opt/app-root/src/public/assets/comments-04024382391bb910584145d8113cf35ef376b55d125bb4516cebeb14ce788597.css
+I, [2022-03-21T13:42:47.600508 #1026]  INFO -- : Writing /opt/app-root/src/public/assets/comments-04024382391bb910584145d8113cf35ef376b55d125bb4516cebeb14ce788597.css.gz
+I, [2022-03-21T13:42:47.600732 #1026]  INFO -- : Writing /opt/app-root/src/public/assets/scaffolds-30e2c46de053e7de3812037627d684e34d284d750d562538351e4629c5244306.css
+I, [2022-03-21T13:42:47.600893 #1026]  INFO -- : Writing /opt/app-root/src/public/assets/scaffolds-30e2c46de053e7de3812037627d684e34d284d750d562538351e4629c5244306.css.gz
+I, [2022-03-21T13:42:47.601117 #1026]  INFO -- : Writing /opt/app-root/src/public/assets/welcome-04024382391bb910584145d8113cf35ef376b55d125bb4516cebeb14ce788597.css
+I, [2022-03-21T13:42:47.601276 #1026]  INFO -- : Writing /opt/app-root/src/public/assets/welcome-04024382391bb910584145d8113cf35ef376b55d125bb4516cebeb14ce788597.css.gz
+[1/3] STEP 10/10: CMD /usr/libexec/s2i/run
+time="2022-03-21T13:42:48Z" level=warning msg="Adding metacopy option, configured globally"
+Getting image source signatures
+Copying blob sha256:a9820c2af00a34f160836f6ef2044d88e6019ca19b3c15ec22f34afe9d73f41c
+Copying blob sha256:3d5ecee9360ea8711f32d2af0cab1eae4d53140496f961ca1a634b5e2e817412
+Copying blob sha256:b3c6eff0b4bd8d4086050b0261648dbf437c9cdc68b9459e6c30116873e798ec
+Copying blob sha256:68c30199e97234de679a7a7bae4eaff19744b913ea2b3500461305312fefdd3c
+Copying blob sha256:59cc7d75cb41476fc0975c5b4bbaa8b695db1a2db55bd1be9592e0f72857f8ba
+Copying blob sha256:e0c26c434178344cee4b9928577903782bcb664823c8475b67d1601fcaf20265
+Copying config sha256:f0c963f068699f32de844a38994526892d5ea1e0822e731e7d01b897548fde4e
+Writing manifest to image destination
+Storing signatures
+--> f0c963f0686
+[2/3] STEP 1/2: FROM f0c963f068699f32de844a38994526892d5ea1e0822e731e7d01b897548fde4e
+[2/3] STEP 2/2: RUN /bin/sh -ic 'bundle exec rake test'
+sh: cannot set terminal process group (-1): Inappropriate ioctl for device
+sh: no job control in this shell
+Run options: --seed 46629
+
+# Running:
+
+.
+
+Finished in 0.172341s, 5.8025 runs/s, 5.8025 assertions/s.
+1 runs, 1 assertions, 0 failures, 0 errors, 0 skips
+[3/3] STEP 1/1: FROM f0c963f068699f32de844a38994526892d5ea1e0822e731e7d01b897548fde4e
+[3/3] COMMIT temp.builder.openshift.io/jegan/rails-postgresql-example-1:d7616cc9
+--> f0c963f0686
+Successfully tagged temp.builder.openshift.io/jegan/rails-postgresql-example-1:d7616cc9
+f0c963f068699f32de844a38994526892d5ea1e0822e731e7d01b897548fde4e
+
+Pushing image image-registry.openshift-image-registry.svc:5000/jegan/rails-postgresql-example:latest ...
+Getting image source signatures
+Copying blob sha256:5dcbdc60ea6b60326f98e2b49d6ebcb7771df4b70c6297ddf2d7dede6692df6e
+Copying blob sha256:aad543859364662ddb264ad5752fd9449d47410b9efa0278463c0a9c578b79c6
+Copying blob sha256:8671113e1c57d3106acaef2383f9bbfe1c45a26eacb03ec82786a494e15956c3
+Copying blob sha256:25da00f4424f2fd3211cf49a8ee67241041bfb2b50fe1f9306e6674a3a2a8f0b
+Copying blob sha256:79a56ba04a301eb949644bca29f18b1879b6f305091ef1eb8068a0f5828db863
+Copying blob sha256:e0c26c434178344cee4b9928577903782bcb664823c8475b67d1601fcaf20265
+Copying config sha256:f0c963f068699f32de844a38994526892d5ea1e0822e731e7d01b897548fde4e
+Writing manifest to image destination
+Storing signatures
+Successfully pushed image-registry.openshift-image-registry.svc:5000/jegan/rails-postgresql-example@sha256:023d47657427f68b7046dfb536ee5f1b93f2e2537bb39f0526be2e3a52227017
+Push successful
 </pre>
 
 ## Deleting a project
