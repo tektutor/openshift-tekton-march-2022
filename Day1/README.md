@@ -99,5 +99,37 @@ Microservice
        - should create a separate deployment for Backend
 
   
+## Listing nodes in Kubernetes cluster
+```
+kubectl get nodes
+```
 
+## Listing nodes in OpenShift cluster
+```
+oc get nodes
+```
 
+## Listing nodes in OpenShift with more details
+```
+oc get nodes -o wide
+```
+
+## Creating a new project in OpenShift
+```
+oc new-project <project-name>
+```
+
+## Listing projects
+```
+oc get projects
+```
+
+## Switching a particular project
+```
+oc project <project-name>
+```
+
+## Deleting a project
+```
+oc delete project <project-name>
+```
