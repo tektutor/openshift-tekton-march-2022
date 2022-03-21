@@ -678,6 +678,22 @@ rails-postgresql-example-1-deploy     0/1     Completed   0          3m35s
 rails-postgresql-example-1-hook-pre   0/1     Completed   0          3m32s
 </pre>
 
+## Listing the routes that gives us public URL to access the web page
+```
+oc get routes
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc get routes</b>
+NAME                       HOST/PORT                                                   PATH   SERVICES                   PORT    TERMINATION   WILDCARD
+rails-postgresql-example   rails-postgresql-example-jegan.apps.tektutor.tektutor.org          rails-postgresql-example   <all>                 None
+</pre>
+
+## Accessing the application using Chrome Web browser
+```
+rails-postgresql-example-jegan.apps.tektutor.tektutor.org 
+```
+
 ## Deleting a project
 ```
 oc delete project <project-name>
