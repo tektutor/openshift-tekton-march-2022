@@ -103,26 +103,132 @@ Microservice
 ```
 kubectl get nodes
 ```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>kubectl get nodes</b>
+NAME                             STATUS   ROLES           AGE   VERSION
+master-1.tektutor.tektutor.org   Ready    master,worker   25d   v1.22.3+b93fd35
+master-2.tektutor.tektutor.org   Ready    master,worker   25d   v1.22.3+b93fd35
+master-3.tektutor.tektutor.org   Ready    master,worker   25d   v1.22.3+b93fd35
+worker-1.tektutor.tektutor.org   Ready    worker          25d   v1.22.3+b93fd35
+worker-2.tektutor.tektutor.org   Ready    worker          25d   v1.22.3+b93fd35
+</pre>
 
 ## Listing nodes in OpenShift cluster
 ```
 oc get nodes
 ```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc get nodes</b>
+NAME                             STATUS   ROLES           AGE   VERSION
+master-1.tektutor.tektutor.org   Ready    master,worker   25d   v1.22.3+b93fd35
+master-2.tektutor.tektutor.org   Ready    master,worker   25d   v1.22.3+b93fd35
+master-3.tektutor.tektutor.org   Ready    master,worker   25d   v1.22.3+b93fd35
+worker-1.tektutor.tektutor.org   Ready    worker          25d   v1.22.3+b93fd35
+worker-2.tektutor.tektutor.org   Ready    worker          25d   v1.22.3+b93fd35
+</pre>
+
 
 ## Listing nodes in OpenShift with more details
 ```
 oc get nodes -o wide
 ```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc get nodes -o wide</b>
+NAME                             STATUS   ROLES           AGE   VERSION           INTERNAL-IP       EXTERNAL-IP   OS-IMAGE                                                       KERNEL-VERSION                 CONTAINER-RUNTIME
+master-1.tektutor.tektutor.org   Ready    master,worker   25d   v1.22.3+b93fd35   192.168.122.13    <none>        Red Hat Enterprise Linux CoreOS 49.84.202202141503-0 (Ootpa)   4.18.0-305.34.2.el8_4.x86_64   cri-o://1.22.1-16.rhaos4.9.git12fa1c7.el8
+master-2.tektutor.tektutor.org   Ready    master,worker   25d   v1.22.3+b93fd35   192.168.122.136   <none>        Red Hat Enterprise Linux CoreOS 49.84.202202141503-0 (Ootpa)   4.18.0-305.34.2.el8_4.x86_64   cri-o://1.22.1-16.rhaos4.9.git12fa1c7.el8
+master-3.tektutor.tektutor.org   Ready    master,worker   25d   v1.22.3+b93fd35   192.168.122.15    <none>        Red Hat Enterprise Linux CoreOS 49.84.202202141503-0 (Ootpa)   4.18.0-305.34.2.el8_4.x86_64   cri-o://1.22.1-16.rhaos4.9.git12fa1c7.el8
+worker-1.tektutor.tektutor.org   Ready    worker          25d   v1.22.3+b93fd35   192.168.122.69    <none>        Red Hat Enterprise Linux CoreOS 49.84.202202141503-0 (Ootpa)   4.18.0-305.34.2.el8_4.x86_64   cri-o://1.22.1-16.rhaos4.9.git12fa1c7.el8
+worker-2.tektutor.tektutor.org   Ready    worker          25d   v1.22.3+b93fd35   192.168.122.143   <none>        Red Hat Enterprise Linux CoreOS 49.84.202202141503-0 (Ootpa)   4.18.0-305.34.2.el8_4.x86_64   cri-o://1.22.1-16.rhaos4.9.git12fa1c7.el8
+</pre>
+
+## Listing projects
+```
+oc get projects
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc get projects</b>
+NAME                                               DISPLAY NAME   STATUS
+default                                                           Active
+jegan                                                             Terminating
+kube-node-lease                                                   Active
+kube-public                                                       Active
+kube-system                                                       Active
+openshift                                                         Active
+openshift-apiserver                                               Active
+openshift-apiserver-operator                                      Active
+openshift-authentication                                          Active
+openshift-authentication-operator                                 Active
+openshift-cloud-controller-manager                                Active
+openshift-cloud-controller-manager-operator                       Active
+openshift-cloud-credential-operator                               Active
+openshift-cluster-csi-drivers                                     Active
+openshift-cluster-machine-approver                                Active
+openshift-cluster-node-tuning-operator                            Active
+openshift-cluster-samples-operator                                Active
+openshift-cluster-storage-operator                                Active
+openshift-cluster-version                                         Active
+openshift-config                                                  Active
+openshift-config-managed                                          Active
+openshift-config-operator                                         Active
+openshift-console                                                 Active
+openshift-console-operator                                        Active
+openshift-console-user-settings                                   Active
+openshift-controller-manager                                      Active
+openshift-controller-manager-operator                             Active
+openshift-dns                                                     Active
+openshift-dns-operator                                            Active
+openshift-etcd                                                    Active
+openshift-etcd-operator                                           Active
+openshift-host-network                                            Active
+openshift-image-registry                                          Active
+openshift-infra                                                   Active
+openshift-ingress                                                 Active
+openshift-ingress-canary                                          Active
+openshift-ingress-operator                                        Active
+openshift-insights                                                Active
+openshift-kni-infra                                               Active
+openshift-kube-apiserver                                          Active
+openshift-kube-apiserver-operator                                 Active
+openshift-kube-controller-manager                                 Active
+openshift-kube-controller-manager-operator                        Active
+openshift-kube-scheduler                                          Active
+openshift-kube-scheduler-operator                                 Active
+openshift-kube-storage-version-migrator                           Active
+openshift-kube-storage-version-migrator-operator                  Active
+openshift-kubevirt-infra                                          Active
+openshift-machine-api                                             Active
+openshift-machine-config-operator                                 Active
+openshift-marketplace                                             Active
+openshift-monitoring                                              Active
+openshift-multus                                                  Active
+openshift-network-diagnostics                                     Active
+openshift-network-operator                                        Active
+openshift-node                                                    Active
+openshift-oauth-apiserver                                         Active
+openshift-openstack-infra                                         Active
+openshift-operator-lifecycle-manager                              Active
+openshift-operators                                               Active
+openshift-ovirt-infra                                             Active
+openshift-sdn                                                     Active
+openshift-service-ca                                              Active
+openshift-service-ca-operator                                     Active
+openshift-user-workload-monitoring                                Active
+openshift-vsphere-infra                                           Active
+tekton-pipelines  
+</pre>
+
 
 ## Creating a new project in OpenShift
 ```
 oc new-project <project-name>
 ```
 
-## Listing projects
-```
-oc get projects
-```
+
 
 ## Switching a particular project
 ```
@@ -133,3 +239,8 @@ oc project <project-name>
 ```
 oc delete project <project-name>
 ```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc delete project jegan</b>
+project.project.openshift.io "jegan" deleted
+</pre>
