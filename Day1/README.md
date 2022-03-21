@@ -47,7 +47,18 @@ https://medium.com/tektutor/container-engine-vs-container-runtime-667a99042f3
         - Control Plane ( Runs in Master Node )
             1. API Server
                  - implements all Orchestration features as REST API
-                 - uses etcd key/value datastore to store and maintain cluster state
+                 - uses etcd key/value datastore to store and m(jegan@tektutor.org)$ oc new-project jegan
+Already on project "jegan" on server "https://api.tektutor.tektutor.org:6443".
+
+You can add applications to this project with the 'new-app' command. For example, try:
+
+    oc new-app rails-postgresql-example
+
+to build a new example application in Ruby. Or use kubectl to deploy a simple Kubernetes application:
+
+    kubectl create deployment hello-node --image=k8s.gcr.io/serve_hostname
+
+aintain cluster state
                  - is only component which will access etcd datastore
                  - all communication within Kubernetes will happen only via API Server
                  - no two components can talk to each other directly
@@ -227,13 +238,97 @@ tekton-pipelines
 ```
 oc new-project <project-name>
 ```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc new-project jegan</b>
+Already on project "jegan" on server "https://api.tektutor.tektutor.org:6443".
 
+You can add applications to this project with the 'new-app' command. For example, try:
+
+    oc new-app rails-postgresql-example
+
+to build a new example application in Ruby. Or use kubectl to deploy a simple Kubernetes application:
+
+    kubectl create deployment hello-node --image=k8s.gcr.io/serve_hostname
+</pre>
 
 
 ## Switching a particular project
 ```
 oc project <project-name>
 ```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc project default</b>
+Now using project "default" on server "https://api.tektutor.tektutor.org:6443".
+(jegan@tektutor.org)$ <b>oc project jegan</b>
+Now using project "jegan" on server "https://api.tektutor.tektutor.org:6443".
+</pre>
+
+## Deploying an application from source (S2I)
+```
+oc new-app rails-postgresql-example
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc new-app rails-postgresql-example</b>
+--> Deploying template "openshift/rails-postgresql-example" to project jegan
+
+     Rails + PostgreSQL (Ephemeral)
+     ---------
+     An example Rails application with a PostgreSQL database. For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/rails-ex/blob/master/README.md.
+     
+     WARNING: Any data stored will be lost upon pod destruction. Only use this template for testing.
+
+     The following service(s) have been created in your project: rails-postgresql-example, postgresql.
+     
+     For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/rails-ex/blob/master/README.md.
+
+     * With parameters:
+        * Name=rails-postgresql-example
+        * Namespace=openshift
+        * Memory Limit=512Mi
+        * Memory Limit (PostgreSQL)=512Mi
+        * Git Repository URL=https://github.com/sclorg/rails-ex.git
+        * Git Reference=
+        * Context Directory=
+        * Application Hostname=
+        * GitHub Webhook Secret=ThJWvcJdv1wpHxynUXtsH7UEAQ4coOrA2saQSakD # generated
+        * Secret Key=k7u1ej8catllvkeskidfxnhsx4f2ef5fve1x6xvaogmwx7q3nvadis6qrv0npsba0uwpebd31qbykgup1on47nek6key7u7iihrarstjcjrr3m66n7o43a20s8frmml # generated
+        * Application Username=openshift
+        * Application Password=secret
+        * Rails Environment=production
+        * Database Service Name=postgresql
+        * Database Username=userN7N # generated
+        * Database Password=HEQnxWWo # generated
+        * Database Name=root
+        * Maximum Database Connections=100
+        * Shared Buffer Amount=12MB
+        * Custom RubyGems Mirror URL=
+
+--> Creating resources ...
+    secret "rails-postgresql-example" created
+    service "rails-postgresql-example" created
+    route.route.openshift.io "rails-postgresql-example" created
+    imagestream.image.openshift.io "rails-postgresql-example" created
+    buildconfig.build.openshift.io "rails-postgresql-example" created
+    deploymentconfig.apps.openshift.io "rails-postgresql-example" created
+    service "postgresql" created
+    deploymentconfig.apps.openshift.io "postgresql" created
+--> Success
+    Access your application via route 'rails-postgresql-example-jegan.apps.tektutor.tektutor.org' 
+    Build scheduled, use 'oc logs -f buildconfig/rails-postgresql-example' to track its progress.
+    Run 'oc status' to view your app.
+    </pre>
+
+## Checking the status of the application deployment
+```
+oc logs -f buildconfig/rails-postgresql-example
+```
+The expected output is
+<pre>
+
+</pre>
 
 ## Deleting a project
 ```
