@@ -660,6 +660,23 @@ postgresql                 1          1         1         config,image(postgresq
 rails-postgresql-example   1          1         1         config,image(rails-postgresql-example:latest)
 </pre>
 
+## Listing the pods
+```
+oc get pods
+oc get po
+oc get po
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc get po</b>
+NAME                                  READY   STATUS      RESTARTS   AGE
+postgresql-1-deploy                   0/1     Completed   0          8m16s
+postgresql-1-txp9n                    1/1     Running     0          8m
+rails-postgresql-example-1-build      0/1     Completed   0          8m17s
+rails-postgresql-example-1-cgr64      1/1     Running     0          3m21s
+rails-postgresql-example-1-deploy     0/1     Completed   0          3m35s
+rails-postgresql-example-1-hook-pre   0/1     Completed   0          3m32s
+</pre>
 
 ## Deleting a project
 ```
