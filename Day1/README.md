@@ -648,6 +648,19 @@ Successfully pushed image-registry.openshift-image-registry.svc:5000/jegan/rails
 Push successful
 </pre>
 
+## List the deployment configs
+```
+oc get dc
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc get dc</b>
+NAME                       REVISION   DESIRED   CURRENT   TRIGGERED BY
+postgresql                 1          1         1         config,image(postgresql:12-el8)
+rails-postgresql-example   1          1         1         config,image(rails-postgresql-example:latest)
+</pre>
+
+
 ## Deleting a project
 ```
 oc delete project <project-name>
