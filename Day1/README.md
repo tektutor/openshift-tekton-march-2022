@@ -699,3 +699,133 @@ The expected output is
 (jegan@tektutor.org)$ <b>oc delete project jegan</b>
 project.project.openshift.io "jegan" deleted
 </pre>
+
+# Different types of Services supported by Kubernetes/OpenShift
+1. ClusterIP Service 
+2. NodePort Service
+3. LoadBalancer Service
+
+## ClusterIP Service
+ - internal service
+ - for example: db services 
+ - they are not accessible outside OpenShift cluster
+
+## NodePort Service
+ - external service
+ - Kubernetes/OpenShift reserves ports in range 30000 - 32767 for NodePort service on every node in K8s cluster
+ - this is accessible from outside the OpenShift cluster also
+
+## LoadBalancer Service
+ - external service
+ - generally used in Cloud environments like AWS, GCP, Azure, etc.,
+ - in AWS this will create a External Network Load Balancer with a public IP
+ - the AWS Network Load Balancer will load balance the application Pods
+ - this won't work out of the box in on-prem(bare metal) Kubernetes cluster
+ 
+## Create a application deploy using Dockerfile from GitHub
+Make sure you are using the correct project
+```
+oc project
+```
+Once you are sure, you are in correct project namespace.
+
+create a application deployment using Dockerfile from GitHub repo
+```
+oc new-app https://github.com/tektutor/spring-ms.git
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ oc new-app https://github.com/tektutor/spring-ms.git
+--> Found container image 1ffbb31 (2 days old) from docker.io for "docker.io/openjdk:latest"
+
+    * An image stream tag will be created as "openjdk:latest" that will track the source image
+    * A Docker build using source code from https://github.com/tektutor/spring-ms.git will be created
+      * The resulting image will be pushed to image stream tag "spring-ms:latest"
+      * Every time "openjdk:latest" changes a new build will be triggered
+
+--> Creating resources ...
+    buildconfig.build.openshift.io "spring-ms" created
+    deployment.apps "spring-ms" created
+--> Success
+    Build scheduled, use 'oc logs -f buildconfig/spring-ms' to track its progress.
+    Run 'oc status' to view your app.
+</pre>
+
+You can check the current progress of your application deployment as shown below
+```
+oc logs -f buildconfig/spring-ms
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ oc new-app https://github.com/tektutor/spring-ms.git
+--> Found container image 1ffbb31 (2 days old) from docker.io for "docker.io/openjdk:latest"
+
+    * An image stream tag will be created as "openjdk:latest" that will track the source image
+    * A Docker build using source code from https://github.com/tektutor/spring-ms.git will be created
+      * The resulting image will be pushed to image stream tag "spring-ms:latest"
+      * Every time "openjdk:latest" changes a new build will be triggered
+
+--> Creating resources ...
+    buildconfig.build.openshift.io "spring-ms" created
+    deployment.apps "spring-ms" created
+--> Success
+    Build scheduled, use 'oc logs -f buildconfig/spring-ms' to track its progress.
+    Run 'oc status' to view your app.
+(jegan@tektutor.org)$ oc logs -f buildconfig/spring-ms
+Cloning "https://github.com/tektutor/spring-ms.git" ...
+	Commit:	dd9d75b76029ced3481833315d937cfc6cf3975a (Update pom.xml)
+	Author:	Jeganathan Swaminathan <jegan@tektutor.org>
+	Date:	Tue Mar 1 12:51:21 2022 +0530
+Replaced Dockerfile FROM image docker.io/openjdk:latest
+time="2022-03-22T07:10:24Z" level=info msg="Not using native diff for overlay, this may cause degraded performance for building images: kernel has CONFIG_OVERLAY_FS_REDIRECT_DIR enabled"
+I0322 07:10:24.533728       1 defaults.go:102] Defaulting to storage driver "overlay" with options [mountopt=metacopy=on].
+Caching blobs under "/var/cache/blobs".
+
+Pulling image docker.io/openjdk@sha256:ace059a5b9e58f0fe2b6bedbb14b3a7736d17ab7b2824f3990631e47d90e6849 ...
+Trying to pull docker.io/library/openjdk@sha256:ace059a5b9e58f0fe2b6bedbb14b3a7736d17ab7b2824f3990631e47d90e6849...
+Getting image source signatures
+Copying blob sha256:7db19695be7be96a8d27e754c74310c6fafa295ecdccbc10e8c5fe5b23854c2a
+Copying blob sha256:fc6e4d76e00b859a131e9b4131d92efca34af2da17d3bdc6d5323d473c1972eb
+Copying blob sha256:1824cb7e97fbcfc5c6ffea667f8e19cee765d015fef1b8ad70f96252d9713c95
+Copying config sha256:1ffbb31e1412b475e57d8e2168700f534f7f54705c5212246a49ae32fe723e4a
+Writing manifest to image destination
+Storing signatures
+Adding transient rw bind mount for /run/secrets/rhsm
+STEP 1/5: FROM docker.io/openjdk@sha256:ace059a5b9e58f0fe2b6bedbb14b3a7736d17ab7b2824f3990631e47d90e6849
+STEP 2/5: COPY hello.jar /app.jar
+time="2022-03-22T07:10:49Z" level=warning msg="Adding metacopy option, configured globally"
+--> d52ee780449
+STEP 3/5: ENTRYPOINT ["java","-jar","/app.jar"]
+--> 77d09f70f47
+STEP 4/5: ENV "OPENSHIFT_BUILD_NAME"="spring-ms-1" "OPENSHIFT_BUILD_NAMESPACE"="jegan" "OPENSHIFT_BUILD_SOURCE"="https://github.com/tektutor/spring-ms.git" "OPENSHIFT_BUILD_COMMIT"="dd9d75b76029ced3481833315d937cfc6cf3975a"
+--> c5887914e43
+STEP 5/5: LABEL "io.openshift.build.commit.author"="Jeganathan Swaminathan <jegan@tektutor.org>" "io.openshift.build.commit.date"="Tue Mar 1 12:51:21 2022 +0530" "io.openshift.build.commit.id"="dd9d75b76029ced3481833315d937cfc6cf3975a" "io.openshift.build.commit.message"="Update pom.xml" "io.openshift.build.commit.ref"="master" "io.openshift.build.name"="spring-ms-1" "io.openshift.build.namespace"="jegan" "io.openshift.build.source-location"="https://github.com/tektutor/spring-ms.git"
+COMMIT temp.builder.openshift.io/jegan/spring-ms-1:f6161b76
+--> c2843161a55
+Successfully tagged temp.builder.openshift.io/jegan/spring-ms-1:f6161b76
+c2843161a5573d706f876a3c94183290585144c554cdfa665b9f592b75d38bc3
+
+Pushing image image-registry.openshift-image-registry.svc:5000/jegan/spring-ms:latest ...
+Getting image source signatures
+Copying blob sha256:7db19695be7be96a8d27e754c74310c6fafa295ecdccbc10e8c5fe5b23854c2a
+Copying blob sha256:1824cb7e97fbcfc5c6ffea667f8e19cee765d015fef1b8ad70f96252d9713c95
+Copying blob sha256:fc6e4d76e00b859a131e9b4131d92efca34af2da17d3bdc6d5323d473c1972eb
+Copying blob sha256:325731a46050609f9598a31fcb18555b9afdfb6ac18a0b89eeceec9495132687
+Copying config sha256:c2843161a5573d706f876a3c94183290585144c554cdfa665b9f592b75d38bc3
+Writing manifest to image destination
+Storing signatures
+Successfully pushed image-registry.openshift-image-registry.svc:5000/jegan/spring-ms@sha256:4da645f8029d0a614e4432ba2a31293dddc5423fc7bccfc1d5179a46e641282c
+Push successful
+</pre>
+
+You can check the deployment
+```
+oc get deployment
+```
+
+The expected output is
+<pre>
+(jegan@tektutor.org)$ oc get deployment
+NAME        READY   UP-TO-DATE   AVAILABLE   AGE
+spring-ms   1/1     1            1           105s
+</pre>
