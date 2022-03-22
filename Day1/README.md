@@ -110,7 +110,7 @@ Microservice
        - should create a separate deployment for Backend
 
   
-## Listing nodes in Kubernetes cluster
+## ⛹️‍♀️ Lab - Listing nodes in Kubernetes cluster
 ```
 kubectl get nodes
 ```
@@ -125,7 +125,7 @@ worker-1.tektutor.tektutor.org   Ready    worker          25d   v1.22.3+b93fd35
 worker-2.tektutor.tektutor.org   Ready    worker          25d   v1.22.3+b93fd35
 </pre>
 
-## Listing nodes in OpenShift cluster
+## ⛹️‍♂️ Lab - Listing nodes in OpenShift cluster
 ```
 oc get nodes
 ```
@@ -141,7 +141,7 @@ worker-2.tektutor.tektutor.org   Ready    worker          25d   v1.22.3+b93fd35
 </pre>
 
 
-## Listing nodes in OpenShift with more details
+## ⛹️ Listing nodes in OpenShift with more details
 ```
 oc get nodes -o wide
 ```
@@ -156,7 +156,7 @@ worker-1.tektutor.tektutor.org   Ready    worker          25d   v1.22.3+b93fd35 
 worker-2.tektutor.tektutor.org   Ready    worker          25d   v1.22.3+b93fd35   192.168.122.143   <none>        Red Hat Enterprise Linux CoreOS 49.84.202202141503-0 (Ootpa)   4.18.0-305.34.2.el8_4.x86_64   cri-o://1.22.1-16.rhaos4.9.git12fa1c7.el8
 </pre>
 
-## Listing projects
+## ⛹️‍♀️ Lab - Listing projects
 ```
 oc get projects
 ```
@@ -234,7 +234,7 @@ tekton-pipelines
 </pre>
 
 
-## Creating a new project in OpenShift
+## ⛹️‍♂️ Lab - Creating a new project in OpenShift
 ```
 oc new-project <project-name>
 ```
@@ -253,7 +253,7 @@ to build a new example application in Ruby. Or use kubectl to deploy a simple Ku
 </pre>
 
 
-## Switching a particular project
+## ⛹️‍♀️ Lab - Switching a particular project
 ```
 oc project <project-name>
 ```
@@ -321,7 +321,7 @@ The expected output is
     Run 'oc status' to view your app.
     </pre>
 
-## Checking the status of the application deployment
+## ⛹️ Lab - Checking the status of the application deployment
 ```
 oc logs -f buildconfig/rails-postgresql-example
 ```
@@ -621,11 +621,7 @@ sh: cannot set terminal process group (-1): Inappropriate ioctl for device
 sh: no job control in this shell
 Run options: --seed 46629
 
-# Running:
-
-.
-
-Finished in 0.172341s, 5.8025 runs/s, 5.8025 assertions/s.
+Running: Finished in 0.172341s, 5.8025 runs/s, 5.8025 assertions/s.
 1 runs, 1 assertions, 0 failures, 0 errors, 0 skips
 [3/3] STEP 1/1: FROM f0c963f068699f32de844a38994526892d5ea1e0822e731e7d01b897548fde4e
 [3/3] COMMIT temp.builder.openshift.io/jegan/rails-postgresql-example-1:d7616cc9
@@ -648,7 +644,7 @@ Successfully pushed image-registry.openshift-image-registry.svc:5000/jegan/rails
 Push successful
 </pre>
 
-## List the deployment configs
+## ⛹️‍♀️ Lab - List the deployment configs
 ```
 oc get dc
 ```
@@ -660,7 +656,7 @@ postgresql                 1          1         1         config,image(postgresq
 rails-postgresql-example   1          1         1         config,image(rails-postgresql-example:latest)
 </pre>
 
-## Listing the pods
+## ⛹️‍♂️ Lab - Listing the pods
 ```
 oc get pods
 oc get po
@@ -678,7 +674,7 @@ rails-postgresql-example-1-deploy     0/1     Completed   0          3m35s
 rails-postgresql-example-1-hook-pre   0/1     Completed   0          3m32s
 </pre>
 
-## Listing the routes that gives us public URL to access the web page
+## ⛹️ Lab - Listing the routes that gives us public URL to access the web page
 ```
 oc get routes
 ```
@@ -689,12 +685,12 @@ NAME                       HOST/PORT                                            
 rails-postgresql-example   rails-postgresql-example-jegan.apps.tektutor.tektutor.org          rails-postgresql-example   <all>                 None
 </pre>
 
-## Accessing the application using Chrome Web browser
+## ⛹️‍♀️ Lab - Accessing the application using Chrome Web browser
 ```
 rails-postgresql-example-jegan.apps.tektutor.tektutor.org 
 ```
 
-## Deleting a project
+## ⛹️ Lab - Deleting a project
 ```
 oc delete project <project-name>
 ```
