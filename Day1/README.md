@@ -1,4 +1,4 @@
-## You may follow me in medium ( Hit the clap button a few times and follow the author in medium )
+## Don't miss a Kubernetes/OpenShift article ( Hit the clap button a few times and follow the author in medium )
 https://medium.com/tektutor
 
 ### My Articles
