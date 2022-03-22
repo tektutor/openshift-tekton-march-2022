@@ -265,7 +265,7 @@ Now using project "default" on server "https://api.tektutor.tektutor.org:6443".
 Now using project "jegan" on server "https://api.tektutor.tektutor.org:6443".
 </pre>
 
-## Deploying an application from source (S2I)
+## ⛹️‍♀️ Lab - Deploying an application from source (S2I)
 ```
 oc new-app rails-postgresql-example
 ```
