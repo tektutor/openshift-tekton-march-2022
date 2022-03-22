@@ -861,7 +861,7 @@ oc expose deploy/spring-ms --port=8080
 ```
 The expected output is
 <pre>
-(jegan@tektutor.org)$ oc expose deploy/spring-ms --port=8080
+(jegan@tektutor.org)$ oc expose deploy/spring-ms type=ClusterIP --port=8080
 service/spring-ms exposed
 </pre>
 
@@ -893,4 +893,28 @@ TargetPort:        8080/TCP
 Endpoints:         10.128.3.47:8080
 Session Affinity:  None
 Events:            <none>
+</pre>
+
+To access the internal clusterip service, let's create a public route to test
+```
+oc expose svc/spring-ms
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ oc expose svc/spring-ms
+route.route.openshift.io/spring-ms exposed
+</pre>
+
+Let's access the public route URL 
+```
+oc get route
+curl spring-ms-jegan.apps.tektutor.tektutor.org
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ oc get route
+NAME        HOST/PORT                                    PATH   SERVICES    PORT   TERMINATION   WILDCARD
+spring-ms   spring-ms-jegan.apps.tektutor.tektutor.org          spring-ms   8080                 None
+(jegan@tektutor.org)$ curl spring-ms-jegan.apps.tektutor.tektutor.org
+Greetings from Spring Boot!
 </pre>
