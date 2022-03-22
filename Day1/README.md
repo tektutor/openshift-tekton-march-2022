@@ -829,3 +829,28 @@ The expected output is
 NAME        READY   UP-TO-DATE   AVAILABLE   AGE
 spring-ms   1/1     1            1           105s
 </pre>
+
+You can check the replicasets
+```
+oc get rs
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ oc get rs
+NAME                   DESIRED   CURRENT   READY   AGE
+spring-ms-597bc655dd   0         0         0       2m43s
+spring-ms-77f44b65fb   1         1         1       2m5s
+spring-ms-7b64fff4fc   0         0         0       2m43s
+</pre>
+
+You can check the pods
+```
+oc get po
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ oc get po
+NAME                         READY   STATUS      RESTARTS   AGE
+spring-ms-1-build            0/1     Completed   0          2m45s
+spring-ms-77f44b65fb-6hch4   1/1     Running     0          2m7s
+</pre>
