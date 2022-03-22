@@ -722,7 +722,7 @@ project.project.openshift.io "jegan" deleted
  - the AWS Network Load Balancer will load balance the application Pods
  - this won't work out of the box in on-prem(bare metal) Kubernetes cluster
  
-## Create a application deploy using Dockerfile from GitHub
+## ⛹️‍♀️ Lab - Create a application deploy using Dockerfile from GitHub
 Make sure you are using the correct project
 ```
 oc project
