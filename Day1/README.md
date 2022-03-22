@@ -854,3 +854,43 @@ NAME                         READY   STATUS      RESTARTS   AGE
 spring-ms-1-build            0/1     Completed   0          2m45s
 spring-ms-77f44b65fb-6hch4   1/1     Running     0          2m7s
 </pre>
+
+## Creating a ClusterIP Internal Service
+```
+oc expose deploy/spring-ms --port=8080
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ oc expose deploy/spring-ms --port=8080
+service/spring-ms exposed
+</pre>
+
+Try listing and describing the service to inspect pod endpoints and other details
+```
+oc get svc
+oc describe svc/spring-ms
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ oc get svc
+NAME        TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
+spring-ms   ClusterIP   172.30.109.152   <none>        8080/TCP   5s
+(jegan@tektutor.org)$ oc describe svc/spring-ms
+Name:              spring-ms
+Namespace:         jegan
+Labels:            app=spring-ms
+                   app.kubernetes.io/component=spring-ms
+                   app.kubernetes.io/instance=spring-ms
+Annotations:       <none>
+Selector:          deployment=spring-ms
+Type:              ClusterIP
+IP Family Policy:  SingleStack
+IP Families:       IPv4
+IP:                172.30.109.152
+IPs:               172.30.109.152
+Port:              <unset>  8080/TCP
+TargetPort:        8080/TCP
+Endpoints:         10.128.3.47:8080
+Session Affinity:  None
+Events:            <none>
+</pre>
