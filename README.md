@@ -342,9 +342,7 @@ There are 2 such separate OpenShift clusters setup for our training lab.
 
 Each OpenShift cluster supports upto 10 users.
 OpenShift Cluster - 1 ( 8 Users  )
-   - Server 1 ( 192.168.1.137 )
-   - user31 thru user40 will be using Cluster 1
+   - Server 1 ( 192.168.1.237 )
 OpenShift Cluster - 2 ( 8 users )
-   - Server 2 ( 192.168.1.138 )
-   - user41 thru user50 will be using Cluster 2
+   - Server 2 ( 192.168.1.238 )
 </pre>
