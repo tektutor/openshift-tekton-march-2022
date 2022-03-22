@@ -855,7 +855,7 @@ spring-ms-1-build            0/1     Completed   0          2m45s
 spring-ms-77f44b65fb-6hch4   1/1     Running     0          2m7s
 </pre>
 
-## Creating a ClusterIP Internal Service
+## ⛹️‍♂️ Lab - Creating a ClusterIP Internal Service
 ```
 oc expose deploy/spring-ms --port=8080
 ```
