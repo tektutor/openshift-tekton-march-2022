@@ -94,6 +94,75 @@ svc/hello-spring-boot - 172.30.158.204 ports 8080, 8443, 8778
 1 info identified, use 'oc status --suggest' to see details.
 </pre>
 
+Check the build config
+```
+oc get bc
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc get bc</b>
+NAME                TYPE     FROM   LATEST
+hello-spring-boot   Source   Git    1
+</pre>
+
+You may optionally describe the build config to find more details
+
+```
+oc describe bc/hello-spring-boot
+```
+
+<pre>
+(jegan@tektutor.org)$ <b>oc describe bc/hello-spring-boot</b>
+Name:		hello-spring-boot
+Namespace:	jegan
+Created:	14 minutes ago
+Labels:		app=hello-spring-boot
+		app.kubernetes.io/component=hello-spring-boot
+		app.kubernetes.io/instance=hello-spring-boot
+Annotations:	openshift.io/generated-by=OpenShiftNewApp
+Latest Version:	1
+
+Strategy:	Source
+URL:		https://github.com/tektutor/hello-spring-boot.git
+From Image:	ImageStreamTag openshift/java:openjdk-11-el7
+Volumes:	<none>
+Output to:	ImageStreamTag hello-spring-boot:latest
+
+Build Run Policy:	Serial
+Triggered by:		Config, ImageChange
+Webhook GitHub:
+	URL:	https://api.tektutor.tektutor.org:6443/apis/build.openshift.io/v1/namespaces/jegan/buildconfigs/hello-spring-boot/webhooks/<secret>/github
+Webhook Generic:
+	URL:		https://api.tektutor.tektutor.org:6443/apis/build.openshift.io/v1/namespaces/jegan/buildconfigs/hello-spring-boot/webhooks/<secret>/generic
+	AllowEnv:	false
+Builds History Limit:
+	Successful:	5
+	Failed:		5
+
+Build			Status		Duration	Creation Time
+hello-spring-boot-1 	complete 	3m53s 		2022-03-23 06:04:02 +0530 IST
+
+Events:
+  Type		Reason				Age	From			Message
+  ----		------				----	----			-------
+  Warning	BuildConfigTriggerFailed	14m	buildconfig-controller	error triggering Build for BuildConfig jegan/hello-spring-boot: Internal error occurred: build config jegan/hello-spring-boot has already instantiated a build for imageid image-registry.openshift-image-registry.svc:5000/openshift/java@sha256:0618d4d6ebc7f40df445063c167d101d12e4955bc60b15713af43bd188104ab5
+</pre>
+
+## Let's create a public route for the service
+```
+oc expose svc/hello-springboot-app
+```
+
+List the route
+```
+oc get routes
+```
+
+Describe the route
+```
+oc describe route/hello-springboot-app
+```
+
 
 ## ⛹️‍♂️ Lab - Deploying mysql db server using Docker Image with parameters
 ```
