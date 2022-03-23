@@ -450,6 +450,37 @@ The expected output is
 service/openshift-spring exposed
 </pre>
 
+Let's list and describe the ClusterIP service we created
+```
+oc get svc
+oc describe svc/openshift-spring
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc get svc</b>
+NAME               TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+openshift-spring   ClusterIP   172.30.155.86   <none>        8080/TCP   4s
+(jegan@tektutor.org)$ <b>oc describe svc/openshift-spring</b>
+Name:              openshift-spring
+Namespace:         jegan
+Labels:            app=openshift-spring
+                   app.kubernetes.io/component=openshift-spring
+                   app.kubernetes.io/instance=openshift-spring
+Annotations:       <none>
+Selector:          deployment=openshift-spring
+Type:              ClusterIP
+IP Family Policy:  SingleStack
+IP Families:       IPv4
+IP:                172.30.155.86
+IPs:               172.30.155.86
+Port:              <unset>  8080/TCP
+TargetPort:        8080/TCP
+Endpoints:         10.128.2.67:8080,10.128.2.69:8080,10.128.2.70:8080
+Session Affinity:  None
+Events:            <none>
+</pre>
+
+
 ## ⛹️‍♀️ Lab - Deploying an application overriding the deployment strategy
 The git repo used below also has a Dockerfile. 
 By default, Openshift would have picked the Dockerfile if we haven't used  <br>--strategy=source
