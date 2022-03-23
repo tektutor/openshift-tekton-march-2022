@@ -10,21 +10,25 @@ https://medium.com/tektutor
 
 ### My Articles
 #### Setting up a 3 node Kubernetes Cluster on your local machine
+
 ```
 https://medium.com/tektutor/kubernetes-3-node-cluster-setup-50943378be41
 ```
 
 #### Using MetalLB Load Balancer in bare-metal Kubernetes Cluster
+
 ```
 https://medium.com/tektutor/using-metal-lb-on-a-bare-metal-onprem-kubernetes-setup-6d036af1d20c
 ```
 
 #### Using Nginx Ingress Controller in bare-metal Kubernetes Cluster
+
 ```
 https://medium.com/tektutor/using-nginx-ingress-controller-in-kubernetes-bare-metal-setup-890eb4e7772
 ```
 
 #### Deploying Stateful applications in a Kubernetes Cluster
+
 ```
 https://medium.com/tektutor/deploying-stateful-applications-in-kubernetes-8ffd46920b55
 ```
