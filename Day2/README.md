@@ -505,7 +505,11 @@ Now you can try to access the public route url
 ```
 curl openshift-spring-jegan.apps.tektutor.tektutor.org
 ```
-
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>curl openshift-spring-jegan.apps.tektutor.tektutor.org</b>
+Greetings from Spring Boot!
+</pre>
 
 ## ⛹️‍♀️ Lab - Deploying an application overriding the deployment strategy
 The git repo used below also has a Dockerfile. 
