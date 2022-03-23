@@ -480,6 +480,32 @@ Session Affinity:  None
 Events:            <none>
 </pre>
 
+Let's create a public route to test the ClusterIP Service
+```
+oc expose svc/openshift-spring
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ oc expose svc/openshift-spring
+route.route.openshift.io/openshift-spring exposed
+</pre>
+
+List the route
+```
+oc get route
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc get route</b>
+NAME               HOST/PORT                                           PATH   SERVICES           PORT   TERMINATION   WILDCARD
+openshift-spring   openshift-spring-jegan.apps.tektutor.tektutor.org          openshift-spring   8080                 None
+</pre>
+
+Now you can try to access the public route url
+```
+curl openshift-spring-jegan.apps.tektutor.tektutor.org
+```
+
 
 ## ⛹️‍♀️ Lab - Deploying an application overriding the deployment strategy
 The git repo used below also has a Dockerfile. 
