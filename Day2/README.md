@@ -38,6 +38,32 @@ https://medium.com/tektutor/deploying-stateful-applications-in-kubernetes-8ffd46
 https://medium.com/tektutor/container-engine-vs-container-runtime-667a99042f3
 ```
 
+
+## What really happens when we deploy an application in OpenShift/Kubernetes?
+Let say we wish to create a deployment for sping-ms application from the below GitHub Repo.
+
+```
+oc new-app https://github.com/tektutor/spring-ms.git
+```
+
+1. oc client tool will send a REST API Request to API Server to create a Deployment in master node
+2. The API Server in the master node will receive the request from oc client and will create a Deployment definition in the etcd datastore.
+3. When a new Deployment is added to the etcd, it triggers a "New Deployment Created" kind of event.
+4. The Deployment Controller running in the master node receives this event and retrieves the information from the event and it inturn sends a REST API request to the API Server to create a ReplicaSet.
+5. Once the API Server receives the request from Deployment Controller, it creates a ReplicaSet definition in the etcd key/value datastore.
+6. As soon as new ReplicaSet is added to the etcd, API Server broadcasts a "New ReplicaSet Created" kind of event.
+7. The ReplicaSet Controller receives this event, and will send a request to the API Server to create the x number of Pod definition as mention in the "New ReplicaSet created" event.
+8. The API Server will create x number of Pod definitions as requested by the ReplicaSet Controller in the etcd datastore.
+9. This will again trigger "New Pod Created" kind of event.
+10. The Scheduler which is running in the master node, receives this event and identifies a healthy node that can host the Pod containers. The Scheduler then, sends this scheduling recommendation/request to the API Server.
+11. Now the API Server will update the node details in the existing Pod definition(s) that are stored in the etcd datastore.
+12. This will trigger "New Pod Created" sort of events, which are received by the kubelet Kubernetes Agent running on the respective worker nodes.
+13. The kubelet will then will check if the container image is present on the node where kubelet is running, if it is not there, then kubelet will request the Container Enginer(Docker) to download that image.
+14. Once the Container Image is downloaded, kubelet creates a pause container and the application containers mentioned in the Pod definition.
+15. The Kubelet agent periodically monitors the health of the containers created by kubelet and keeps giving heart-beat kind of periodically updates to the API Server by making REST API calls.
+16. The API Server will update the status of the Pod and the respective container status in the etcd datastore.
+
+
 ## ⛹️‍♀️ Lab - List pods in all namespaces as kubeadmin
 ```
 kubectl get po --all-namespaces
