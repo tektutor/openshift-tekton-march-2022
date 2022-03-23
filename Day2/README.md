@@ -19,7 +19,7 @@ oc get is --all-namespaces
 ```
 
 <pre>
-(jegan@tektutor.org)$ oc get is --all-namespaces
+(jegan@tektutor.org)$ <b>oc get is --all-namespaces</b>
 NAMESPACE   NAME                                                  IMAGE REPOSITORY                                                                                                 TAGS                                                     UPDATED
 jegan       hello-spring-boot                                     image-registry.openshift-image-registry.svc:5000/jegan/hello-spring-boot                                         latest                                                   2 hours ago
 openshift   apicast-gateway                                       image-registry.openshift-image-registry.svc:5000/openshift/apicast-gateway                                       2.1.0.GA,2.10.0.GA,2.2.0.GA,2.3.0.GA + 7 more...         3 weeks ago
