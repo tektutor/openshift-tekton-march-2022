@@ -207,12 +207,12 @@ Greetings from Spring Boot!
 
 ## ⛹️‍♂️ Lab - Deploying mysql db server using Docker Image with parameters
 ```
-oc new-apply docker.io/mysql:latest -e MYSQL_ROOT_PASSWORD=root
+oc new-app docker.io/mysql:latest -e MYSQL_ROOT_PASSWORD=root
 ```
 
 The expected output is
 <pre>
-(jegan@tektutor.org)$ oc new-app docker.io/mysql:latest -e MYSQL_ROOT_PASSWORD=root
+(jegan@tektutor.org)$ <b>oc new-app docker.io/mysql:latest -e MYSQL_ROOT_PASSWORD=root</b>
 --> Found container image 562c9bc (4 days old) from docker.io for "docker.io/mysql:latest"
 
     * An image stream tag will be created as "mysql:latest" that will track this image
