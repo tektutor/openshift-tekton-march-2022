@@ -337,7 +337,7 @@ oc new-app https://github.com/tektutor/openshift-spring.git
 ```
 The expected output is
 <pre>
-(jegan@tektutor.org)$ oc new-app https://github.com/tektutor/openshift-spring.git
+(jegan@tektutor.org)$ <b>oc new-app https://github.com/tektutor/openshift-spring.git</b>
 --> Found container image 1ffbb31 (3 days old) from docker.io for "docker.io/openjdk:latest"
 
     * An image stream tag will be created as "openjdk:latest" that will track the source image
@@ -446,7 +446,7 @@ oc expose deploy/openshift-spring --type=ClusterIP --port=8080
 ```
 The expected output is
 <pre>
-(jegan@tektutor.org)$ oc expose deploy/openshift-spring --type=ClusterIP --port=8080
+(jegan@tektutor.org)$ <b>oc expose deploy/openshift-spring --type=ClusterIP --port=8080</b>
 service/openshift-spring exposed
 </pre>
 
@@ -486,7 +486,7 @@ oc expose svc/openshift-spring
 ```
 The expected output is
 <pre>
-(jegan@tektutor.org)$ oc expose svc/openshift-spring
+(jegan@tektutor.org)$ <b>oc expose svc/openshift-spring</b>
 route.route.openshift.io/openshift-spring exposed
 </pre>
 
