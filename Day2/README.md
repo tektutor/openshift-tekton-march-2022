@@ -149,6 +149,43 @@ Events:
   Warning	BuildConfigTriggerFailed	14m	buildconfig-controller	error triggering Build for BuildConfig jegan/hello-spring-boot: Internal error occurred: build config jegan/hello-spring-boot has already instantiated a build for imageid image-registry.openshift-image-registry.svc:5000/openshift/java@sha256:0618d4d6ebc7f40df445063c167d101d12e4955bc60b15713af43bd188104ab5
 </pre>
 
+### Let's find the details of the service
+```
+oc get svc
+oc describe svc/hello-spring-boot
+```
+
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc get svc</b>
+NAME                TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE
+hello-spring-boot   ClusterIP   172.30.158.204   <none>        8080/TCP,8443/TCP,8778/TCP   104m
+(jegan@tektutor.org)$ <b>oc describe svc/hello-spring-boot</b>
+Name:              hello-spring-boot
+Namespace:         jegan
+Labels:            app=hello-spring-boot
+                   app.kubernetes.io/component=hello-spring-boot
+                   app.kubernetes.io/instance=hello-spring-boot
+Annotations:       openshift.io/generated-by: OpenShiftNewApp
+Selector:          deployment=hello-spring-boot
+Type:              ClusterIP
+IP Family Policy:  SingleStack
+IP Families:       IPv4
+IP:                172.30.158.204
+IPs:               172.30.158.204
+Port:              8080-tcp  8080/TCP
+TargetPort:        8080/TCP
+Endpoints:         10.128.3.153:8080
+Port:              8443-tcp  8443/TCP
+TargetPort:        8443/TCP
+Endpoints:         10.128.3.153:8443
+Port:              8778-tcp  8778/TCP
+TargetPort:        8778/TCP
+Endpoints:         10.128.3.153:8778
+Session Affinity:  None
+Events:            <none>
+</pre>
+
 #### Let's create a public route for the service
 ```
 oc expose svc/hello-springboot-app
@@ -156,21 +193,16 @@ oc expose svc/hello-springboot-app
 
 #### List the route
 ```
-oc get routes
-```
-
-#### Let's describe the route
-```
+oc get route
 oc describe route/hello-springboot-app
-```
-
-### Let's see if the service is created
-```
-oc get svc
 ```
 The expected output is
 <pre>
-
+(jegan@tektutor.org)$ <b>oc get route</b>
+NAME                HOST/PORT                                            PATH   SERVICES            PORT       TERMINATION   WILDCARD
+hello-spring-boot   hello-spring-boot-jegan.apps.tektutor.tektutor.org          hello-spring-boot   8080-tcp                 None
+(jegan@tektutor.org)$ <b>curl hello-spring-boot-jegan.apps.tektutor.tektutor.org</b>
+Greetings from Spring Boot!
 </pre>
 
 ## ⛹️‍♂️ Lab - Deploying mysql db server using Docker Image with parameters
