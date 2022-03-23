@@ -1,4 +1,23 @@
-# OpenShift
+# CI/CD with TekTon on OpenShift
+For training/consulting/coaching, you may reach me
+<pre>
+    jegan@tektutor.org
+    +91 822-000-5626 (WhatsApp)
+</pre>
+
+## Don't miss a Kubernetes/OpenShift article ( Hit the clap button a few times and follow the author in medium )
+https://medium.com/tektutor
+
+### My Articles
+https://medium.com/tektutor/kubernetes-3-node-cluster-setup-50943378be41
+
+https://medium.com/tektutor/using-metal-lb-on-a-bare-metal-onprem-kubernetes-setup-6d036af1d20c
+
+https://medium.com/tektutor/using-nginx-ingress-controller-in-kubernetes-bare-metal-setup-890eb4e7772
+
+https://medium.com/tektutor/deploying-stateful-applications-in-kubernetes-8ffd46920b55
+
+https://medium.com/tektutor/container-engine-vs-container-runtime-667a99042f3
 
 ## ⛹️‍♂️ Lab - Listing imagestream in the current project
 ```
