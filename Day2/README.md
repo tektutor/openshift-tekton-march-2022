@@ -1511,7 +1511,7 @@ INFO Running 'mvn -e -Popenshift -DskipTests -Dcom.redhat.xpaas.repo.redhatga -D
 [INFO] ------------------------------------------------------------------------
 [WARNING] The requested profile "openshift" could not be activated because it does not exist.
 INFO Copying deployments from target to /deployments...
-'/tmp/src/target/spring-hello-1.0.jar' -> '/deployments/spring-hello-1.0.jar'
+<b>'/tmp/src/target/spring-hello-1.0.jar' -> '/deployments/spring-hello-1.0.jar'</b>
 INFO Cleaning up source directory (/tmp/src)
 STEP 9/9: CMD /usr/local/s2i/run
 COMMIT temp.builder.openshift.io/default/spring-ms-1:1de69dc5
