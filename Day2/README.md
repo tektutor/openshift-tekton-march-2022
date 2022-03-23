@@ -146,7 +146,17 @@ openshift-image-registry                           node-ca-zgh8b                
 openshift-ingress-canary                           ingress-canary-88cbh                                         1/1     Running     4                 27d
 openshift-ingress-canary                           ingress-canary-c6jlr                                         1/1     Running     4                 27d
 openshift-ingress-canary                           ingress-canary-cqv86                                         1/1     Running     4                 27d
-openshift-ingress-canary                           ingress-canary-hl25p                                         1/1     Running     4                 27d
+openshift-ingress-canary                           ingress-canary-hl25p                                         1/1     Running     4                 27d(jegan@tektutor.org)$ oc status
+In project jegan on server https://api.tektutor.tektutor.org:6443
+
+deployment/openshift-spring deploys istag/openshift-spring:latest <-
+  bc/openshift-spring docker builds https://github.com/tektutor/openshift-spring.git on istag/openjdk:latest 
+    build #1 running for 6 seconds
+  deployment #1 running for 8 seconds - 0/1 pods growing to 1
+
+
+1 info identified, use 'oc status --suggest' to see details.
+
 openshift-ingress-canary                           ingress-canary-pn64p                                         1/1     Running     4                 27d
 openshift-ingress-operator                         ingress-operator-597f796c69-cxpfp                            2/2     Running     16                27d
 openshift-ingress                                  router-default-6776cf78dc-44bk5                              1/1     Running     2 (41h ago)       2d4h
@@ -345,7 +355,100 @@ The expected output is
     Run 'oc status' to view your app.
 </pre>
 
+Checking the application deployment status
+```
+oc status
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc status</b>
+In project jegan on server https://api.tektutor.tektutor.org:6443
 
+deployment/openshift-spring deploys istag/openshift-spring:latest <-
+  bc/openshift-spring docker builds https://github.com/tektutor/openshift-spring.git on istag/openjdk:latest 
+    build #1 running for 6 seconds
+  deployment #1 running for 8 seconds - 0/1 pods growing to 1
+
+
+1 info identified, use 'oc status --suggest' to see details.
+</pre>
+
+
+List the deployment, replicaset and pods
+```
+oc get deploy,rs,po
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc get deploy,rs,po</b>
+NAME                               READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/openshift-spring   0/1     0            0           39s
+
+NAME                                          DESIRED   CURRENT   READY   AGE
+replicaset.apps/openshift-spring-547974b956   1         0         0       39s
+
+NAME                           READY   STATUS    RESTARTS   AGE
+pod/openshift-spring-1-build   1/1     Running   0          37s
+</pre>
+
+Checking the build logs
+```
+oc logs pod/openshift-spring-1-build
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc logs pod/openshift-spring-1-build</b>
+time="2022-03-23T06:52:58Z" level=info msg="Not using native diff for overlay, this may cause degraded performance for building images: kernel has CONFIG_OVERLAY_FS_REDIRECT_DIR enabled"
+I0323 06:52:58.117764       1 defaults.go:102] Defaulting to storage driver "overlay" with options [mountopt=metacopy=on].
+Caching blobs under "/var/cache/blobs".
+
+Pulling image docker.io/openjdk@sha256:ace059a5b9e58f0fe2b6bedbb14b3a7736d17ab7b2824f3990631e47d90e6849 ...
+Trying to pull docker.io/library/openjdk@sha256:ace059a5b9e58f0fe2b6bedbb14b3a7736d17ab7b2824f3990631e47d90e6849...
+Getting image source signatures
+Copying blob sha256:7db19695be7be96a8d27e754c74310c6fafa295ecdccbc10e8c5fe5b23854c2a
+Copying blob sha256:fc6e4d76e00b859a131e9b4131d92efca34af2da17d3bdc6d5323d473c1972eb
+Copying blob sha256:1824cb7e97fbcfc5c6ffea667f8e19cee765d015fef1b8ad70f96252d9713c95
+Copying config sha256:1ffbb31e1412b475e57d8e2168700f534f7f54705c5212246a49ae32fe723e4a
+Writing manifest to image destination
+Storing signatures
+Adding transient rw bind mount for /run/secrets/rhsm
+STEP 1/5: FROM docker.io/openjdk@sha256:ace059a5b9e58f0fe2b6bedbb14b3a7736d17ab7b2824f3990631e47d90e6849
+STEP 2/5: COPY hello.jar /app.jar
+time="2022-03-23T06:53:40Z" level=warning msg="Adding metacopy option, configured globally"
+--> 27f08961949
+STEP 3/5: ENTRYPOINT ["java","-jar","/app.jar"]
+--> 78aa8aa4228
+STEP 4/5: ENV "OPENSHIFT_BUILD_NAME"="openshift-spring-1" "OPENSHIFT_BUILD_NAMESPACE"="jegan" "OPENSHIFT_BUILD_SOURCE"="https://github.com/tektutor/openshift-spring.git" "OPENSHIFT_BUILD_COMMIT"="dbb5ecb3f478141047752557f5213a4237657d88"
+--> 26243d96399
+STEP 5/5: LABEL "io.openshift.build.commit.author"="Jeganathan Swaminathan <mail2jegan@gmail.com>" "io.openshift.build.commit.date"="Wed Mar 23 12:19:20 2022 +0530" "io.openshift.build.commit.id"="dbb5ecb3f478141047752557f5213a4237657d88" "io.openshift.build.commit.message"="Initial commit." "io.openshift.build.commit.ref"="main" "io.openshift.build.name"="openshift-spring-1" "io.openshift.build.namespace"="jegan" "io.openshift.build.source-location"="https://github.com/tektutor/openshift-spring.git"
+COMMIT temp.builder.openshift.io/jegan/openshift-spring-1:ab7a74f8
+--> 3ebb1598c0f
+Successfully tagged temp.builder.openshift.io/jegan/openshift-spring-1:ab7a74f8
+3ebb1598c0ff2dbac2d78a8aa51d6a1b060d9ce39a6e8660cb8865f7cd8e9ddf
+
+Pushing image image-registry.openshift-image-registry.svc:5000/jegan/openshift-spring:latest ...
+Getting image source signatures
+Copying blob sha256:47956361258aabd35557f667089ad0755b2d36f0b68b8b57ba91c5f9d55519f6
+Copying blob sha256:fc6e4d76e00b859a131e9b4131d92efca34af2da17d3bdc6d5323d473c1972eb
+Copying blob sha256:1824cb7e97fbcfc5c6ffea667f8e19cee765d015fef1b8ad70f96252d9713c95
+Copying blob sha256:7db19695be7be96a8d27e754c74310c6fafa295ecdccbc10e8c5fe5b23854c2a
+Copying config sha256:3ebb1598c0ff2dbac2d78a8aa51d6a1b060d9ce39a6e8660cb8865f7cd8e9ddf
+Writing manifest to image destination
+Storing signatures
+Successfully pushed image-registry.openshift-image-registry.svc:5000/jegan/openshift-spring@sha256:ac74806c69a58ae3a56287ebf0640e68491517a7aa78da9d701fdcd93e4b8df0
+Push successful
+</pre>
+
+
+Let's create a ClusterIP Internal Service for the deployment
+```
+oc expose deploy/openshift-spring --type=ClusterIP --port=8080
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ oc expose deploy/openshift-spring --type=ClusterIP --port=8080
+service/openshift-spring exposed
+</pre>
 
 ## ⛹️‍♀️ Lab - Deploying an application overriding the deployment strategy
 The git repo used below also has a Dockerfile. 
