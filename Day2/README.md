@@ -253,7 +253,7 @@ Let's get inside the mysql Pod shell
 oc exec -it mysql-6659459f68-hkjs4 sh
 mysql -u root -p
 ```
-When prompted for mysql root password, type 'root' without quotes a the password.
+When prompted for mysql root password, type 'root' without quotes as the password.
 
 The expected output is
 <pre>
