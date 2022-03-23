@@ -320,6 +320,33 @@ tekton-pipelines                                   tekton-pipelines-controller-6
 tekton-pipelines                                   tekton-pipelines-webhook-f87bdc5c7-4djpt                     1/1     Running     0                 6h
 </pre>
 
+
+## ⛹️‍♂️ Lab - Deploying an application from GitHub Repo that has just Dockerfile and the application jar
+```
+oc new-app https://github.com/tektutor/openshift-spring.git
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ oc new-app https://github.com/tektutor/openshift-spring.git
+--> Found container image 1ffbb31 (3 days old) from docker.io for "docker.io/openjdk:latest"
+
+    * An image stream tag will be created as "openjdk:latest" that will track the source image
+    * A Docker build using source code from https://github.com/tektutor/openshift-spring.git will be created
+      * The resulting image will be pushed to image stream tag "openshift-spring:latest"
+      * Every time "openjdk:latest" changes a new build will be triggered
+
+--> Creating resources ...
+    imagestream.image.openshift.io "openjdk" created
+    imagestream.image.openshift.io "openshift-spring" created
+    buildconfig.build.openshift.io "openshift-spring" created
+    deployment.apps "openshift-spring" created
+--> Success
+    Build scheduled, use 'oc logs -f buildconfig/openshift-spring' to track its progress.
+    Run 'oc status' to view your app.
+</pre>
+
+
+
 ## ⛹️‍♀️ Lab - Deploying an application overriding the deployment strategy
 The git repo used below also has a Dockerfile. 
 By default, Openshift would have picked the Dockerfile if we haven't used  <br>--strategy=source
