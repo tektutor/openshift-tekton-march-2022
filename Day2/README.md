@@ -296,7 +296,7 @@ tekton-pipelines                                   tekton-pipelines-webhook-f87b
 
 ## ⛹️‍♀️ Lab - Deploying an application overriding the deployment strategy
 The git repo used below also has a Dockerfile. 
-By default, Openshift would have picked the Dockerfile if we haven't used  --strategy=source
+By default, Openshift would have picked the Dockerfile if we haven't used  <br>--strategy=source
 
 ```
 oc new-app java:openjdk-11-el7~https://github.com/tektutor/spring-ms.git --strategy=source
