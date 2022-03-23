@@ -12,9 +12,9 @@ https://medium.com/tektutor
 
 ### My Articles
 Setting up a 3 node Kubernetes Cluster on your local machine
-<pre>
+```
 https://medium.com/tektutor/kubernetes-3-node-cluster-setup-50943378be41
-</pre>
+```
 
 Using MetalLB Load Balancer in bare-metal Kubernetes Cluster
 <pre>
