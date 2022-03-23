@@ -24,7 +24,8 @@ project.project.openshift.io "jegan" deleted
 </pre>
 
 ## ⛹️ Lab - Deploying an application using S2I specifying the base openshift builder image
-Let's create a new project before deploying our application
+
+#### Let's create a new project before deploying our application
 
 ```
 oc new-project jegan
@@ -43,7 +44,7 @@ to build a new example application in Ruby. Or use kubectl to deploy a simple Ku
     kubectl create deployment hello-node --image=k8s.gcr.io/serve_hostname
 </pre>
 
-Now let's deploy our application from TekTutor GitHub Repository
+#### Now let's deploy our application from TekTutor GitHub Repository
 ```
 oc new-app java:openjdk-11-el7~https://github.com/tektutor/hello-spring-boot.git
 ```
@@ -75,7 +76,7 @@ The expected output is
     Run 'oc status' to view your app.
 </pre>
 
-Let's us check the status of the application deployment
+#### Let's us check the status of the application deployment
 ```
 oc status
 ```
@@ -94,7 +95,7 @@ svc/hello-spring-boot - 172.30.158.204 ports 8080, 8443, 8778
 1 info identified, use 'oc status --suggest' to see details.
 </pre>
 
-Check the build config
+#### Check the build config
 ```
 oc get bc
 ```
@@ -105,7 +106,7 @@ NAME                TYPE     FROM   LATEST
 hello-spring-boot   Source   Git    1
 </pre>
 
-You may optionally describe the build config to find more details
+#### You may optionally describe the build config to find more details
 
 ```
 oc describe bc/hello-spring-boot
@@ -148,21 +149,29 @@ Events:
   Warning	BuildConfigTriggerFailed	14m	buildconfig-controller	error triggering Build for BuildConfig jegan/hello-spring-boot: Internal error occurred: build config jegan/hello-spring-boot has already instantiated a build for imageid image-registry.openshift-image-registry.svc:5000/openshift/java@sha256:0618d4d6ebc7f40df445063c167d101d12e4955bc60b15713af43bd188104ab5
 </pre>
 
-## Let's create a public route for the service
+#### Let's create a public route for the service
 ```
 oc expose svc/hello-springboot-app
 ```
 
-List the route
+#### List the route
 ```
 oc get routes
 ```
 
-Describe the route
+#### Let's describe the route
 ```
 oc describe route/hello-springboot-app
 ```
 
+### Let's see if the service is created
+```
+oc get svc
+```
+The expected output is
+<pre>
+
+</pre>
 
 ## ⛹️‍♂️ Lab - Deploying mysql db server using Docker Image with parameters
 ```
