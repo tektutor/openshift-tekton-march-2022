@@ -2169,3 +2169,453 @@ mysql> exit
 Bye
 $ exit
 </pre>
+
+# Session - 4
+
+## List the API resources
+```
+oc api-resources
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc api-resources</b>
+NAME                                  SHORTNAMES       APIVERSION                                    NAMESPACED   KIND
+bindings                                               v1                                            true         Binding
+componentstatuses                     cs               v1                                            false        ComponentStatus
+configmaps                            cm               v1                                            true         ConfigMap
+endpoints                             ep               v1                                            true         Endpoints
+events                                ev               v1                                            true         Event
+limitranges                           limits           v1                                            true         LimitRange
+namespaces                            ns               v1                                            false        Namespace
+nodes                                 no               v1                                            false        Node
+persistentvolumeclaims                pvc              v1                                            true         PersistentVolumeClaim
+persistentvolumes                     pv               v1                                            false        PersistentVolume
+pods                                  po               v1                                            true         Pod
+podtemplates                                           v1                                            true         PodTemplate
+replicationcontrollers                rc               v1                                            true         ReplicationController
+resourcequotas                        quota            v1                                            true         ResourceQuota
+secrets                                                v1                                            true         Secret
+serviceaccounts                       sa               v1                                            true         ServiceAccount
+services                              svc              v1                                            true         Service
+mutatingwebhookconfigurations                          admissionregistration.k8s.io/v1               false        MutatingWebhookConfiguration
+validatingwebhookconfigurations                        admissionregistration.k8s.io/v1               false        ValidatingWebhookConfiguration
+customresourcedefinitions             crd,crds         apiextensions.k8s.io/v1                       false        CustomResourceDefinition
+apiservices                                            apiregistration.k8s.io/v1                     false        APIService
+apirequestcounts                                       apiserver.openshift.io/v1                     false        APIRequestCount
+controllerrevisions                                    apps/v1                                       true         ControllerRevision
+daemonsets                            ds               apps/v1                                       true         DaemonSet
+deployments                           deploy           apps/v1                                       true         Deployment
+replicasets                           rs               apps/v1                                       true         ReplicaSet
+statefulsets                          sts              apps/v1                                       true         StatefulSet
+deploymentconfigs                     dc               apps.openshift.io/v1                          true         DeploymentConfig
+tokenreviews                                           authentication.k8s.io/v1                      false        TokenReview
+localsubjectaccessreviews                              authorization.k8s.io/v1                       true         LocalSubjectAccessReview
+selfsubjectaccessreviews                               authorization.k8s.io/v1                       false        SelfSubjectAccessReview
+selfsubjectrulesreviews                                authorization.k8s.io/v1                       false        SelfSubjectRulesReview
+subjectaccessreviews                                   authorization.k8s.io/v1                       false        SubjectAccessReview
+clusterrolebindings                                    authorization.openshift.io/v1                 false        ClusterRoleBinding
+clusterroles                                           authorization.openshift.io/v1                 false        ClusterRole
+localresourceaccessreviews                             authorization.openshift.io/v1                 true         LocalResourceAccessReview
+localsubjectaccessreviews                              authorization.openshift.io/v1                 true         LocalSubjectAccessReview
+resourceaccessreviews                                  authorization.openshift.io/v1                 false        ResourceAccessReview
+rolebindingrestrictions                                authorization.openshift.io/v1                 true         RoleBindingRestriction
+rolebindings                                           authorization.openshift.io/v1                 true         RoleBinding
+roles                                                  authorization.openshift.io/v1                 true         Role
+selfsubjectrulesreviews                                authorization.openshift.io/v1                 true         SelfSubjectRulesReview
+subjectaccessreviews                                   authorization.openshift.io/v1                 false        SubjectAccessReview
+subjectrulesreviews                                    authorization.openshift.io/v1                 true         SubjectRulesReview
+horizontalpodautoscalers              hpa              autoscaling/v1                                true         HorizontalPodAutoscaler
+clusterautoscalers                    ca               autoscaling.openshift.io/v1                   false        ClusterAutoscaler
+machineautoscalers                    ma               autoscaling.openshift.io/v1beta1              true         MachineAutoscaler
+cronjobs                              cj               batch/v1                                      true         CronJob
+jobs                                                   batch/v1                                      true         Job
+buildconfigs                          bc               build.openshift.io/v1                         true         BuildConfig
+builds                                                 build.openshift.io/v1                         true         Build
+certificatesigningrequests            csr              certificates.k8s.io/v1                        false        CertificateSigningRequest
+credentialsrequests                                    cloudcredential.openshift.io/v1               true         CredentialsRequest
+apiservers                                             config.openshift.io/v1                        false        APIServer
+authentications                                        config.openshift.io/v1                        false        Authentication
+builds                                                 config.openshift.io/v1                        false        Build
+clusteroperators                      co               config.openshift.io/v1                        false        ClusterOperator
+clusterversions                                        config.openshift.io/v1                        false        ClusterVersion
+consoles                                               config.openshift.io/v1                        false        Console
+dnses                                                  config.openshift.io/v1                        false        DNS
+featuregates                                           config.openshift.io/v1                        false        FeatureGate
+images                                                 config.openshift.io/v1                        false        Image
+infrastructures                                        config.openshift.io/v1                        false        Infrastructure
+ingresses                                              config.openshift.io/v1                        false        Ingress
+networks                                               config.openshift.io/v1                        false        Network
+oauths                                                 config.openshift.io/v1                        false        OAuth
+operatorhubs                                           config.openshift.io/v1                        false        OperatorHub
+projects                                               config.openshift.io/v1                        false        Project
+proxies                                                config.openshift.io/v1                        false        Proxy
+schedulers                                             config.openshift.io/v1                        false        Scheduler
+consoleclidownloads                                    console.openshift.io/v1                       false        ConsoleCLIDownload
+consoleexternalloglinks                                console.openshift.io/v1                       false        ConsoleExternalLogLink
+consolelinks                                           console.openshift.io/v1                       false        ConsoleLink
+consolenotifications                                   console.openshift.io/v1                       false        ConsoleNotification
+consoleplugins                                         console.openshift.io/v1alpha1                 false        ConsolePlugin
+consolequickstarts                                     console.openshift.io/v1                       false        ConsoleQuickStart
+consoleyamlsamples                                     console.openshift.io/v1                       false        ConsoleYAMLSample
+podnetworkconnectivitychecks                           controlplane.operator.openshift.io/v1alpha1   true         PodNetworkConnectivityCheck
+leases                                                 coordination.k8s.io/v1                        true         Lease
+endpointslices                                         discovery.k8s.io/v1                           true         EndpointSlice
+events                                ev               events.k8s.io/v1                              true         Event
+flowschemas                                            flowcontrol.apiserver.k8s.io/v1beta1          false        FlowSchema
+prioritylevelconfigurations                            flowcontrol.apiserver.k8s.io/v1beta1          false        PriorityLevelConfiguration
+helmchartrepositories                                  helm.openshift.io/v1beta1                     false        HelmChartRepository
+images                                                 image.openshift.io/v1                         false        Image
+imagesignatures                                        image.openshift.io/v1                         false        ImageSignature
+imagestreamimages                     isimage          image.openshift.io/v1                         true         ImageStreamImage
+imagestreamimports                                     image.openshift.io/v1                         true         ImageStreamImport
+imagestreammappings                                    image.openshift.io/v1                         true         ImageStreamMapping
+imagestreams                          is               image.openshift.io/v1                         true         ImageStream
+imagestreamtags                       istag            image.openshift.io/v1                         true         ImageStreamTag
+imagetags                             itag             image.openshift.io/v1                         true         ImageTag
+configs                                                imageregistry.operator.openshift.io/v1        false        Config
+imagepruners                                           imageregistry.operator.openshift.io/v1        false        ImagePruner
+dnsrecords                                             ingress.operator.openshift.io/v1              true         DNSRecord
+network-attachment-definitions        net-attach-def   k8s.cni.cncf.io/v1                            true         NetworkAttachmentDefinition
+machinehealthchecks                   mhc,mhcs         machine.openshift.io/v1beta1                  true         MachineHealthCheck
+machines                                               machine.openshift.io/v1beta1                  true         Machine
+machinesets                                            machine.openshift.io/v1beta1                  true         MachineSet
+containerruntimeconfigs               ctrcfg           machineconfiguration.openshift.io/v1          false        ContainerRuntimeConfig
+controllerconfigs                                      machineconfiguration.openshift.io/v1          false        ControllerConfig
+kubeletconfigs                                         machineconfiguration.openshift.io/v1          false        KubeletConfig
+machineconfigpools                    mcp              machineconfiguration.openshift.io/v1          false        MachineConfigPool
+machineconfigs                        mc               machineconfiguration.openshift.io/v1          false        MachineConfig
+baremetalhosts                        bmh,bmhost       metal3.io/v1alpha1                            true         BareMetalHost
+provisionings                                          metal3.io/v1alpha1                            false        Provisioning
+nodes                                                  metrics.k8s.io/v1beta1                        false        NodeMetrics
+pods                                                   metrics.k8s.io/v1beta1                        true         PodMetrics
+storagestates                                          migration.k8s.io/v1alpha1                     false        StorageState
+storageversionmigrations                               migration.k8s.io/v1alpha1                     false        StorageVersionMigration
+alertmanagerconfigs                                    monitoring.coreos.com/v1alpha1                true         AlertmanagerConfig
+alertmanagers                                          monitoring.coreos.com/v1                      true         Alertmanager
+podmonitors                                            monitoring.coreos.com/v1                      true         PodMonitor
+probes                                                 monitoring.coreos.com/v1                      true         Probe
+prometheuses                                           monitoring.coreos.com/v1                      true         Prometheus
+prometheusrules                                        monitoring.coreos.com/v1                      true         PrometheusRule
+servicemonitors                                        monitoring.coreos.com/v1                      true         ServiceMonitor
+thanosrulers                                           monitoring.coreos.com/v1                      true         ThanosRuler
+clusternetworks                                        network.openshift.io/v1                       false        ClusterNetwork
+egressnetworkpolicies                                  network.openshift.io/v1                       true         EgressNetworkPolicy
+hostsubnets                                            network.openshift.io/v1                       false        HostSubnet
+netnamespaces                                          network.openshift.io/v1                       false        NetNamespace
+egressrouters                                          network.operator.openshift.io/v1              true         EgressRouter
+operatorpkis                                           network.operator.openshift.io/v1              true         OperatorPKI
+ingressclasses                                         networking.k8s.io/v1                          false        IngressClass
+ingresses                             ing              networking.k8s.io/v1                          true         Ingress
+networkpolicies                       netpol           networking.k8s.io/v1                          true         NetworkPolicy
+runtimeclasses                                         node.k8s.io/v1                                false        RuntimeClass
+oauthaccesstokens                                      oauth.openshift.io/v1                         false        OAuthAccessToken
+oauthauthorizetokens                                   oauth.openshift.io/v1                         false        OAuthAuthorizeToken
+oauthclientauthorizations                              oauth.openshift.io/v1                         false        OAuthClientAuthorization
+oauthclients                                           oauth.openshift.io/v1                         false        OAuthClient
+tokenreviews                                           oauth.openshift.io/v1                         false        TokenReview
+useroauthaccesstokens                                  oauth.openshift.io/v1                         false        UserOAuthAccessToken
+authentications                                        operator.openshift.io/v1                      false        Authentication
+cloudcredentials                                       operator.openshift.io/v1                      false        CloudCredential
+clustercsidrivers                                      operator.openshift.io/v1                      false        ClusterCSIDriver
+configs                                                operator.openshift.io/v1                      false        Config
+consoles                                               operator.openshift.io/v1                      false        Console
+csisnapshotcontrollers                                 operator.openshift.io/v1                      false        CSISnapshotController
+dnses                                                  operator.openshift.io/v1                      false        DNS
+etcds                                                  operator.openshift.io/v1                      false        Etcd
+imagecontentsourcepolicies                             operator.openshift.io/v1alpha1                false        ImageContentSourcePolicy
+ingresscontrollers                                     operator.openshift.io/v1                      true         IngressController
+kubeapiservers                                         operator.openshift.io/v1                      false        KubeAPIServer
+kubecontrollermanagers                                 operator.openshift.io/v1                      false        KubeControllerManager
+kubeschedulers                                         operator.openshift.io/v1                      false        KubeScheduler
+kubestorageversionmigrators                            operator.openshift.io/v1                      false        KubeStorageVersionMigrator
+networks                                               operator.openshift.io/v1                      false        Network
+openshiftapiservers                                    operator.openshift.io/v1                      false        OpenShiftAPIServer
+openshiftcontrollermanagers                            operator.openshift.io/v1                      false        OpenShiftControllerManager
+servicecas                                             operator.openshift.io/v1                      false        ServiceCA
+storages                                               operator.openshift.io/v1                      false        Storage
+catalogsources                        catsrc           operators.coreos.com/v1alpha1                 true         CatalogSource
+clusterserviceversions                csv,csvs         operators.coreos.com/v1alpha1                 true         ClusterServiceVersion
+installplans                          ip               operators.coreos.com/v1alpha1                 true         InstallPlan
+operatorconditions                    condition        operators.coreos.com/v2                       true         OperatorCondition
+operatorgroups                        og               operators.coreos.com/v1                       true         OperatorGroup
+operators                                              operators.coreos.com/v1                       false        Operator
+subscriptions                         sub,subs         operators.coreos.com/v1alpha1                 true         Subscription
+packagemanifests                                       packages.operators.coreos.com/v1              true         PackageManifest
+poddisruptionbudgets                  pdb              policy/v1                                     true         PodDisruptionBudget
+podsecuritypolicies                   psp              policy/v1beta1                                false        PodSecurityPolicy
+projectrequests                                        project.openshift.io/v1                       false        ProjectRequest
+projects                                               project.openshift.io/v1                       false        Project
+appliedclusterresourcequotas                           quota.openshift.io/v1                         true         AppliedClusterResourceQuota
+clusterresourcequotas                 clusterquota     quota.openshift.io/v1                         false        ClusterResourceQuota
+clusterrolebindings                                    rbac.authorization.k8s.io/v1                  false        ClusterRoleBinding
+clusterroles                                           rbac.authorization.k8s.io/v1                  false        ClusterRole
+rolebindings                                           rbac.authorization.k8s.io/v1                  true         RoleBinding
+roles                                                  rbac.authorization.k8s.io/v1                  true         Role
+routes                                                 route.openshift.io/v1                         true         Route
+configs                                                samples.operator.openshift.io/v1              false        Config
+priorityclasses                       pc               scheduling.k8s.io/v1                          false        PriorityClass
+rangeallocations                                       security.internal.openshift.io/v1             false        RangeAllocation
+podsecuritypolicyreviews                               security.openshift.io/v1                      true         PodSecurityPolicyReview
+podsecuritypolicyselfsubjectreviews                    security.openshift.io/v1                      true         PodSecurityPolicySelfSubjectReview
+podsecuritypolicysubjectreviews                        security.openshift.io/v1                      true         PodSecurityPolicySubjectReview
+rangeallocations                                       security.openshift.io/v1                      false        RangeAllocation
+securitycontextconstraints            scc              security.openshift.io/v1                      false        SecurityContextConstraints
+volumesnapshotclasses                                  snapshot.storage.k8s.io/v1                    false        VolumeSnapshotClass
+volumesnapshotcontents                                 snapshot.storage.k8s.io/v1                    false        VolumeSnapshotContent
+volumesnapshots                                        snapshot.storage.k8s.io/v1                    true         VolumeSnapshot
+csidrivers                                             storage.k8s.io/v1                             false        CSIDriver
+csinodes                                               storage.k8s.io/v1                             false        CSINode
+csistoragecapacities                                   storage.k8s.io/v1beta1                        true         CSIStorageCapacity
+storageclasses                        sc               storage.k8s.io/v1                             false        StorageClass
+volumeattachments                                      storage.k8s.io/v1                             false        VolumeAttachment
+clustertasks                                           tekton.dev/v1beta1                            false        ClusterTask
+conditions                                             tekton.dev/v1alpha1                           true         Condition
+pipelineresources                                      tekton.dev/v1alpha1                           true         PipelineResource
+pipelineruns                          pr,prs           tekton.dev/v1beta1                            true         PipelineRun
+pipelines                                              tekton.dev/v1beta1                            true         Pipeline
+runs                                                   tekton.dev/v1alpha1                           true         Run
+taskruns                              tr,trs           tekton.dev/v1beta1                            true         TaskRun
+tasks                                                  tekton.dev/v1beta1                            true         Task
+brokertemplateinstances                                template.openshift.io/v1                      false        BrokerTemplateInstance
+processedtemplates                                     template.openshift.io/v1                      true         Template
+templateinstances                                      template.openshift.io/v1                      true         TemplateInstance
+templates                                              template.openshift.io/v1                      true         Template
+clusterinterceptors                   ci               triggers.tekton.dev/v1alpha1                  false        ClusterInterceptor
+clustertriggerbindings                ctb              triggers.tekton.dev/v1beta1                   false        ClusterTriggerBinding
+eventlisteners                        el               triggers.tekton.dev/v1beta1                   true         EventListener
+triggerbindings                       tb               triggers.tekton.dev/v1beta1                   true         TriggerBinding
+triggers                              tri              triggers.tekton.dev/v1beta1                   true         Trigger
+triggertemplates                      tt               triggers.tekton.dev/v1beta1                   true         TriggerTemplate
+profiles                                               tuned.openshift.io/v1                         true         Profile
+tuneds                                                 tuned.openshift.io/v1                         true         Tuned
+groups                                                 user.openshift.io/v1                          false        Group
+identities                                             user.openshift.io/v1                          false        Identity
+useridentitymappings                                   user.openshift.io/v1                          false        UserIdentityMapping
+users                                                  user.openshift.io/v1                          false        User
+ippools                                                whereabouts.cni.cncf.io/v1alpha1              true         IPPool
+overlappingrangeipreservations                         whereabouts.cni.cncf.io/v1alpha1              true         OverlappingRangeIPReservation
+</pre>
+
+## List API Resources with more information
+```
+oc api-resources -o wide
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc api-resources -o wide</b>
+NAME                                  SHORTNAMES       APIVERSION                                    NAMESPACED   KIND                                 VERBS
+bindings                                               v1                                            true         Binding                              [create]
+componentstatuses                     cs               v1                                            false        ComponentStatus                      [get list]
+configmaps                            cm               v1                                            true         ConfigMap                            [create delete deletecollection get list patch update watch]
+endpoints                             ep               v1                                            true         Endpoints                            [create delete deletecollection get list patch update watch]
+events                                ev               v1                                            true         Event                                [create delete deletecollection get list patch update watch]
+limitranges                           limits           v1                                            true         LimitRange                           [create delete deletecollection get list patch update watch]
+namespaces                            ns               v1                                            false        Namespace                            [create delete get list patch update watch]
+nodes                                 no               v1                                            false        Node                                 [create delete deletecollection get list patch update watch]
+persistentvolumeclaims                pvc              v1                                            true         PersistentVolumeClaim                [create delete deletecollection get list patch update watch]
+persistentvolumes                     pv               v1                                            false        PersistentVolume                     [create delete deletecollection get list patch update watch]
+pods                                  po               v1                                            true         Pod                                  [create delete deletecollection get list patch update watch]
+podtemplates                                           v1                                            true         PodTemplate                          [create delete deletecollection get list patch update watch]
+replicationcontrollers                rc               v1                                            true         ReplicationController                [create delete deletecollection get list patch update watch]
+resourcequotas                        quota            v1                                            true         ResourceQuota                        [create delete deletecollection get list patch update watch]
+secrets                                                v1                                            true         Secret                               [create delete deletecollection get list patch update watch]
+serviceaccounts                       sa               v1                                            true         ServiceAccount                       [create delete deletecollection get list patch update watch]
+services                              svc              v1                                            true         Service                              [create delete get list patch update watch]
+mutatingwebhookconfigurations                          admissionregistration.k8s.io/v1               false        MutatingWebhookConfiguration         [create delete deletecollection get list patch update watch]
+validatingwebhookconfigurations                        admissionregistration.k8s.io/v1               false        ValidatingWebhookConfiguration       [create delete deletecollection get list patch update watch]
+customresourcedefinitions             crd,crds         apiextensions.k8s.io/v1                       false        CustomResourceDefinition             [create delete deletecollection get list patch update watch]
+apiservices                                            apiregistration.k8s.io/v1                     false        APIService                           [create delete deletecollection get list patch update watch]
+apirequestcounts                                       apiserver.openshift.io/v1                     false        APIRequestCount                      [delete deletecollection get list patch create update watch]
+controllerrevisions                                    apps/v1                                       true         ControllerRevision                   [create delete deletecollection get list patch update watch]
+daemonsets                            ds               apps/v1                                       true         DaemonSet                            [create delete deletecollection get list patch update watch]
+deployments                           deploy           apps/v1                                       true         Deployment                           [create delete deletecollection get list patch update watch]
+replicasets                           rs               apps/v1                                       true         ReplicaSet                           [create delete deletecollection get list patch update watch]
+statefulsets                          sts              apps/v1                                       true         StatefulSet                          [create delete deletecollection get list patch update watch]
+deploymentconfigs                     dc               apps.openshift.io/v1                          true         DeploymentConfig                     [create delete deletecollection get list patch update watch]
+tokenreviews                                           authentication.k8s.io/v1                      false        TokenReview                          [create]
+localsubjectaccessreviews                              authorization.k8s.io/v1                       true         LocalSubjectAccessReview             [create]
+selfsubjectaccessreviews                               authorization.k8s.io/v1                       false        SelfSubjectAccessReview              [create]
+selfsubjectrulesreviews                                authorization.k8s.io/v1                       false        SelfSubjectRulesReview               [create]
+subjectaccessreviews                                   authorization.k8s.io/v1                       false        SubjectAccessReview                  [create]
+clusterrolebindings                                    authorization.openshift.io/v1                 false        ClusterRoleBinding                   [create delete get list patch update]
+clusterroles                                           authorization.openshift.io/v1                 false        ClusterRole                          [create delete get list patch update]
+localresourceaccessreviews                             authorization.openshift.io/v1                 true         LocalResourceAccessReview            [create]
+localsubjectaccessreviews                              authorization.openshift.io/v1                 true         LocalSubjectAccessReview             [create]
+resourceaccessreviews                                  authorization.openshift.io/v1                 false        ResourceAccessReview                 [create]
+rolebindingrestrictions                                authorization.openshift.io/v1                 true         RoleBindingRestriction               [create delete deletecollection get list patch update watch]
+rolebindings                                           authorization.openshift.io/v1                 true         RoleBinding                          [create delete get list patch update]
+roles                                                  authorization.openshift.io/v1                 true         Role                                 [create delete get list patch update]
+selfsubjectrulesreviews                                authorization.openshift.io/v1                 true         SelfSubjectRulesReview               [create]
+subjectaccessreviews                                   authorization.openshift.io/v1                 false        SubjectAccessReview                  [create]
+subjectrulesreviews                                    authorization.openshift.io/v1                 true         SubjectRulesReview                   [create]
+horizontalpodautoscalers              hpa              autoscaling/v1                                true         HorizontalPodAutoscaler              [create delete deletecollection get list patch update watch]
+clusterautoscalers                    ca               autoscaling.openshift.io/v1                   false        ClusterAutoscaler                    [delete deletecollection get list patch create update watch]
+machineautoscalers                    ma               autoscaling.openshift.io/v1beta1              true         MachineAutoscaler                    [delete deletecollection get list patch create update watch]
+cronjobs                              cj               batch/v1                                      true         CronJob                              [create delete deletecollection get list patch update watch]
+jobs                                                   batch/v1                                      true         Job                                  [create delete deletecollection get list patch update watch]
+buildconfigs                          bc               build.openshift.io/v1                         true         BuildConfig                          [create delete deletecollection get list patch update watch]
+builds                                                 build.openshift.io/v1                         true         Build                                [create delete deletecollection get list patch update watch]
+certificatesigningrequests            csr              certificates.k8s.io/v1                        false        CertificateSigningRequest            [create delete deletecollection get list patch update watch]
+credentialsrequests                                    cloudcredential.openshift.io/v1               true         CredentialsRequest                   [delete deletecollection get list patch create update watch]
+apiservers                                             config.openshift.io/v1                        false        APIServer                            [delete deletecollection get list patch create update watch]
+authentications                                        config.openshift.io/v1                        false        Authentication                       [delete deletecollection get list patch create update watch]
+builds                                                 config.openshift.io/v1                        false        Build                                [delete deletecollection get list patch create update watch]
+clusteroperators                      co               config.openshift.io/v1                        false        ClusterOperator                      [delete deletecollection get list patch create update watch]
+clusterversions                                        config.openshift.io/v1                        false        ClusterVersion                       [delete deletecollection get list patch create update watch]
+consoles                                               config.openshift.io/v1                        false        Console                              [delete deletecollection get list patch create update watch]
+dnses                                                  config.openshift.io/v1                        false        DNS                                  [delete deletecollection get list patch create update watch]
+featuregates                                           config.openshift.io/v1                        false        FeatureGate                          [delete deletecollection get list patch create update watch]
+images                                                 config.openshift.io/v1                        false        Image                                [delete deletecollection get list patch create update watch]
+infrastructures                                        config.openshift.io/v1                        false        Infrastructure                       [delete deletecollection get list patch create update watch]
+ingresses                                              config.openshift.io/v1                        false        Ingress                              [delete deletecollection get list patch create update watch]
+networks                                               config.openshift.io/v1                        false        Network                              [delete deletecollection get list patch create update watch]
+oauths                                                 config.openshift.io/v1                        false        OAuth                                [delete deletecollection get list patch create update watch]
+operatorhubs                                           config.openshift.io/v1                        false        OperatorHub                          [delete deletecollection get list patch create update watch]
+projects                                               config.openshift.io/v1                        false        Project                              [delete deletecollection get list patch create update watch]
+proxies                                                config.openshift.io/v1                        false        Proxy                                [delete deletecollection get list patch create update watch]
+schedulers                                             config.openshift.io/v1                        false        Scheduler                            [delete deletecollection get list patch create update watch]
+consoleclidownloads                                    console.openshift.io/v1                       false        ConsoleCLIDownload                   [delete deletecollection get list patch create update watch]
+consoleexternalloglinks                                console.openshift.io/v1                       false        ConsoleExternalLogLink               [delete deletecollection get list patch create update watch]
+consolelinks                                           console.openshift.io/v1                       false        ConsoleLink                          [delete deletecollection get list patch create update watch]
+consolenotifications                                   console.openshift.io/v1                       false        ConsoleNotification                  [delete deletecollection get list patch create update watch]
+consoleplugins                                         console.openshift.io/v1alpha1                 false        ConsolePlugin                        [delete deletecollection get list patch create update watch]
+consolequickstarts                                     console.openshift.io/v1                       false        ConsoleQuickStart                    [delete deletecollection get list patch create update watch]
+consoleyamlsamples                                     console.openshift.io/v1                       false        ConsoleYAMLSample                    [delete deletecollection get list patch create update watch]
+podnetworkconnectivitychecks                           controlplane.operator.openshift.io/v1alpha1   true         PodNetworkConnectivityCheck          [delete deletecollection get list patch create update watch]
+leases                                                 coordination.k8s.io/v1                        true         Lease                                [create delete deletecollection get list patch update watch]
+endpointslices                                         discovery.k8s.io/v1                           true         EndpointSlice                        [create delete deletecollection get list patch update watch]
+events                                ev               events.k8s.io/v1                              true         Event                                [create delete deletecollection get list patch update watch]
+flowschemas                                            flowcontrol.apiserver.k8s.io/v1beta1          false        FlowSchema                           [create delete deletecollection get list patch update watch]
+prioritylevelconfigurations                            flowcontrol.apiserver.k8s.io/v1beta1          false        PriorityLevelConfiguration           [create delete deletecollection get list patch update watch]
+helmchartrepositories                                  helm.openshift.io/v1beta1                     false        HelmChartRepository                  [delete deletecollection get list patch create update watch]
+images                                                 image.openshift.io/v1                         false        Image                                [create delete deletecollection get list patch update watch]
+imagesignatures                                        image.openshift.io/v1                         false        ImageSignature                       [create delete]
+imagestreamimages                     isimage          image.openshift.io/v1                         true         ImageStreamImage                     [get]
+imagestreamimports                                     image.openshift.io/v1                         true         ImageStreamImport                    [create]
+imagestreammappings                                    image.openshift.io/v1                         true         ImageStreamMapping                   [create]
+imagestreams                          is               image.openshift.io/v1                         true         ImageStream                          [create delete deletecollection get list patch update watch]
+imagestreamtags                       istag            image.openshift.io/v1                         true         ImageStreamTag                       [create delete get list patch update]
+imagetags                             itag             image.openshift.io/v1                         true         ImageTag                             [create delete get list patch update]
+configs                                                imageregistry.operator.openshift.io/v1        false        Config                               [delete deletecollection get list patch create update watch]
+imagepruners                                           imageregistry.operator.openshift.io/v1        false        ImagePruner                          [delete deletecollection get list patch create update watch]
+dnsrecords                                             ingress.operator.openshift.io/v1              true         DNSRecord                            [delete deletecollection get list patch create update watch]
+network-attachment-definitions        net-attach-def   k8s.cni.cncf.io/v1                            true         NetworkAttachmentDefinition          [delete deletecollection get list patch create update watch]
+machinehealthchecks                   mhc,mhcs         machine.openshift.io/v1beta1                  true         MachineHealthCheck                   [delete deletecollection get list patch create update watch]
+machines                                               machine.openshift.io/v1beta1                  true         Machine                              [delete deletecollection get list patch create update watch]
+machinesets                                            machine.openshift.io/v1beta1                  true         MachineSet                           [delete deletecollection get list patch create update watch]
+containerruntimeconfigs               ctrcfg           machineconfiguration.openshift.io/v1          false        ContainerRuntimeConfig               [delete deletecollection get list patch create update watch]
+controllerconfigs                                      machineconfiguration.openshift.io/v1          false        ControllerConfig                     [delete deletecollection get list patch create update watch]
+kubeletconfigs                                         machineconfiguration.openshift.io/v1          false        KubeletConfig                        [delete deletecollection get list patch create update watch]
+machineconfigpools                    mcp              machineconfiguration.openshift.io/v1          false        MachineConfigPool                    [delete deletecollection get list patch create update watch]
+machineconfigs                        mc               machineconfiguration.openshift.io/v1          false        MachineConfig                        [delete deletecollection get list patch create update watch]
+baremetalhosts                        bmh,bmhost       metal3.io/v1alpha1                            true         BareMetalHost                        [delete deletecollection get list patch create update watch]
+provisionings                                          metal3.io/v1alpha1                            false        Provisioning                         [delete deletecollection get list patch create update watch]
+nodes                                                  metrics.k8s.io/v1beta1                        false        NodeMetrics                          [get list]
+pods                                                   metrics.k8s.io/v1beta1                        true         PodMetrics                           [get list]
+storagestates                                          migration.k8s.io/v1alpha1                     false        StorageState                         [delete deletecollection get list patch create update watch]
+storageversionmigrations                               migration.k8s.io/v1alpha1                     false        StorageVersionMigration              [delete deletecollection get list patch create update watch]
+alertmanagerconfigs                                    monitoring.coreos.com/v1alpha1                true         AlertmanagerConfig                   [delete deletecollection get list patch create update watch]
+alertmanagers                                          monitoring.coreos.com/v1                      true         Alertmanager                         [delete deletecollection get list patch create update watch]
+podmonitors                                            monitoring.coreos.com/v1                      true         PodMonitor                           [delete deletecollection get list patch create update watch]
+probes                                                 monitoring.coreos.com/v1                      true         Probe                                [delete deletecollection get list patch create update watch]
+prometheuses                                           monitoring.coreos.com/v1                      true         Prometheus                           [delete deletecollection get list patch create update watch]
+prometheusrules                                        monitoring.coreos.com/v1                      true         PrometheusRule                       [delete deletecollection get list patch create update watch]
+servicemonitors                                        monitoring.coreos.com/v1                      true         ServiceMonitor                       [delete deletecollection get list patch create update watch]
+thanosrulers                                           monitoring.coreos.com/v1                      true         ThanosRuler                          [delete deletecollection get list patch create update watch]
+clusternetworks                                        network.openshift.io/v1                       false        ClusterNetwork                       [delete deletecollection get list patch create update watch]
+egressnetworkpolicies                                  network.openshift.io/v1                       true         EgressNetworkPolicy                  [delete deletecollection get list patch create update watch]
+hostsubnets                                            network.openshift.io/v1                       false        HostSubnet                           [delete deletecollection get list patch create update watch]
+netnamespaces                                          network.openshift.io/v1                       false        NetNamespace                         [delete deletecollection get list patch create update watch]
+egressrouters                                          network.operator.openshift.io/v1              true         EgressRouter                         [delete deletecollection get list patch create update watch]
+operatorpkis                                           network.operator.openshift.io/v1              true         OperatorPKI                          [delete deletecollection get list patch create update watch]
+ingressclasses                                         networking.k8s.io/v1                          false        IngressClass                         [create delete deletecollection get list patch update watch]
+ingresses                             ing              networking.k8s.io/v1                          true         Ingress                              [create delete deletecollection get list patch update watch]
+networkpolicies                       netpol           networking.k8s.io/v1                          true         NetworkPolicy                        [create delete deletecollection get list patch update watch]
+runtimeclasses                                         node.k8s.io/v1                                false        RuntimeClass                         [create delete deletecollection get list patch update watch]
+oauthaccesstokens                                      oauth.openshift.io/v1                         false        OAuthAccessToken                     [create delete deletecollection get list patch update watch]
+oauthauthorizetokens                                   oauth.openshift.io/v1                         false        OAuthAuthorizeToken                  [create delete deletecollection get list patch update watch]
+oauthclientauthorizations                              oauth.openshift.io/v1                         false        OAuthClientAuthorization             [create delete deletecollection get list patch update watch]
+oauthclients                                           oauth.openshift.io/v1                         false        OAuthClient                          [create delete deletecollection get list patch update watch]
+tokenreviews                                           oauth.openshift.io/v1                         false        TokenReview                          [create]
+useroauthaccesstokens                                  oauth.openshift.io/v1                         false        UserOAuthAccessToken                 [delete get list watch]
+authentications                                        operator.openshift.io/v1                      false        Authentication                       [delete deletecollection get list patch create update watch]
+cloudcredentials                                       operator.openshift.io/v1                      false        CloudCredential                      [delete deletecollection get list patch create update watch]
+clustercsidrivers                                      operator.openshift.io/v1                      false        ClusterCSIDriver                     [delete deletecollection get list patch create update watch]
+configs                                                operator.openshift.io/v1                      false        Config                               [delete deletecollection get list patch create update watch]
+consoles                                               operator.openshift.io/v1                      false        Console                              [delete deletecollection get list patch create update watch]
+csisnapshotcontrollers                                 operator.openshift.io/v1                      false        CSISnapshotController                [delete deletecollection get list patch create update watch]
+dnses                                                  operator.openshift.io/v1                      false        DNS                                  [delete deletecollection get list patch create update watch]
+etcds                                                  operator.openshift.io/v1                      false        Etcd                                 [delete deletecollection get list patch create update watch]
+imagecontentsourcepolicies                             operator.openshift.io/v1alpha1                false        ImageContentSourcePolicy             [delete deletecollection get list patch create update watch]
+ingresscontrollers                                     operator.openshift.io/v1                      true         IngressController                    [delete deletecollection get list patch create update watch]
+kubeapiservers                                         operator.openshift.io/v1                      false        KubeAPIServer                        [delete deletecollection get list patch create update watch]
+kubecontrollermanagers                                 operator.openshift.io/v1                      false        KubeControllerManager                [delete deletecollection get list patch create update watch]
+kubeschedulers                                         operator.openshift.io/v1                      false        KubeScheduler                        [delete deletecollection get list patch create update watch]
+kubestorageversionmigrators                            operator.openshift.io/v1                      false        KubeStorageVersionMigrator           [delete deletecollection get list patch create update watch]
+networks                                               operator.openshift.io/v1                      false        Network                              [delete deletecollection get list patch create update watch]
+openshiftapiservers                                    operator.openshift.io/v1                      false        OpenShiftAPIServer                   [delete deletecollection get list patch create update watch]
+openshiftcontrollermanagers                            operator.openshift.io/v1                      false        OpenShiftControllerManager           [delete deletecollection get list patch create update watch]
+servicecas                                             operator.openshift.io/v1                      false        ServiceCA                            [delete deletecollection get list patch create update watch]
+storages                                               operator.openshift.io/v1                      false        Storage                              [delete deletecollection get list patch create update watch]
+catalogsources                        catsrc           operators.coreos.com/v1alpha1                 true         CatalogSource                        [delete deletecollection get list patch create update watch]
+clusterserviceversions                csv,csvs         operators.coreos.com/v1alpha1                 true         ClusterServiceVersion                [delete deletecollection get list patch create update watch]
+installplans                          ip               operators.coreos.com/v1alpha1                 true         InstallPlan                          [delete deletecollection get list patch create update watch]
+operatorconditions                    condition        operators.coreos.com/v2                       true         OperatorCondition                    [delete deletecollection get list patch create update watch]
+operatorgroups                        og               operators.coreos.com/v1                       true         OperatorGroup                        [delete deletecollection get list patch create update watch]
+operators                                              operators.coreos.com/v1                       false        Operator                             [delete deletecollection get list patch create update watch]
+subscriptions                         sub,subs         operators.coreos.com/v1alpha1                 true         Subscription                         [delete deletecollection get list patch create update watch]
+packagemanifests                                       packages.operators.coreos.com/v1              true         PackageManifest                      [get list]
+poddisruptionbudgets                  pdb              policy/v1                                     true         PodDisruptionBudget                  [create delete deletecollection get list patch update watch]
+podsecuritypolicies                   psp              policy/v1beta1                                false        PodSecurityPolicy                    [create delete deletecollection get list patch update watch]
+projectrequests                                        project.openshift.io/v1                       false        ProjectRequest                       [create list]
+projects                                               project.openshift.io/v1                       false        Project                              [create delete get list patch update watch]
+appliedclusterresourcequotas                           quota.openshift.io/v1                         true         AppliedClusterResourceQuota          [get list]
+clusterresourcequotas                 clusterquota     quota.openshift.io/v1                         false        ClusterResourceQuota                 [create delete deletecollection get list patch update watch]
+clusterrolebindings                                    rbac.authorization.k8s.io/v1                  false        ClusterRoleBinding                   [create delete deletecollection get list patch update watch]
+clusterroles                                           rbac.authorization.k8s.io/v1                  false        ClusterRole                          [create delete deletecollection get list patch update watch]
+rolebindings                                           rbac.authorization.k8s.io/v1                  true         RoleBinding                          [create delete deletecollection get list patch update watch]
+roles                                                  rbac.authorization.k8s.io/v1                  true         Role                                 [create delete deletecollection get list patch update watch]
+routes                                                 route.openshift.io/v1                         true         Route                                [create delete deletecollection get list patch update watch]
+configs                                                samples.operator.openshift.io/v1              false        Config                               [delete deletecollection get list patch create update watch]
+priorityclasses                       pc               scheduling.k8s.io/v1                          false        PriorityClass                        [create delete deletecollection get list patch update watch]
+rangeallocations                                       security.internal.openshift.io/v1             false        RangeAllocation                      [delete deletecollection get list patch create update watch]
+podsecuritypolicyreviews                               security.openshift.io/v1                      true         PodSecurityPolicyReview              [create]
+podsecuritypolicyselfsubjectreviews                    security.openshift.io/v1                      true         PodSecurityPolicySelfSubjectReview   [create]
+podsecuritypolicysubjectreviews                        security.openshift.io/v1                      true         PodSecurityPolicySubjectReview       [create]
+rangeallocations                                       security.openshift.io/v1                      false        RangeAllocation                      [create delete deletecollection get list patch update watch]
+securitycontextconstraints            scc              security.openshift.io/v1                      false        SecurityContextConstraints           [create delete deletecollection get list patch update watch]
+volumesnapshotclasses                                  snapshot.storage.k8s.io/v1                    false        VolumeSnapshotClass                  [delete deletecollection get list patch create update watch]
+volumesnapshotcontents                                 snapshot.storage.k8s.io/v1                    false        VolumeSnapshotContent                [delete deletecollection get list patch create update watch]
+volumesnapshots                                        snapshot.storage.k8s.io/v1                    true         VolumeSnapshot                       [delete deletecollection get list patch create update watch]
+csidrivers                                             storage.k8s.io/v1                             false        CSIDriver                            [create delete deletecollection get list patch update watch]
+csinodes                                               storage.k8s.io/v1                             false        CSINode                              [create delete deletecollection get list patch update watch]
+csistoragecapacities                                   storage.k8s.io/v1beta1                        true         CSIStorageCapacity                   [create delete deletecollection get list patch update watch]
+storageclasses                        sc               storage.k8s.io/v1                             false        StorageClass                         [create delete deletecollection get list patch update watch]
+volumeattachments                                      storage.k8s.io/v1                             false        VolumeAttachment                     [create delete deletecollection get list patch update watch]
+clustertasks                                           tekton.dev/v1beta1                            false        ClusterTask                          [delete deletecollection get list patch create update watch]
+conditions                                             tekton.dev/v1alpha1                           true         Condition                            [delete deletecollection get list patch create update watch]
+pipelineresources                                      tekton.dev/v1alpha1                           true         PipelineResource                     [delete deletecollection get list patch create update watch]
+pipelineruns                          pr,prs           tekton.dev/v1beta1                            true         PipelineRun                          [delete deletecollection get list patch create update watch]
+pipelines                                              tekton.dev/v1beta1                            true         Pipeline                             [delete deletecollection get list patch create update watch]
+runs                                                   tekton.dev/v1alpha1                           true         Run                                  [delete deletecollection get list patch create update watch]
+taskruns                              tr,trs           tekton.dev/v1beta1                            true         TaskRun                              [delete deletecollection get list patch create update watch]
+tasks                                                  tekton.dev/v1beta1                            true         Task                                 [delete deletecollection get list patch create update watch]
+brokertemplateinstances                                template.openshift.io/v1                      false        BrokerTemplateInstance               [create delete deletecollection get list patch update watch]
+processedtemplates                                     template.openshift.io/v1                      true         Template                             [create]
+templateinstances                                      template.openshift.io/v1                      true         TemplateInstance                     [create delete deletecollection get list patch update watch]
+templates                                              template.openshift.io/v1                      true         Template                             [create delete deletecollection get list patch update watch]
+clusterinterceptors                   ci               triggers.tekton.dev/v1alpha1                  false        ClusterInterceptor                   [delete deletecollection get list patch create update watch]
+clustertriggerbindings                ctb              triggers.tekton.dev/v1beta1                   false        ClusterTriggerBinding                [delete deletecollection get list patch create update watch]
+eventlisteners                        el               triggers.tekton.dev/v1beta1                   true         EventListener                        [delete deletecollection get list patch create update watch]
+triggerbindings                       tb               triggers.tekton.dev/v1beta1                   true         TriggerBinding                       [delete deletecollection get list patch create update watch]
+triggers                              tri              triggers.tekton.dev/v1beta1                   true         Trigger                              [delete deletecollection get list patch create update watch]
+triggertemplates                      tt               triggers.tekton.dev/v1beta1                   true         TriggerTemplate                      [delete deletecollection get list patch create update watch]
+profiles                                               tuned.openshift.io/v1                         true         Profile                              [delete deletecollection get list patch create update watch]
+tuneds                                                 tuned.openshift.io/v1                         true         Tuned                                [delete deletecollection get list patch create update watch]
+groups                                                 user.openshift.io/v1                          false        Group                                [create delete deletecollection get list patch update watch]
+identities                                             user.openshift.io/v1                          false        Identity                             [create delete deletecollection get list patch update watch]
+useridentitymappings                                   user.openshift.io/v1                          false        UserIdentityMapping                  [create delete get patch update]
+users                                                  user.openshift.io/v1                          false        User                                 [create delete deletecollection get list patch update watch]
+ippools                                                whereabouts.cni.cncf.io/v1alpha1              true         IPPool                               [delete deletecollection get list patch create update watch]
+overlappingrangeipreservations                         whereabouts.cni.cncf.io/v1alpha1              true         OverlappingRangeIPReservation        [delete deletecollection get list patch create update watch]
+</pre>
