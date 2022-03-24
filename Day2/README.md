@@ -2619,3 +2619,35 @@ users                                                  user.openshift.io/v1     
 ippools                                                whereabouts.cni.cncf.io/v1alpha1              true         IPPool                               [delete deletecollection get list patch create update watch]
 overlappingrangeipreservations                         whereabouts.cni.cncf.io/v1alpha1              true         OverlappingRangeIPReservation        [delete deletecollection get list patch create update watch]
 </pre>
+
+## Checking if you have permission to create pods in all namespaces
+```
+oc auth can-i create pods --all-namespaces
+```
+
+The expected output is
+
+<pre>
+(jegan@tektutor.org)$ <b>oc auth can-i create pods --all-namespaces</b>
+yes
+</pre>
+
+## Checking if you have permission to list deployments in the current project
+```
+oc auth can-i list deployments.apps
+```
+
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc auth can-i list deployments.apps</b>
+yes
+</pre>
+
+## Autoscaling deployment without any conditions
+```
+oc autoscale deployment openshift-spring --min=2 --max=10
+```
+The expected output is
+<pre>
+
+</pre>
