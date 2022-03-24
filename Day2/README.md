@@ -2765,7 +2765,7 @@ Let's now perform rolling update imperatively
 ```
 The expected output is
 <pre>
-(jegan@tektutor.org)$ oc set image deploy/nginx nginx=nginx nginx=bitnami/nginx:1.21
+(jegan@tektutor.org)$ oc set image deploy/nginx nginx=bitnami/nginx:1.21
 deployment.apps/nginx image updated
 (jegan@tektutor.org)$ oc get rs
 NAME               DESIRED   CURRENT   READY   AGE
