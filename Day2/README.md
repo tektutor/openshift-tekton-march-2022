@@ -2658,5 +2658,6 @@ oc autoscale deployment openshift-spring --min=2 --max=10
 ```
 The expected output is
 <pre>
-
+(jegan@tektutor.org)$ <b>oc autoscale deployment openshift-spring --min=2 --max=10</b>
+horizontalpodautoscaler.autoscaling/openshift-spring autoscaled
 </pre>
