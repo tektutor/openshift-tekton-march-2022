@@ -2875,11 +2875,11 @@ The expected output is
 <pre>
 (jegan@tektutor.org)$ <b>oc get nodes -o wide</b>
 NAME                             STATUS   ROLES           AGE   VERSION           INTERNAL-IP       EXTERNAL-IP   OS-IMAGE                                                       KERNEL-VERSION                 CONTAINER-RUNTIME
-master-1.tektutor.tektutor.org   Ready    master,worker   28d   v1.22.3+b93fd35   <b>192.168.122.13</b>    <none>        Red Hat Enterprise Linux CoreOS 49.84.202202141503-0 (Ootpa)   4.18.0-305.34.2.el8_4.x86_64   cri-o://1.22.1-16.rhaos4.9.git12fa1c7.el8
-master-2.tektutor.tektutor.org   Ready    master,worker   28d   v1.22.3+b93fd35   <b>192.168.122.136</b>   <none>        Red Hat Enterprise Linux CoreOS 49.84.202202141503-0 (Ootpa)   4.18.0-305.34.2.el8_4.x86_64   cri-o://1.22.1-16.rhaos4.9.git12fa1c7.el8
-master-3.tektutor.tektutor.org   Ready    master,worker   28d   v1.22.3+b93fd35   <b>192.168.122.15</b>    <none>        Red Hat Enterprise Linux CoreOS 49.84.202202141503-0 (Ootpa)   4.18.0-305.34.2.el8_4.x86_64   cri-o://1.22.1-16.rhaos4.9.git12fa1c7.el8
-worker-1.tektutor.tektutor.org   Ready    worker          28d   v1.22.3+b93fd35   <b>192.168.122.69</b>    <none>        Red Hat Enterprise Linux CoreOS 49.84.202202141503-0 (Ootpa)   4.18.0-305.34.2.el8_4.x86_64   cri-o://1.22.1-16.rhaos4.9.git12fa1c7.el8
-worker-2.tektutor.tektutor.org   Ready    worker          28d   v1.22.3+b93fd35   <b>192.168.122.143</b>   <none>        Red Hat Enterprise Linux CoreOS 49.84.202202141503-0 (Ootpa)   4.18.0-305.34.2.el8_4.x86_64   cri-o://1.22.1-16.rhaos4.9.git12fa1c7.el8
+<b>master-1.tektutor.tektutor.org</b>   Ready    master,worker   28d   v1.22.3+b93fd35   <b>192.168.122.13</b>    <none>        Red Hat Enterprise Linux CoreOS 49.84.202202141503-0 (Ootpa)   4.18.0-305.34.2.el8_4.x86_64   cri-o://1.22.1-16.rhaos4.9.git12fa1c7.el8
+<b>master-2.tektutor.tektutor.org</b>   Ready    master,worker   28d   v1.22.3+b93fd35   <b>192.168.122.136</b>   <none>        Red Hat Enterprise Linux CoreOS 49.84.202202141503-0 (Ootpa)   4.18.0-305.34.2.el8_4.x86_64   cri-o://1.22.1-16.rhaos4.9.git12fa1c7.el8
+<b>master-3.tektutor.tektutor.org</b>   Ready    master,worker   28d   v1.22.3+b93fd35   <b>192.168.122.15</b>    <none>        Red Hat Enterprise Linux CoreOS 49.84.202202141503-0 (Ootpa)   4.18.0-305.34.2.el8_4.x86_64   cri-o://1.22.1-16.rhaos4.9.git12fa1c7.el8
+<b>worker-1.tektutor.tektutor.org</b>   Ready    worker          28d   v1.22.3+b93fd35   <b>192.168.122.69</b>    <none>        Red Hat Enterprise Linux CoreOS 49.84.202202141503-0 (Ootpa)   4.18.0-305.34.2.el8_4.x86_64   cri-o://1.22.1-16.rhaos4.9.git12fa1c7.el8
+<b>worker-2.tektutor.tektutor.org</b>   Ready    worker          28d   v1.22.3+b93fd35   <b>192.168.122.143</b>   <none>        Red Hat Enterprise Linux CoreOS 49.84.202202141503-0 (Ootpa)   4.18.0-305.34.2.el8_4.x86_64   cri-o://1.22.1-16.rhaos4.9.git12fa1c7.el8
 </pre>
 
 Let's try to access the NodePort service now
