@@ -2760,9 +2760,12 @@ nginx-6845cfdd6-zl49x   1/1     Running   0          12s     app=nginx,pod-templ
 </pre>
 
 Let's now perform rolling update imperatively
+
+In the below command nginx=bitnami/nginx:1.21, the word nginx represents the container name with the Pod. As the Pod, may have multiple containers, we need to indicate which container image must be upgraded specifically.
+```
+oc set image deploy/nginx nginx=bitnami/nginx:1.21
 ```
 
-```
 The expected output is
 <pre>
 (jegan@tektutor.org)$ oc set image deploy/nginx nginx=bitnami/nginx:1.21
