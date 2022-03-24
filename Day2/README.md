@@ -2652,7 +2652,7 @@ The expected output is
 yes
 </pre>
 
-## Performing rolling update
+## ⛹️‍♂️ Lab - Performing rolling update
 Let us first create an nginx deployment with a project
 ```
 oc create deploy nginx --image=bitnami/nginx:1.20
