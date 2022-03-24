@@ -2831,6 +2831,11 @@ horizontalpodautoscaler.autoscaling/openshift-spring autoscaled
 </pre>
 
 ## Creating a NodePort external service imperatively
+Make sure deploy/nginx doesn't have any other service before creating NodePort service.
+```
+oc delete svc/nginx
+```
+
 ```
 oc expose deploy/nginx --type=NodePort --port=8080
 ```
