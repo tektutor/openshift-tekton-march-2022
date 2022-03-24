@@ -2738,12 +2738,14 @@ Events:            <none>
 
 Let's label all pods of nginx deploy with ver=1.20 before we do rolling update
 ```
-oc label deploy nginx ver=1.20
+oc label pods -l app=nginx ver=1.20
 ```
 The expected output is
 <pre>
-(jegan@tektutor.org)$ oc label deploy nginx ver=1.20
-deployment.apps/nginx labeled
+(jegan@tektutor.org)$ <b>oc label pods -l app=nginx ver=1.20</b>
+pod/nginx-6845cfdd6-d6xpl labeled
+pod/nginx-6845cfdd6-j8ck8 labeled
+pod/nginx-6845cfdd6-khq6b labeled
 </pre>
 
 Let's verify if the nginx pods reflect the label we added
