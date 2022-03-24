@@ -2770,9 +2770,9 @@ oc set image deploy/nginx nginx=bitnami/nginx:1.21
 
 The expected output is
 <pre>
-(jegan@tektutor.org)$ oc set image deploy/nginx nginx=bitnami/nginx:1.21
+(jegan@tektutor.org)$ <b>oc set image deploy/nginx nginx=bitnami/nginx:1.21</b>
 deployment.apps/nginx image updated
-(jegan@tektutor.org)$ oc get rs
+(jegan@tektutor.org)$ <b>oc get rs</b>
 NAME               DESIRED   CURRENT   READY   AGE
 nginx-6845cfdd6    3         3         3       7m12s
 nginx-77fd67599c   1         1         0       5s
@@ -2829,3 +2829,63 @@ The expected output is
 (jegan@tektutor.org)$ <b>oc autoscale deployment openshift-spring --min=2 --max=10</b>
 horizontalpodautoscaler.autoscaling/openshift-spring autoscaled
 </pre>
+
+## Creating a NodePort external service imperatively
+```
+oc expose deploy/nginx --type=NodePort --port=8080
+```
+
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc expose deploy/nginx --type=NodePort --port=8080</b>
+service/nginx exposed
+(jegan@tektutor.org)$ <b>oc get svc</b>
+NAME    TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+nginx   NodePort   172.30.229.121   <none>        8080:32061/TCP   9s
+(jegan@tektutor.org)$ oc describe svc/nginx
+Name:                     nginx
+Namespace:                jegan
+Labels:                   app=nginx
+Annotations:              <none>
+Selector:                 app=nginx
+Type:                     NodePort
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       172.30.229.121
+IPs:                      172.30.229.121
+Port:                     <unset>  8080/TCP
+TargetPort:               8080/TCP
+<b>NodePort:                 <unset>  32061/TCP</b>
+Endpoints:                10.128.3.81:8080,10.128.3.82:8080,10.128.3.86:8080 + 7 more...
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:                   <none>
+</pre>
+
+Let's find the IP address of the Nodes
+```
+oc get nodes -o wide
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc get nodes -o wide</b>
+NAME                             STATUS   ROLES           AGE   VERSION           INTERNAL-IP       EXTERNAL-IP   OS-IMAGE                                                       KERNEL-VERSION                 CONTAINER-RUNTIME
+master-1.tektutor.tektutor.org   Ready    master,worker   28d   v1.22.3+b93fd35   <b>192.168.122.13</b>    <none>        Red Hat Enterprise Linux CoreOS 49.84.202202141503-0 (Ootpa)   4.18.0-305.34.2.el8_4.x86_64   cri-o://1.22.1-16.rhaos4.9.git12fa1c7.el8
+master-2.tektutor.tektutor.org   Ready    master,worker   28d   v1.22.3+b93fd35   <b>192.168.122.136</b>   <none>        Red Hat Enterprise Linux CoreOS 49.84.202202141503-0 (Ootpa)   4.18.0-305.34.2.el8_4.x86_64   cri-o://1.22.1-16.rhaos4.9.git12fa1c7.el8
+master-3.tektutor.tektutor.org   Ready    master,worker   28d   v1.22.3+b93fd35   <b>192.168.122.15</b>    <none>        Red Hat Enterprise Linux CoreOS 49.84.202202141503-0 (Ootpa)   4.18.0-305.34.2.el8_4.x86_64   cri-o://1.22.1-16.rhaos4.9.git12fa1c7.el8
+worker-1.tektutor.tektutor.org   Ready    worker          28d   v1.22.3+b93fd35   <b>192.168.122.69</b>    <none>        Red Hat Enterprise Linux CoreOS 49.84.202202141503-0 (Ootpa)   4.18.0-305.34.2.el8_4.x86_64   cri-o://1.22.1-16.rhaos4.9.git12fa1c7.el8
+worker-2.tektutor.tektutor.org   Ready    worker          28d   v1.22.3+b93fd35   <b>192.168.122.143</b>   <none>        Red Hat Enterprise Linux CoreOS 49.84.202202141503-0 (Ootpa)   4.18.0-305.34.2.el8_4.x86_64   cri-o://1.22.1-16.rhaos4.9.git12fa1c7.el8
+</pre>
+
+Let's try to access the NodePort service now
+
+```
+curl <node-ip>:<node-port>
+curl 192.168.122.13:32061
+curl 192.168.122.136:32061
+curl 192.168.122.15:32061
+curl 192.168.122.69:32061
+curl 192.168.122.143:32061
+```
+
+
