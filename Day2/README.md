@@ -2893,4 +2893,40 @@ curl 192.168.122.69:32061
 curl 192.168.122.143:32061
 ```
 
+You may also use the master virtual machine hostname i.e node name as shown below in the place of IP address
+```
+curl http://master-1.tektutor.tektutor.org:32061
+curl http://master-2.tektutor.tektutor.org:32061
+curl http://master-2.tektutor.tektutor.org:32061
+curl http://worker-1.tektutor.tektutor.org:32061
+curl http://worker-2.tektutor.tektutor.org:32061
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ curl http://worker-2.tektutor.tektutor.org:32061
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+Welcome to nginx!
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+</pre>
+
 
