@@ -63,6 +63,15 @@ oc new-app https://github.com/tektutor/spring-ms.git
 15. The Kubelet agent periodically monitors the health of the containers created by kubelet and keeps giving heart-beat kind of periodically updates to the API Server by making REST API calls.
 16. The API Server will update the status of the Pod and the respective container status in the etcd datastore.
 
+## ⛹️‍♀️ Lab - Checking who has logged in via CLI
+```
+oc whoami
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc whoami</b>
+kube:admin
+</pre>
 
 ## ⛹️‍♀️ Lab - List pods in all namespaces as kubeadmin
 ```
