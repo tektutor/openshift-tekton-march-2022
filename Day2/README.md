@@ -2652,6 +2652,169 @@ The expected output is
 yes
 </pre>
 
+## Performing rolling update
+Let us first create an nginx deployment with a project
+```
+oc create deploy nginx --image=bitnami/nginx:1.20
+oc get deploy,rs,po
+oc get po -w
+```
+The expected output is
+<pre>
+jegan@tektutor.org)$ <b>oc create deploy nginx --image=bitnami/nginx:1.20</b>
+deployment.apps/nginx created
+(jegan@tektutor.org)$ <b>oc get deploy,rs,po</b>
+NAME                    READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/nginx   0/1     1            0           5s
+
+NAME                              DESIRED   CURRENT   READY   AGE
+replicaset.apps/nginx-6845cfdd6   1         1         0       5s
+
+NAME                           READY   STATUS              RESTARTS   AGE
+pod/nginx-6845cfdd6-2fwzv      0/1     ContainerCreating   0          5s
+pod/openshift-spring-1-build   0/1     Completed           0          94m
+(jegan@tektutor.org)$ <b>oc get po -w</b>
+NAME                       READY   STATUS              RESTARTS   AGE
+nginx-6845cfdd6-2fwzv      0/1     ContainerCreating   0          9s
+openshift-spring-1-build   0/1     Completed           0          95m
+nginx-6845cfdd6-2fwzv      1/1     Running             0          18s
+</pre>
+
+Let's now scale up the nginx deployment
+```
+oc scale deploy nginx --replicas=3
+oc get po -w
+```
+The expected ouptut is
+<pre>
+(jegan@tektutor.org)$ <b>oc scale deploy nginx --replicas=3</b>
+deployment.apps/nginx scaled
+(jegan@tektutor.org)$ <b>oc get po -w</b>
+NAME                       READY   STATUS              RESTARTS   AGE
+nginx-6845cfdd6-2fwzv      1/1     Running             0          3m38s
+nginx-6845cfdd6-7n7xs      1/1     Running             0          3s
+nginx-6845cfdd6-ws8p2      0/1     ContainerCreating   0          3s
+openshift-spring-1-build   0/1     Completed           0          98m
+nginx-6845cfdd6-ws8p2      1/1     Running             0          4s
+(jegan@tektutor.org)$ <b>oc get po</b>
+NAME                       READY   STATUS      RESTARTS   AGE
+nginx-6845cfdd6-2fwzv      1/1     Running     0          3m47s
+nginx-6845cfdd6-7n7xs      1/1     Running     0          12s
+nginx-6845cfdd6-ws8p2      1/1     Running     0          12s
+openshift-spring-1-build   0/1     Completed   0          98m
+</pre>
+
+Let's us now create a ClusterIP Internal service
+```
+oc expose deploy nginx --port=8080
+oc get svc
+oc describe svc/nginx
+```
+
+The expected ouptut is
+<pre>
+(jegan@tektutor.org)$ <b>oc expose deploy nginx --port=8080</b>
+service/nginx exposed
+(jegan@tektutor.org)$ <b>oc get svc</b>
+NAME    TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+nginx   ClusterIP   172.30.78.203   <none>        8080/TCP   3s
+(jegan@tektutor.org)$ <b>oc describe svc nginx</b>
+Name:              nginx
+Namespace:         jegan
+Labels:            app=nginx
+Annotations:       <none>
+Selector:          app=nginx
+Type:              ClusterIP
+IP Family Policy:  SingleStack
+IP Families:       IPv4
+IP:                172.30.78.203
+IPs:               172.30.78.203
+Port:              <unset>  8080/TCP
+TargetPort:        8080/TCP
+Endpoints:         10.128.3.17:8080,10.128.3.22:8080,10.128.3.23:8080
+Session Affinity:  None
+Events:            <none>
+</pre>
+
+Let's label all pods of nginx deploy with ver=1.20 before we do rolling update
+```
+oc label deploy nginx ver=1.20
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ oc label deploy nginx ver=1.20
+deployment.apps/nginx labeled
+</pre>
+
+Let's verify if the nginx pods reflect the label we added
+```
+oc get pods -l app=nginx --show-labels
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ oc get po -l app=nginx --show-labels
+NAME                    READY   STATUS    RESTARTS   AGE     LABELS
+nginx-6845cfdd6-n6chh   1/1     Running   0          5m50s   app=nginx,pod-template-hash=6845cfdd6,ver=1.20
+nginx-6845cfdd6-smn2p   1/1     Running   0          12s     app=nginx,pod-template-hash=6845cfdd6,ver=1.20
+nginx-6845cfdd6-zl49x   1/1     Running   0          12s     app=nginx,pod-template-hash=6845cfdd6,ver=1.20
+</pre>
+
+Let's now perform rolling update imperatively
+```
+
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ oc set image deploy/nginx nginx=nginx nginx=bitnami/nginx:1.21
+deployment.apps/nginx image updated
+(jegan@tektutor.org)$ oc get rs
+NAME               DESIRED   CURRENT   READY   AGE
+nginx-6845cfdd6    3         3         3       7m12s
+nginx-77fd67599c   1         1         0       5s
+(jegan@tektutor.org)$ oc get po -w
+NAME                       READY   STATUS              RESTARTS   AGE
+nginx-6845cfdd6-n6chh      1/1     Running             0          7m14s
+nginx-6845cfdd6-smn2p      1/1     Running             0          96s
+nginx-6845cfdd6-zl49x      1/1     Running             0          96s
+nginx-77fd67599c-gmkhh     0/1     ContainerCreating   0          7s
+openshift-spring-1-build   0/1     Completed           0          115m
+nginx-77fd67599c-gmkhh     1/1     Running             0          15s
+nginx-6845cfdd6-zl49x      1/1     Terminating         0          104s
+nginx-77fd67599c-42wld     0/1     Pending             0          0s
+nginx-77fd67599c-42wld     0/1     Pending             0          0s
+nginx-77fd67599c-42wld     0/1     ContainerCreating   0          0s
+nginx-6845cfdd6-zl49x      0/1     Terminating         0          105s
+nginx-6845cfdd6-zl49x      0/1     Terminating         0          105s
+nginx-6845cfdd6-zl49x      0/1     Terminating         0          105s
+nginx-77fd67599c-42wld     0/1     ContainerCreating   0          2s
+nginx-77fd67599c-42wld     1/1     Running             0          16s
+nginx-6845cfdd6-smn2p      1/1     Terminating         0          2m
+nginx-77fd67599c-2bghc     0/1     Pending             0          0s
+nginx-77fd67599c-2bghc     0/1     Pending             0          0s
+nginx-77fd67599c-2bghc     0/1     ContainerCreating   0          0s
+nginx-6845cfdd6-smn2p      0/1     Terminating         0          2m2s
+nginx-6845cfdd6-smn2p      0/1     Terminating         0          2m2s
+nginx-6845cfdd6-smn2p      0/1     Terminating         0          2m2s
+nginx-77fd67599c-2bghc     0/1     ContainerCreating   0          2s
+nginx-77fd67599c-2bghc     1/1     Running             0          3s
+nginx-6845cfdd6-n6chh      1/1     Terminating         0          7m41s
+nginx-6845cfdd6-n6chh      0/1     Terminating         0          7m42s
+nginx-6845cfdd6-n6chh      0/1     Terminating         0          7m42s
+nginx-6845cfdd6-n6chh      0/1     Terminating         0          7m42s
+^C(jegan@tektutor.org)$ oc get po
+NAME                       READY   STATUS      RESTARTS   AGE
+nginx-77fd67599c-2bghc     1/1     Running     0          2m6s
+nginx-77fd67599c-42wld     1/1     Running     0          2m22s
+nginx-77fd67599c-gmkhh     1/1     Running     0          2m37s
+openshift-spring-1-build   0/1     Completed   0          118m
+(jegan@tektutor.org)$ oc get po --show-labels
+NAME                       READY   STATUS      RESTARTS   AGE     LABELS
+nginx-77fd67599c-2bghc     1/1     Running     0          2m24s   app=nginx,pod-template-hash=77fd67599c
+nginx-77fd67599c-42wld     1/1     Running     0          2m40s   app=nginx,pod-template-hash=77fd67599c
+nginx-77fd67599c-gmkhh     1/1     Running     0          2m55s   app=nginx,pod-template-hash=77fd67599c
+openshift-spring-1-build   0/1     Completed   0          118m    openshift.io/build.name=openshift-spring-1
+</pre>
+
 ## Autoscaling deployment without any conditions
 ```
 oc autoscale deployment openshift-spring --min=2 --max=10
