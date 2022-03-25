@@ -280,8 +280,6 @@ e767386b141e: Pushed
 </pre>
 
 
-## ⛹️‍♂️ Lab - Understanding Custom Resource Definitions  and Custom Resource - Hand-on
-
 Let's install the CRD
 ```
 make install
@@ -383,7 +381,7 @@ Expected output is
 oc logs deployment.apps/memcached-operator-controller-manager -c manager -n memcached-operator-system
 </pre>
 
-# Extending OpenShift API by adding our own Custom Resource
+# ⛹️‍♂️ Lab - Extending OpenShift API by adding our own Custom Resource
 
 Let's create the CustomResourceDefinition to add a new type of Resource called Training
 
@@ -423,6 +421,7 @@ spec:
               to:
                 type: string```
 ```
+
 Let's create the training crd as shown below
 
 ```
