@@ -197,5 +197,21 @@ oc apply -f training.yml
 
 The expected output is
 <pre>
+(jegan@tektutor.org)$ <b>oc apply -f training.yml</b>
+training.tektutor.org/openshift-training created
+</pre>
 
+Let's now try listing the trainings
+
+```
+oc get trainings
+oc get training
+oc get train
+```
+
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc get training</b>
+NAME                 AGE
+openshift-training   5s
 </pre>
