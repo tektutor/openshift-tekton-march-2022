@@ -325,7 +325,7 @@ sudo yum install ansible
 
 Check if ansible is working
 ```
-ansible --verison
+ansible --version
 ```
 
 Expected output is
