@@ -2860,7 +2860,7 @@ IP:                       172.30.229.121
 IPs:                      172.30.229.121
 Port:                     <unset> 8080/TCP
 TargetPort:               8080/TCP
-<b>NodePort:           32061/TCP</b>
+<b>NodePort:               32061/TCP</b>
 Endpoints:                10.128.3.81:8080,10.128.3.82:8080,10.128.3.86:8080 + 7 more...
 Session Affinity:         None
 External Traffic Policy:  Cluster
