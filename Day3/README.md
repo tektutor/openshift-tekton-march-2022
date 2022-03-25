@@ -419,8 +419,9 @@ spec:
                 type: string
               to:
                 type: string```
-
+```
 Let's create the training crd as shown below
+
 ```
 git clone https://github.com/tektutor/openshift-tekton-march-2022.git
 cd Day3
