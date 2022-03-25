@@ -21,6 +21,7 @@ We need to install these software for Operator SDK to work
 4. Ansible Runner
 5. Ansible Runner Http Event Emitter
 6. OpenShift Python client
+7. Podman
 
 ## Installing Go Programming Language
 For other Operating Systems, check the official website here https://go.dev/dl/
@@ -180,6 +181,21 @@ Building wheels for collected packages: openshift, python-string-utils
 Successfully built openshift python-string-utils
 Installing collected packages: setuptools, ipaddress, idna, certifi, urllib3, chardet, requests, six, python-dateutil, oauthlib, requests-oauthlib, websocket-client, pyasn1, pyasn1-modules, cachetools, rsa, enum34, google-auth, pyyaml, kubernetes, python-string-utils, openshift
 Successfully installed cachetools-3.1.1 certifi-2021.10.8 chardet-4.0.0 enum34-1.1.10 google-auth-2.6.2 idna-2.10 ipaddress-1.0.23 kubernetes-18.20.0 oauthlib-3.1.0 openshift-0.13.1 pyasn1-0.4.8 pyasn1-modules-0.2.8 python-dateutil-2.8.2 python-string-utils-0.6.0 pyyaml-5.4.1 requests-2.27.1 requests-oauthlib-1.3.1 rsa-4.5 setuptools-44.1.1 six-1.16.0 urllib3-1.26.9 websocket-client-0.59.0
+</pre>
+
+## Install Podman
+```
+sudo yum install podman
+podman version
+```
+Expected output
+<pre>
+(jegan@tektutor.org)$ <b>podman version</b>
+Version:      3.0.1
+API Version:  3.0.0
+Go Version:   go1.15.2
+Built:        Thu Jan  1 05:30:00 1970
+OS/Arch:      linux/amd64
 </pre>
 
 
