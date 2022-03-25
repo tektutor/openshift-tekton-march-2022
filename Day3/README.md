@@ -391,32 +391,7 @@ metadata:
   name: trainings.tektutor.org 
 spec:
   group: tektutor.org 
-  versions:
-    - name: v1
-      served: true
-      storage: true
-      schema:
-        openAPIV3Schema:
-          type: object
-          properties:
-            training:
-               type: string
-            duration:
-               type: string
-            city:
-               type: string
-            from:
-               type: string
-            to:
-               type: string
-          required:
-            - training
-            - duration
-            - city
-            - from
-            - to
-  conversion:
-    strategy: None
+
   scope: Namespaced
   names:
     kind: Training 
@@ -425,7 +400,25 @@ spec:
     singular: training 
     shortNames:
     - train 
-```
+
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+              training:
+                type: string
+              duration:
+                type: string
+              city:
+                type: string
+              from:
+                type: string
+              to:
+                type: string```
 
 Let's create the training crd as shown below
 ```
