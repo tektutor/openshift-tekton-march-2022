@@ -246,7 +246,7 @@ Events:              <none>
 </pre>
 
 # ⛹️‍♀️ Lab - Installing MetalLB LoadBalancer in OpenShift bare-metal to try out LoadBalancer service locally
-You can follow the instructions in my article
+You can follow the instructions in my article <br>
 https://medium.com/tektutor/using-metallb-loadbalancer-with-bare-metal-openshift-onprem-4230944bfa35
 
 
