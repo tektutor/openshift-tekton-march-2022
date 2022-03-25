@@ -184,6 +184,8 @@ Successfully installed cachetools-3.1.1 certifi-2021.10.8 chardet-4.0.0 enum34-1
 </pre>
 
 ## Install Podman
+For detailed installation options refer https://podman.io/getting-started/installation
+
 ```
 sudo yum install podman
 podman version
