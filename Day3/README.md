@@ -21,7 +21,7 @@ We need to install these software for Operator SDK to work
 4. Ansible Runner
 5. Ansible Runner Http Event Emitter
 6. OpenShift Python client
-7. Podman
+7. Docker
 
 ## Installing Go Programming Language
 For other Operating Systems, check the official website here https://go.dev/dl/
@@ -183,21 +183,126 @@ Installing collected packages: setuptools, ipaddress, idna, certifi, urllib3, ch
 Successfully installed cachetools-3.1.1 certifi-2021.10.8 chardet-4.0.0 enum34-1.1.10 google-auth-2.6.2 idna-2.10 ipaddress-1.0.23 kubernetes-18.20.0 oauthlib-3.1.0 openshift-0.13.1 pyasn1-0.4.8 pyasn1-modules-0.2.8 python-dateutil-2.8.2 python-string-utils-0.6.0 pyyaml-5.4.1 requests-2.27.1 requests-oauthlib-1.3.1 rsa-4.5 setuptools-44.1.1 six-1.16.0 urllib3-1.26.9 websocket-client-0.59.0
 </pre>
 
-## Install Podman
-For detailed installation options refer https://podman.io/getting-started/installation
+## You will need a RedHat Developer account to do this
+You need to type your RedHat account credentials below when it prompts
+```
+docker login registry.redhat.io
+```
 
-```
-sudo yum install podman
-podman version
-```
 Expected output
 <pre>
-(jegan@tektutor.org)$ <b>podman version</b>
-Version:      3.0.1
-API Version:  3.0.0
-Go Version:   go1.15.2
-Built:        Thu Jan  1 05:30:00 1970
-OS/Arch:      linux/amd64
+(jegan@tektutor.org)$ <b>docker login registry.redhat.io</b>
+Username: <your-redhat-registered-email>
+Password: <your-redhat-account-password>
+Login Succeeded!
+</pre>
+
+## Build memcached operator image
+```
+
+```
+Expected output 
+<pre>
+(jegan@tektutor.org)$ make docker-build
+docker build -t controller:latest .
+Sending build context to Docker daemon  97.79kB
+Step 1/6 : FROM registry.redhat.io/openshift4/ose-ansible-operator:v4.9
+v4.9: Pulling from openshift4/ose-ansible-operator
+237bfbffb5f2: Pull complete 
+39382676eb30: Pull complete 
+6becec26abbe: Pull complete 
+5d5aca92879b: Pull complete 
+0cfc8cf34f67: Pull complete 
+Digest: sha256:7f0763e9ee818932af4f93561c2b797f21dfba5d9a62576529dc7ae7550da65c
+Status: Downloaded newer image for registry.redhat.io/openshift4/ose-ansible-operator:v4.9
+ ---> 4ecdc8445b22
+Step 2/6 : COPY requirements.yml ${HOME}/requirements.yml
+ ---> 3e4ed9f3f690
+Step 3/6 : RUN ansible-galaxy collection install -r ${HOME}/requirements.yml  && chmod -R ug+rwx ${HOME}/.ansible
+ ---> Running in 9ce45c39092e
+Process install dependency map
+Starting collection install process
+Skipping 'community.kubernetes' as it is already installed
+Skipping 'operator_sdk.util' as it is already installed
+Removing intermediate container 9ce45c39092e
+ ---> 25ce89e0922b
+Step 4/6 : COPY watches.yaml ${HOME}/watches.yaml
+ ---> 0bb33fb478f9
+Step 5/6 : COPY roles/ ${HOME}/roles/
+ ---> 085679def262
+Step 6/6 : COPY playbooks/ ${HOME}/playbooks/
+ ---> 17a58680ceeb
+Successfully built 17a58680ceeb
+Successfully tagged controller:latest
+</pre>
+
+## Once the image is successfully build, we need to push it to docker hub, so you need a Docker Hub account
+```
+make docker-build docker-push IMG=tektutor/controller:1.0
+```
+Expected output is
+<pre>
+(jegan@tektutor.org)$ make docker-build docker-push IMG=tektutor/controller:1.0
+docker build -t tektutor/controller:1.0 .
+Sending build context to Docker daemon  97.79kB
+Step 1/6 : FROM registry.redhat.io/openshift4/ose-ansible-operator:v4.9
+ ---> 4ecdc8445b22
+Step 2/6 : COPY requirements.yml ${HOME}/requirements.yml
+ ---> Using cache
+ ---> 3e4ed9f3f690
+Step 3/6 : RUN ansible-galaxy collection install -r ${HOME}/requirements.yml  && chmod -R ug+rwx ${HOME}/.ansible
+ ---> Using cache
+ ---> 25ce89e0922b
+Step 4/6 : COPY watches.yaml ${HOME}/watches.yaml
+ ---> Using cache
+ ---> 0bb33fb478f9
+Step 5/6 : COPY roles/ ${HOME}/roles/
+ ---> Using cache
+ ---> 085679def262
+Step 6/6 : COPY playbooks/ ${HOME}/playbooks/
+ ---> Using cache
+ ---> 17a58680ceeb
+Successfully built 17a58680ceeb
+Successfully tagged tektutor/controller:1.0
+docker push tektutor/controller:1.0
+The push refers to repository [docker.io/tektutor/controller]
+30a603de1de1: Pushed 
+910e1e2326d6: Pushed 
+5ff3092c3a85: Pushed 
+0e85fb6577f9: Pushed 
+b178af2263a1: Pushed 
+eac2e59698d4: Pushed 
+fbd05aa17f99: Pushed 
+489f066169f3: Pushed 
+e767386b141e: Pushed 
+35db14176a6c: Pushed 
+1.0: digest: sha256:1ffa44f8d9863bcdb5bf5f9102aa3957a9444fa5d5b2931c4f7e2ed7828247b0 size: 2412
+</pre>
+
+Let's installed the CRD
+```
+
+```
+Expected output is
+<pre>
+(jegan@tektutor.org)$ <b>make install</b>
+/home/jegan/openshift-tekton-march-2022/Day3/memcached-operator/bin/kustomize build config/crd | kubectl apply -f -
+customresourcedefinition.apiextensions.k8s.io/memcacheds.cache.example.com created
+</pre>
+
+Watch the Custom Resource
+```
+oc logs deployment.apps/memcached-operator-controller-manager -c manager -n memcached-operator-system
+```
+
+Expected output is
+<pre>
+...
+I0205 17:48:45.881666       7 leaderelection.go:253] successfully acquired lease memcached-operator-system/memcached-operator
+{"level":"info","ts":1612547325.8819902,"logger":"controller-runtime.manager.controller.memcached-controller","msg":"Starting EventSource","source":"kind source: cache.example.com/v1, Kind=Memcached"}
+{"level":"info","ts":1612547325.98242,"logger":"controller-runtime.manager.controller.memcached-controller","msg":"Starting Controller"}
+{"level":"info","ts":1612547325.9824686,"logger":"controller-runtime.manager.controller.memcached-controller","msg":"Starting workers","worker count":4}
+{"level":"info","ts":1612547348.8311093,"logger":"runner","msg":"Ansible-runner exited successfully","job":"4037200794235010051","name":"memcached-sample","namespace":"memcached-operator-system"}
 </pre>
 
 
