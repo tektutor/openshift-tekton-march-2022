@@ -279,6 +279,9 @@ e767386b141e: Pushed
 1.0: digest: sha256:1ffa44f8d9863bcdb5bf5f9102aa3957a9444fa5d5b2931c4f7e2ed7828247b0 size: 2412
 </pre>
 
+
+## ⛹️‍♂️ Lab - Understanding Custom Resource Definitions  and Custom Resource - Hand-on
+
 Let's install the CRD
 ```
 make install
