@@ -279,21 +279,77 @@ e767386b141e: Pushed
 1.0: digest: sha256:1ffa44f8d9863bcdb5bf5f9102aa3957a9444fa5d5b2931c4f7e2ed7828247b0 size: 2412
 </pre>
 
-Let's installed the CRD
+Let's install the CRD
+```
+make install
 ```
 
-```
 Expected output is
+
 <pre>
 (jegan@tektutor.org)$ <b>make install</b>
 /home/jegan/openshift-tekton-march-2022/Day3/memcached-operator/bin/kustomize build config/crd | kubectl apply -f -
 customresourcedefinition.apiextensions.k8s.io/memcacheds.cache.example.com created
 </pre>
 
-Watch the Custom Resource
+Watch the Custom CRD installation status
 ```
 oc logs deployment.apps/memcached-operator-controller-manager -c manager -n memcached-operator-system
 ```
+
+Expected output is
+
+<pre>
+(jegan@tektutor.org)$ oc logs deployment.apps/memcached-operator-controller-manager -c manager -n memcached-operator-system
+{"level":"info","ts":1648180226.09814,"logger":"cmd","msg":"Version","Go Version":"go1.16.12","GOOS":"linux","GOARCH":"amd64","ansible-operator":"v1.10.1-ocp","commit":"d58320335c473dfbc9dad1a79bdb3d5e5fb1cbf0"}
+{"level":"info","ts":1648180226.0987616,"logger":"cmd","msg":"Watch namespaces not configured by environment variable WATCH_NAMESPACE or file. Watching all namespaces.","Namespace":""}
+I0325 03:50:28.178064       7 request.go:668] Waited for 1.043817085s due to client-side throttling, not priority and fairness, request: GET:https://172.30.0.1:443/apis/route.openshift.io/v1?timeout=32s
+{"level":"info","ts":1648180229.6453605,"logger":"controller-runtime.metrics","msg":"metrics server is starting to listen","addr":"127.0.0.1:8080"}
+{"level":"info","ts":1648180229.6476536,"logger":"watches","msg":"Environment variable not set; using default value","envVar":"ANSIBLE_VERBOSITY_MEMCACHED_CACHE_EXAMPLE_COM","default":2}
+{"level":"info","ts":1648180229.6477695,"logger":"cmd","msg":"Environment variable not set; using default value","Namespace":"","envVar":"ANSIBLE_DEBUG_LOGS","ANSIBLE_DEBUG_LOGS":false}
+{"level":"info","ts":1648180229.6477888,"logger":"ansible-controller","msg":"Watching resource","Options.Group":"cache.example.com","Options.Version":"v1","Options.Kind":"Memcached"}
+{"level":"info","ts":1648180229.6495736,"logger":"proxy","msg":"Starting to serve","Address":"127.0.0.1:8888"}
+I0325 03:50:29.650925       7 leaderelection.go:243] attempting to acquire leader lease memcached-operator-system/memcached-operator...
+{"level":"info","ts":1648180229.6516879,"logger":"controller-runtime.manager","msg":"starting metrics server","path":"/metrics"}
+I0325 03:50:29.676686       7 leaderelection.go:253] successfully acquired lease memcached-operator-system/memcached-operator
+{"level":"info","ts":1648180229.6771383,"logger":"controller-runtime.manager.controller.memcached-controller","msg":"Starting EventSource","source":"kind source: cache.example.com/v1, Kind=Memcached"}
+{"level":"info","ts":1648180229.677285,"logger":"controller-runtime.manager.controller.memcached-controller","msg":"Starting Controller"}
+{"level":"info","ts":1648180229.7787442,"logger":"controller-runtime.manager.controller.memcached-controller","msg":"Starting workers","worker count":6}
+{"level":"info","ts":1648180231.692532,"logger":"runner","msg":"Ansible-runner exited successfully","job":"7026415831566244256","name":"memcached-sample","namespace":"memcached-operator-system"}
+
+----- Ansible Task Status Event StdOut (cache.example.com/v1, Kind=Memcached, memcached-sample/memcached-operator-system) -----
+
+
+PLAY RECAP *********************************************************************
+
+
+----------
+</pre>
+
+Let's deploy memcached controller now
+```
+make deploy IMG=docker.io/tektutor/controller:1.0
+```
+
+Expected output 
+<pre>
+(jegan@tektutor.org)$ make deploy IMG=docker.io/tektutor/controller:1.0
+cd config/manager && /home/jegan/openshift-tekton-march-2022/Day3/memcached-operator/bin/kustomize edit set image controller=docker.io/tektutor/controller:1.0
+/home/jegan/openshift-tekton-march-2022/Day3/memcached-operator/bin/kustomize build config/default | kubectl apply -f -
+namespace/memcached-operator-system unchanged
+customresourcedefinition.apiextensions.k8s.io/memcacheds.cache.example.com unchanged
+serviceaccount/memcached-operator-controller-manager unchanged
+role.rbac.authorization.k8s.io/memcached-operator-leader-election-role unchanged
+clusterrole.rbac.authorization.k8s.io/memcached-operator-manager-role unchanged
+clusterrole.rbac.authorization.k8s.io/memcached-operator-metrics-reader unchanged
+clusterrole.rbac.authorization.k8s.io/memcached-operator-proxy-role unchanged
+rolebinding.rbac.authorization.k8s.io/memcached-operator-leader-election-rolebinding unchanged
+clusterrolebinding.rbac.authorization.k8s.io/memcached-operator-manager-rolebinding unchanged
+clusterrolebinding.rbac.authorization.k8s.io/memcached-operator-proxy-rolebinding unchanged
+configmap/memcached-operator-manager-config unchanged
+service/memcached-operator-controller-manager-metrics-service unchanged
+deployment.apps/memcached-operator-controller-manager configured
+</pre>
 
 Expected output is
 <pre>
@@ -305,6 +361,24 @@ I0205 17:48:45.881666       7 leaderelection.go:253] successfully acquired lease
 {"level":"info","ts":1612547348.8311093,"logger":"runner","msg":"Ansible-runner exited successfully","job":"4037200794235010051","name":"memcached-sample","namespace":"memcached-operator-system"}
 </pre>
 
+Let's create a sample memcache Custom Resource
+```
+oc apply -f config/samples/cache_v1_memcached.yaml -n memcached-operator-system
+```
+
+Expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc apply -f config/samples/cache_v1_memcached.yaml -n memcached-operator-system</b>
+memcached.cache.example.com/memcached-sample unchanged
+</pre>
+
+Let's watch the CR
+```
+```
+Expected output is
+<pre>
+oc logs deployment.apps/memcached-operator-controller-manager -c manager -n memcached-operator-system
+</pre>
 
 # Extending OpenShift API by adding our own Custom Resource
 
