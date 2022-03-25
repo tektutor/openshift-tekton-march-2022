@@ -6,6 +6,12 @@ For training/consulting/coaching, you may reach me
     +91 822-000-5626 (WhatsApp)
 </pre>
 
+## What is an Operator in Kubernetes/OpenShift?
+- is a method of packaging, deploying and managing a Kubernetes/OpenShift application
+- takes human operational knowledge and encodes it into software that is more easily packaged and shared with consumers. 
+- is an extension of the software vendor’s engineering team that watches over your Kubernetes/Openshift environment and uses its current state to make decisions in milliseconds
+- is designed to handle upgrades seamlessly, react to failures automatically, and not take shortcuts, like skipping a software backup process to save time
+
 # Extending OpenShift API by adding our own Custom Resource
 
 Let's create the CustomResourceDefinition to add a new type of Resource called Training
