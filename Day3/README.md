@@ -215,3 +215,36 @@ The expected output is
 NAME                 AGE
 openshift-training   5s
 </pre>
+
+Let us find more details about the training custom resource
+```
+oc describe training/openshift-training
+```
+
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc describe training/openshift-training</b>
+Name:         openshift-training
+Namespace:    tektutor
+Labels:       <none>
+Annotations:  <none>
+API Version:  tektutor.org/v1
+Kind:         Training
+Metadata:
+  Creation Timestamp:  2022-03-25T01:31:45Z
+  Generation:          1
+  Managed Fields:
+    API Version:  tektutor.org/v1
+    Fields Type:  FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .:
+          f:kubectl.kubernetes.io/last-applied-configuration:
+    Manager:         kubectl-client-side-apply
+    Operation:       Update
+    Time:            2022-03-25T01:31:45Z
+  Resource Version:  153931
+  UID:               25fed033-87d2-4aff-b789-feb2ef980bb6
+Events:              <none>
+</pre>
