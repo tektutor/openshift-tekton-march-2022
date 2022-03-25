@@ -425,6 +425,7 @@ Let's create the training crd as shown below
 ```
 cd ~
 git clone https://github.com/tektutor/openshift-tekton-march-2022.git
+cd openshift-tekton-march-2022
 cd Day3
 oc apply -f training-crd.yml
 ```
