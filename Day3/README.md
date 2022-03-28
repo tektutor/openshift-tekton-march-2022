@@ -6,6 +6,20 @@ For training/consulting/coaching, you may reach me
     +91 822-000-5626 (WhatsApp)
 </pre>
 
+# ⛹️‍♀️ Lab - Deploying a Stateful application in OpenShift
+```
+cd ~
+cd openshift-tekton-march-2022
+git pull
+cd Day3/wordpress
+oc apply -f secrets.yml
+oc apply -f mysql-pv.yml
+oc apply -f mysql-pvc.yml
+oc apply -f mysql-statefulset.yml
+oc apply -f mysql-service.yml
+```
+
+
 # ⛹️‍♂️ Lab - Extending OpenShift API by adding our own Custom Resource
 
 Let's create the CustomResourceDefinition to add a new type of Resource called Training
