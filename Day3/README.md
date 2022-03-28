@@ -6,6 +6,20 @@ For training/consulting/coaching, you may reach me
     +91 822-000-5626 (WhatsApp)
 </pre>
 
+# ⛹️‍♀️ Lab - Deploying a Stateful application in OpenShift
+```
+cd ~
+cd openshift-tekton-march-2022
+git pull
+cd Day3/wordpress
+oc apply -f secrets.yml
+oc apply -f mysql-pv.yml
+oc apply -f mysql-pvc.yml
+oc apply -f mysql-statefulset.yml
+oc apply -f mysql-service.yml
+```
+
+
 # ⛹️‍♂️ Lab - Extending OpenShift API by adding our own Custom Resource
 
 Let's create the CustomResourceDefinition to add a new type of Resource called Training
@@ -427,6 +441,18 @@ Installing collected packages: setuptools, ipaddress, idna, certifi, urllib3, ch
 Successfully installed cachetools-3.1.1 certifi-2021.10.8 chardet-4.0.0 enum34-1.1.10 google-auth-2.6.2 idna-2.10 ipaddress-1.0.23 kubernetes-18.20.0 oauthlib-3.1.0 openshift-0.13.1 pyasn1-0.4.8 pyasn1-modules-0.2.8 python-dateutil-2.8.2 python-string-utils-0.6.0 pyyaml-5.4.1 requests-2.27.1 requests-oauthlib-1.3.1 rsa-4.5 setuptools-44.1.1 six-1.16.0 urllib3-1.26.9 websocket-client-0.59.0
 </pre>
 
+## Let's install memcached role from Ansible Galaxy portal into our memcached folder
+```
+cd ~
+cd openshift-tekton-march-2022
+git pull
+cd Day3/memcached-operator
+cd roles
+rm -rf memcached
+cd ..
+ansible-galaxy install dymurray.memcached_operator_role -p ./roles
+```
+
 ## You will need a RedHat Developer account to do this
 You need to type your RedHat account credentials below when it prompts
 ```
@@ -696,7 +722,7 @@ memcached.cache.example.com/memcached-sample unchanged
 
 Let's watch the CR
 ```
-oc status
+oc status -n memcached-operator-system
 ```
 Expected output is
 <pre>
