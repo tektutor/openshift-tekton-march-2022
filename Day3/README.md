@@ -443,7 +443,7 @@ Login Succeeded!
 
 ## Build memcached operator image
 ```
-
+make docker-build
 ```
 Expected output 
 <pre>
