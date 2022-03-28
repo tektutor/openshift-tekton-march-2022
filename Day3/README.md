@@ -619,6 +619,7 @@ memcached.cache.example.com/memcached-sample unchanged
 
 Let's watch the CR
 ```
+oc status
 ```
 Expected output is
 <pre>
