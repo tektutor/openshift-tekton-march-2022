@@ -1,0 +1,7 @@
+apiVersion: "app.example.com/v1alpha1"
+kind: "Database"
+metadata:
+  name: "example"
+spec:
+  message: "Hello world 2"
+  newParameter: "newParam"
