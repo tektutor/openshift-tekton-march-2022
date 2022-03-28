@@ -683,16 +683,6 @@ service/memcached-operator-controller-manager-metrics-service unchanged
 deployment.apps/memcached-operator-controller-manager configured
 </pre>
 
-Expected output is
-<pre>
-...
-I0205 17:48:45.881666       7 leaderelection.go:253] successfully acquired lease memcached-operator-system/memcached-operator
-{"level":"info","ts":1612547325.8819902,"logger":"controller-runtime.manager.controller.memcached-controller","msg":"Starting EventSource","source":"kind source: cache.example.com/v1, Kind=Memcached"}
-{"level":"info","ts":1612547325.98242,"logger":"controller-runtime.manager.controller.memcached-controller","msg":"Starting Controller"}
-{"level":"info","ts":1612547325.9824686,"logger":"controller-runtime.manager.controller.memcached-controller","msg":"Starting workers","worker count":4}
-{"level":"info","ts":1612547348.8311093,"logger":"runner","msg":"Ansible-runner exited successfully","job":"4037200794235010051","name":"memcached-sample","namespace":"memcached-operator-system"}
-</pre>
-
 Let's create a sample memcache Custom Resource
 ```
 oc apply -f config/samples/cache_v1_memcached.yaml -n memcached-operator-system
