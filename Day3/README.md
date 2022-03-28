@@ -537,38 +537,125 @@ Expected output is
 customresourcedefinition.apiextensions.k8s.io/memcacheds.cache.example.com created
 </pre>
 
-Watch the Custom CRD installation status
+Check the Custom CRD installation status
 ```
-oc logs deployment.apps/memcached-operator-controller-manager -c manager -n memcached-operator-system
+oc get crds
 ```
 
 Expected output is
 
 <pre>
-(jegan@tektutor.org)$ oc logs deployment.apps/memcached-operator-controller-manager -c manager -n memcached-operator-system
-{"level":"info","ts":1648180226.09814,"logger":"cmd","msg":"Version","Go Version":"go1.16.12","GOOS":"linux","GOARCH":"amd64","ansible-operator":"v1.10.1-ocp","commit":"d58320335c473dfbc9dad1a79bdb3d5e5fb1cbf0"}
-{"level":"info","ts":1648180226.0987616,"logger":"cmd","msg":"Watch namespaces not configured by environment variable WATCH_NAMESPACE or file. Watching all namespaces.","Namespace":""}
-I0325 03:50:28.178064       7 request.go:668] Waited for 1.043817085s due to client-side throttling, not priority and fairness, request: GET:https://172.30.0.1:443/apis/route.openshift.io/v1?timeout=32s
-{"level":"info","ts":1648180229.6453605,"logger":"controller-runtime.metrics","msg":"metrics server is starting to listen","addr":"127.0.0.1:8080"}
-{"level":"info","ts":1648180229.6476536,"logger":"watches","msg":"Environment variable not set; using default value","envVar":"ANSIBLE_VERBOSITY_MEMCACHED_CACHE_EXAMPLE_COM","default":2}
-{"level":"info","ts":1648180229.6477695,"logger":"cmd","msg":"Environment variable not set; using default value","Namespace":"","envVar":"ANSIBLE_DEBUG_LOGS","ANSIBLE_DEBUG_LOGS":false}
-{"level":"info","ts":1648180229.6477888,"logger":"ansible-controller","msg":"Watching resource","Options.Group":"cache.example.com","Options.Version":"v1","Options.Kind":"Memcached"}
-{"level":"info","ts":1648180229.6495736,"logger":"proxy","msg":"Starting to serve","Address":"127.0.0.1:8888"}
-I0325 03:50:29.650925       7 leaderelection.go:243] attempting to acquire leader lease memcached-operator-system/memcached-operator...
-{"level":"info","ts":1648180229.6516879,"logger":"controller-runtime.manager","msg":"starting metrics server","path":"/metrics"}
-I0325 03:50:29.676686       7 leaderelection.go:253] successfully acquired lease memcached-operator-system/memcached-operator
-{"level":"info","ts":1648180229.6771383,"logger":"controller-runtime.manager.controller.memcached-controller","msg":"Starting EventSource","source":"kind source: cache.example.com/v1, Kind=Memcached"}
-{"level":"info","ts":1648180229.677285,"logger":"controller-runtime.manager.controller.memcached-controller","msg":"Starting Controller"}
-{"level":"info","ts":1648180229.7787442,"logger":"controller-runtime.manager.controller.memcached-controller","msg":"Starting workers","worker count":6}
-{"level":"info","ts":1648180231.692532,"logger":"runner","msg":"Ansible-runner exited successfully","job":"7026415831566244256","name":"memcached-sample","namespace":"memcached-operator-system"}
-
------ Ansible Task Status Event StdOut (cache.example.com/v1, Kind=Memcached, memcached-sample/memcached-operator-system) -----
-
-
-PLAY RECAP *********************************************************************
-
-
-----------
+(jegan@tektutor.org)$ oc get crds
+NAME                                                              CREATED AT
+addresspools.metallb.io                                           2022-03-27T01:42:23Z
+alertmanagerconfigs.monitoring.coreos.com                         2022-03-27T00:55:51Z
+alertmanagers.monitoring.coreos.com                               2022-03-27T00:55:54Z
+apirequestcounts.apiserver.openshift.io                           2022-03-27T01:02:45Z
+apiservers.config.openshift.io                                    2022-03-27T00:55:20Z
+authentications.config.openshift.io                               2022-03-27T00:55:20Z
+authentications.operator.openshift.io                             2022-03-27T00:55:54Z
+baremetalhosts.metal3.io                                          2022-03-27T00:55:48Z
+bfdprofiles.metallb.io                                            2022-03-27T01:42:22Z
+bgppeers.metallb.io                                               2022-03-27T01:42:23Z
+bmceventsubscriptions.metal3.io                                   2022-03-27T00:55:51Z
+builds.config.openshift.io                                        2022-03-27T00:55:20Z
+catalogsources.operators.coreos.com                               2022-03-27T00:55:51Z
+cloudcredentials.operator.openshift.io                            2022-03-27T00:55:38Z
+clusterautoscalers.autoscaling.openshift.io                       2022-03-27T00:55:51Z
+clustercsidrivers.operator.openshift.io                           2022-03-27T00:56:31Z
+clusternetworks.network.openshift.io                              2022-03-27T01:00:20Z
+clusteroperators.config.openshift.io                              2022-03-27T00:55:08Z
+clusterresourcequotas.quota.openshift.io                          2022-03-27T00:55:18Z
+clusterserviceversions.operators.coreos.com                       2022-03-27T00:55:54Z
+clusterversions.config.openshift.io                               2022-03-27T00:55:08Z
+configs.imageregistry.operator.openshift.io                       2022-03-27T00:55:51Z
+configs.operator.openshift.io                                     2022-03-27T00:55:56Z
+configs.samples.operator.openshift.io                             2022-03-27T00:55:48Z
+consoleclidownloads.console.openshift.io                          2022-03-27T00:55:48Z
+consoleexternalloglinks.console.openshift.io                      2022-03-27T00:55:48Z
+consolelinks.console.openshift.io                                 2022-03-27T00:55:48Z
+consolenotifications.console.openshift.io                         2022-03-27T00:55:48Z
+consoleplugins.console.openshift.io                               2022-03-27T00:55:48Z
+consolequickstarts.console.openshift.io                           2022-03-27T00:55:48Z
+consoles.config.openshift.io                                      2022-03-27T00:55:21Z
+consoles.operator.openshift.io                                    2022-03-27T00:55:48Z
+consoleyamlsamples.console.openshift.io                           2022-03-27T00:55:48Z
+containerruntimeconfigs.machineconfiguration.openshift.io         2022-03-27T00:56:08Z
+controllerconfigs.machineconfiguration.openshift.io               2022-03-27T01:01:39Z
+credentialsrequests.cloudcredential.openshift.io                  2022-03-27T00:55:38Z
+csisnapshotcontrollers.operator.openshift.io                      2022-03-27T00:55:50Z
+dnses.config.openshift.io                                         2022-03-27T00:55:21Z
+dnses.operator.openshift.io                                       2022-03-27T00:55:56Z
+dnsrecords.ingress.operator.openshift.io                          2022-03-27T00:55:54Z
+egressnetworkpolicies.network.openshift.io                        2022-03-27T01:00:20Z
+egressrouters.network.operator.openshift.io                       2022-03-27T00:55:59Z
+etcds.operator.openshift.io                                       2022-03-27T00:55:48Z
+featuregates.config.openshift.io                                  2022-03-27T00:55:22Z
+firmwareschemas.metal3.io                                         2022-03-27T00:55:54Z
+helmchartrepositories.helm.openshift.io                           2022-03-27T00:55:48Z
+hostfirmwaresettings.metal3.io                                    2022-03-27T00:55:56Z
+hostsubnets.network.openshift.io                                  2022-03-27T01:00:20Z
+imagecontentpolicies.config.openshift.io                          2022-03-27T00:55:22Z
+imagecontentsourcepolicies.operator.openshift.io                  2022-03-27T00:55:23Z
+imagepruners.imageregistry.operator.openshift.io                  2022-03-27T00:56:25Z
+images.config.openshift.io                                        2022-03-27T00:55:22Z
+infrastructures.config.openshift.io                               2022-03-27T00:55:23Z
+ingresscontrollers.operator.openshift.io                          2022-03-27T00:55:41Z
+ingresses.config.openshift.io                                     2022-03-27T00:55:24Z
+installplans.operators.coreos.com                                 2022-03-27T00:55:58Z
+ippools.whereabouts.cni.cncf.io                                   2022-03-27T01:00:19Z
+kubeapiservers.operator.openshift.io                              2022-03-27T00:56:19Z
+kubecontrollermanagers.operator.openshift.io                      2022-03-27T00:55:59Z
+kubeletconfigs.machineconfiguration.openshift.io                  2022-03-27T00:56:10Z
+kubeschedulers.operator.openshift.io                              2022-03-27T00:55:54Z
+kubestorageversionmigrators.operator.openshift.io                 2022-03-27T00:55:48Z
+machineautoscalers.autoscaling.openshift.io                       2022-03-27T00:55:54Z
+machineconfigpools.machineconfiguration.openshift.io              2022-03-27T00:56:15Z
+machineconfigs.machineconfiguration.openshift.io                  2022-03-27T00:56:13Z
+machinehealthchecks.machine.openshift.io                          2022-03-27T00:56:32Z
+machines.machine.openshift.io                                     2022-03-27T00:56:31Z
+machinesets.machine.openshift.io                                  2022-03-27T00:56:32Z
+<b>memcacheds.cache.example.com                                      2022-03-28T02:41:16Z</b>
+metallbs.metallb.io                                               2022-03-27T01:42:23Z
+netnamespaces.network.openshift.io                                2022-03-27T01:00:20Z
+network-attachment-definitions.k8s.cni.cncf.io                    2022-03-27T01:00:19Z
+networks.config.openshift.io                                      2022-03-27T00:55:24Z
+networks.operator.openshift.io                                    2022-03-27T00:55:52Z
+oauths.config.openshift.io                                        2022-03-27T00:55:24Z
+olmconfigs.operators.coreos.com                                   2022-03-27T00:56:04Z
+openshiftapiservers.operator.openshift.io                         2022-03-27T00:55:48Z
+openshiftcontrollermanagers.operator.openshift.io                 2022-03-27T00:55:52Z
+operatorconditions.operators.coreos.com                           2022-03-27T00:56:06Z
+operatorgroups.operators.coreos.com                               2022-03-27T00:56:09Z
+operatorhubs.config.openshift.io                                  2022-03-27T00:55:18Z
+operatorpkis.network.operator.openshift.io                        2022-03-27T00:56:01Z
+operators.operators.coreos.com                                    2022-03-27T00:56:12Z
+overlappingrangeipreservations.whereabouts.cni.cncf.io            2022-03-27T01:00:19Z
+podmonitors.monitoring.coreos.com                                 2022-03-27T00:55:56Z
+podnetworkconnectivitychecks.controlplane.operator.openshift.io   2022-03-27T01:31:34Z
+preprovisioningimages.metal3.io                                   2022-03-27T00:55:59Z
+probes.monitoring.coreos.com                                      2022-03-27T00:55:59Z
+profiles.tuned.openshift.io                                       2022-03-27T00:55:54Z
+projects.config.openshift.io                                      2022-03-27T00:55:25Z
+prometheuses.monitoring.coreos.com                                2022-03-27T00:56:01Z
+prometheusrules.monitoring.coreos.com                             2022-03-27T00:56:03Z
+provisionings.metal3.io                                           2022-03-27T00:56:34Z
+proxies.config.openshift.io                                       2022-03-27T00:55:18Z
+rangeallocations.security.internal.openshift.io                   2022-03-27T00:55:19Z
+rolebindingrestrictions.authorization.openshift.io                2022-03-27T00:55:18Z
+schedulers.config.openshift.io                                    2022-03-27T00:55:25Z
+securitycontextconstraints.security.openshift.io                  2022-03-27T00:55:19Z
+servicecas.operator.openshift.io                                  2022-03-27T00:55:53Z
+servicemonitors.monitoring.coreos.com                             2022-03-27T00:56:06Z
+storages.operator.openshift.io                                    2022-03-27T00:56:32Z
+storagestates.migration.k8s.io                                    2022-03-27T00:55:54Z
+storageversionmigrations.migration.k8s.io                         2022-03-27T00:55:51Z
+subscriptions.operators.coreos.com                                2022-03-27T00:56:28Z
+thanosrulers.monitoring.coreos.com                                2022-03-27T00:56:08Z
+tuneds.tuned.openshift.io                                         2022-03-27T00:55:56Z
+volumesnapshotclasses.snapshot.storage.k8s.io                     2022-03-27T01:03:25Z
+volumesnapshotcontents.snapshot.storage.k8s.io                    2022-03-27T01:03:23Z
+volumesnapshots.snapshot.storage.k8s.io                           2022-03-27T01:03:22Z
 </pre>
 
 Let's deploy memcached controller now
