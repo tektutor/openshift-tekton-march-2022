@@ -20,11 +20,11 @@ spec:
     spec:
       terminationGracePeriodSeconds: 10
       containers:
-      - image: registry.redhat.io/rhscl/mysql-57-rhel7 
+      - image: bitnami/mysql:latest 
         name: mysql
         env:
         - name: MYSQL_ROOT_PASSWORD
-          valueFrom:
+          valueFrom: 
             secretKeyRef:
                key: password
                name: mysql-pass
