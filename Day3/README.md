@@ -6,6 +6,46 @@ For training/consulting/coaching, you may reach me
     +91 822-000-5626 (WhatsApp)
 </pre>
 
+# Installing NFS Server in CentOS 7.x
+
+For more detailed instructions, you can refer https://dev.to/prajwalmithun/setup-nfs-server-client-in-linux-and-unix-27id
+
+```
+sudo yum install nfs-utils -y
+mkdir -p /var/nfs_share_dir
+chmod -R 755 /var/nfs_share_dir
+chown nfsnobody:nfsnobody /var/nfs_share_dir
+
+systemctl enable rpcbind
+systemctl enable nfs-server
+systemctl enable nfs-lock
+systemctl enable nfs-idmap
+systemctl start rpcbind
+systemctl start nfs-server
+systemctl start nfs-lock
+systemctl start nfs-idmap
+```
+
+Edit or Create /etc/exports file and append the below content
+```
+/var/nfs_share_dir    192.168.122.0/24(rw,sync,no_root_squash)
+```
+The IP address 192.168.122.0/24 is the subnet of our OpenShift cluster.
+
+Restart the NFS Server
+```
+systemctl restart nfs-server
+```
+
+Configure your firewall to allow the ports used by NFS Server
+```
+firewall-cmd --permanent --zone=public --add-service=nfs
+firewall-cmd --permanent --zone=public --add-service=mountd
+firewall-cmd --permanent --zone=public --add-service=rpc-bind
+firewall-cmd --reload
+```
+
+
 # ⛹️‍♀️ Lab - Deploying a Stateful application in OpenShift
 ```
 cd ~
