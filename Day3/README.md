@@ -6,7 +6,7 @@ For training/consulting/coaching, you may reach me
     +91 822-000-5626 (WhatsApp)
 </pre>
 
-# Installing NFS Server in CentOS 7.x
+# ⛹️‍♂️ Lab - Installing NFS Server in CentOS 7.x
 
 For more detailed instructions, you can refer https://dev.to/prajwalmithun/setup-nfs-server-client-in-linux-and-unix-27id
 
