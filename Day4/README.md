@@ -1,4 +1,4 @@
-# Installing a multi-pod WordPress with maridb application
+# ⛹️‍♂️ Lab - Installing a multi-pod WordPress with maridb application
 ```
 oc delete project jegan
 oc new-project jegan
