@@ -359,3 +359,34 @@ Hello TekTon Task !
 </pre>
 
 You may also check the output in the webconsole.
+
+
+## Tasks with multiple steps
+<pre>
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: hello-task-with-multiple-steps
+  namespace: tektutor
+spec:
+  params:
+    - name: msg1
+      type: string
+      default: Message from Step1
+    - name: msg2
+      type: string
+      default: Message from Step2
+  steps:
+    - name: step1
+      image: ubuntu
+      command:
+        - echo
+      args:
+        - $(params.msg1)
+    - name: step2
+      image: ubuntu
+      command:
+        - echo
+      args:
+        - $(params.msg2)
+</pre>
