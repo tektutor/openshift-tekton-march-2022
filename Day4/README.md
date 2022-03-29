@@ -18,22 +18,6 @@ hostname - mariadb.ocp.svc.cluster.local
 
 The hostname you need to replace it with the hostname you see in Administrator --> Networking --> Services --> mariadb --> Hostname
 
-
-# Tekton
-- Kubernetes native CI/CD Framework
-- Available as an operator
-- adds many custom resources
-     Task
-     Pipeline
-     TaskRun
-     PipelineRun
-     Workspace
-- comes with custom controllers to manage the above custom resources
-
-# Installing TekTon in OpenShift 
-
-Tekton can be installed either via Webconsole Operators --> OperatorHub, or via CLI.
-
 ## What is a Custom Resource in Kubernetes/OpenShift ?
 - an API extension mechanism in Kubernetes/OpenShift
 - helps you add a new kind of object in your Kubernetes/OpenShift Cluster 
@@ -83,6 +67,14 @@ shell operator - https://github.com/flant/shell-operator<br>
   pipeline within Kubernetes/OpenShift cluster.
 - Tekton supports both Kubernetes and OpenShift
 - is a set of custom kubernetes resources
+- Available as an operator or can be installed via manifest files from CLI
+- adds many custom resources
+     Task
+     Pipeline
+     TaskRun
+     PipelineRun
+     Workspace
+- comes with custom controllers to manage the above custom resources
 
 ## Installing Tekton within OpenShift Webconsole
 
