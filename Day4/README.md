@@ -220,10 +220,11 @@ oc get routes
 
 When you click on the wordpress route, it would prompt for certain details
 you need to give the database name shown in the terminal when you deployed mariadb
-
+<pre>
 username - root
 password - root password shown in the terminal
 hostname - mariadb.ocp.svc.cluster.local
+</pre>
 
 The hostname you need to replace it with the hostname you see in Administrator --> Networking --> Services --> mariadb --> Hostname
 
