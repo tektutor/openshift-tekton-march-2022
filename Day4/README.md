@@ -227,7 +227,8 @@ you need to give the database name shown in the terminal when you deployed maria
 <b>database</b> - sampledb
 </pre>
 
-The hostname you need to replace it with the hostname you see in Administrator --> Networking --> Services --> mariadb --> Hostname
+The hostname you need to replace it with the hostname you see in Administrator --> Networking --> Services --> mariadb --> Hostname.
+The DB hostname is nothing but the service name of mariadb DeploymentConfig.
 
 ## What is a Custom Resource in Kubernetes/OpenShift ?
 - an API extension mechanism in Kubernetes/OpenShift
