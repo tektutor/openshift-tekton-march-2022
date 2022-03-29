@@ -76,7 +76,7 @@ shell operator - https://github.com/flant/shell-operator<br>
      Workspace
 - comes with custom controllers to manage the above custom resources
 
-## Installing Tekton within OpenShift Webconsole
+## Installing Tekton within OpenShift Web console
 
 🔴 Only one person can perform this task in a Cluster as Tekton is installed cluster wide. 🔴
 
@@ -109,7 +109,7 @@ oc adm policy add-scc-to-user anyuid -z tekton-pipelines-webhook
 oc apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.notags.yaml
 ```
 
-## ⛹️‍♀️ Lab - Creating your very firt Tekton task
+## ⛹️‍♀️ Lab - Creating your very first Tekton task
 Create a file named hello.yml and paste the below content
 <pre>
 apiVersion: tekton.dev/v1beta1
