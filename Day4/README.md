@@ -1,6 +1,6 @@
 # ⛹️‍♂️ Lab - Installing a multi-pod WordPress with maridb application
 
-List the templates in openshift
+List the templates in openshiftuserG37
 ```
 oc get templates -n openshift
 ```
@@ -221,10 +221,10 @@ oc get routes
 When you click on the wordpress route, it would prompt for certain details
 you need to give the database name shown in the terminal when you deployed mariadb
 <pre>
-username - root or the userxx shown in the terminal
-password - root or connection password shown in the terminal
-hostname - mariadb.ocp.svc.cluster.local or mariadb
-database - sampledb
+<b>username</b> - root or the userxxx shown in the terminal
+<b>password</b> - root or connection password shown in the terminal
+<b>hostname</b> - mariadb.ocp.svc.cluster.local or mariadb
+<b>database</b> - sampledb
 </pre>
 
 The hostname you need to replace it with the hostname you see in Administrator --> Networking --> Services --> mariadb --> Hostname
