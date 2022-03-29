@@ -772,7 +772,7 @@ Expected output
 [unnamed-0] Hello from Bash!
 </pre>
 
-## How to control the task execution if a step errored out and you know it isn't a show-stopper?
+## ⛹️‍♀️ Lab - How to control the task execution if a step errored out and you know it isn't a show-stopper?
 
 Create the task
 ```
@@ -832,7 +832,7 @@ Hit Enter key to see the output
 [step2-after-erro] echo \"Inspite of step had reported an error, this step2 executed !\"
 </pre>
 
-## Another task that ignores and produces result
+## ⛹️‍♂️ Lab - Another task that ignores and produces result
 ```
 cd ~
 cd openshift-tekton-march-2022
@@ -890,7 +890,7 @@ Expected output
 </pre>
 
 
-## Task that clones github repository
+## ⛹️ Lab - Task that clones github repository
 We need to install the git-clone task from Tekton Hub.  For more details refer https://hub.tekton.dev/tekton/task/git-clone
 
 ```
@@ -903,4 +903,5 @@ Expected output is
 (jegan@tektutor.org)$ <b>tkn hub install task git-clone</b>
 Task git-clone(0.5) installed in tektutor namespace
 </pre>
+
 
