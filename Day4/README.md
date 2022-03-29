@@ -114,6 +114,7 @@ sso75-postgresql                                An example application based on 
 sso75-postgresql-persistent                     An example application based on RH-SSO 7.5 on OpenJDK image. For more informa...   35 (18 blank)     9
 </pre>
 
+Execute the below commands in the order mentioned to deploy the multi-pod wordpress application
 ```
 oc delete project jegan
 oc new-project jegan
