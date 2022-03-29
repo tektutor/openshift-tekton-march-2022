@@ -351,10 +351,10 @@ oc logs hello-task-with-params-run-xz7c2-pod
 ```
 Expected output is
 <pre>
-(jegan@tektutor.org)$ tkn taskrun logs hello-task-with-params-run-xz7c2 -f -n tektutor
+(jegan@tektutor.org)$ <b>tkn taskrun logs hello-task-with-params-run-xz7c2 -f -n tektutor</b>
 [echo] Hello TekTon Task !
 
-(jegan@tektutor.org)$ oc logs hello-task-with-params-run-xz7c2-pod
+(jegan@tektutor.org)$ <b>oc logs hello-task-with-params-run-xz7c2-pod</b>
 Hello TekTon Task !
 </pre>
 
@@ -444,7 +444,7 @@ tkn taskrun start hello-task-with-multiple-steps-run
 ```
 The expected output is
 <pre>
-(jegan@tektutor.org)$ oc apply -f hello-multiple-steps-run.yml 
+(jegan@tektutor.org)$ <b>oc apply -f hello-multiple-steps-run.yml</b>
 taskrun.tekton.dev/hello-task-with-multiple-steps-run created
 </pre>
 
@@ -454,7 +454,7 @@ tkn taskrun list
 ```
 Expected output is
 <pre>
-(jegan@tektutor.org)$ tkn taskrun list
+(jegan@tektutor.org)$ <b>tkn taskrun list</b>
 NAME                                       STARTED          DURATION     STATUS
 <b>hello-task-with-multiple-steps-run         23 seconds ago   16 seconds   Succeeded</b>
 hello-python-run-9scjd                     1 hour ago       9 seconds    Succeeded
