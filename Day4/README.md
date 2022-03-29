@@ -230,7 +230,7 @@ you need to give the database name shown in the terminal when you deployed maria
 The hostname you need to replace it with the hostname you see in Administrator --> Networking --> Services --> mariadb --> Hostname.
 The DB hostname is nothing but the service name of mariadb DeploymentConfig.
 
-## What is a Custom Resource in Kubernetes/OpenShift ?
+## What is a Custom Resource in Kubernetes/OpenShift ?to manage CR i.e Custom Resource that we added into the OpenShift Cluster, we need to create Custom Controllers
 - an API extension mechanism in Kubernetes/OpenShift
 - helps you add a new kind of object in your Kubernetes/OpenShift Cluster 
   just like Deployment, ReplicaSet, Pod, etc.,
@@ -253,6 +253,9 @@ https://kubernetes.io/docs/concepts/extend-kubernetes/operator/
     and software
 
 ## Operator Framework Choices
+
+Below is a short list of Operator Frameworks available, but there are many more that I haven't listed here
+
 Charmed Operator Framework - https://juju.is/<br>
 kopf - https://github.com/nolar/kopf<br>
 Kubebuilder - https://book.kubebuilder.io/<br>
