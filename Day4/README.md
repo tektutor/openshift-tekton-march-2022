@@ -788,3 +788,19 @@ Expected output
 
 [step2-after-erro] 2022/03/29 14:27:02 Error executing command: exec: "echo \"Inspite of step had reported an error, this step2 executed !\"": executable file not found in $PATH
 </pre>
+
+
+## Task that clones github repository
+We need to install the git-clone task from Tekton Hub.  For more details refer https://hub.tekton.dev/tekton/task/git-clone
+
+```
+tkn hub install task git-clone
+```
+
+Expected output is
+
+<pre>
+(jegan@tektutor.org)$ <b>tkn hub install task git-clone</b>
+Task git-clone(0.5) installed in tektutor namespace
+</pre>
+
