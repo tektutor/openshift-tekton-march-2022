@@ -490,3 +490,68 @@ Expected output is
 
 [step2] Message from Step2
 </pre>
+
+## ⛹️‍♀️ Lab - Executing bash commands in a task shell
+
+Create a task manifest file named hello-bash.yml with the below content
+<pre>
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: hello-bash
+  namespace: tektutor
+spec:
+  steps:
+  - image: ubuntu # contains bash
+    script: |
+      #!/usr/bin/env bash
+      echo "Hello from Bash!"
+</pre>
+
+Let's create the task
+```
+oc apply -f hello-bash.yml
+```
+
+Expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc apply -f hello-bash-task.yml</b>
+task.tekton.dev/hello-bash created
+</pre>
+
+Let's list the task
+```
+tkn task list
+```
+Expected output
+<pre>
+(jegan@tektutor.org)$ tkn task list
+NAME                             DESCRIPTION   AGE
+hello                                          6 hours ago
+<b>hello-bash                                     3 seconds ago</b>
+hello-task-with-multiple-steps                 59 minutes ago
+hello-task-with-params                         5 hours ago
+</pre>
+
+Let's run the task
+```
+tkn task start hello-bash
+```
+Expected output 
+<pre>
+(jegan@tektutor.org)$ <b>tkn task start hello-bash</b>
+TaskRun started: hello-bash-run-9b86p
+
+In order to track the TaskRun progress run:
+tkn taskrun logs hello-bash-run-9b86p -f -n tektutor
+</pre>
+
+Let's check the output
+```
+tkn taskrun logs hello-bash-run-9b86p -f -n tektutor
+```
+Expected output
+<pre>
+(jegan@tektutor.org)$ <b>tkn taskrun logs hello-bash-run-9b86p -f -n tektutor</b>
+[unnamed-0] Hello from Bash!
+</pre>
