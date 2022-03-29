@@ -5,29 +5,29 @@ For training/consulting/coaching, you may reach me
     +91 822-000-5626 (WhatsApp)
 </pre>
 
-You can download and read these free ebooks 
-https://developers.redhat.com/e-books/openshift-for-developers
-https://cloud.redhat.com/hubfs/pdfs/OpenShift_for_Developers_Red_Hat.pdf?hsLang=en&extIdCarryOver=true&sc_cid=701f2000001OH7JAAW
-https://developers.redhat.com/e-books/kubernetes-native-microservices-quarkus-and-microprofile
-https://developers.redhat.com/e-books/knative-cookbook-old
-https://developers.redhat.com/e-books/practising-quarkus
-https://developers.redhat.com/e-books/quarkus-cookbook
-https://developers.redhat.com/e-books/quarkus-spring-developers
-https://developers.redhat.com/e-books/red-hat-universal-base-images-ubi
-https://developers.redhat.com/e-books/selinux-coloring-book
-https://developers.redhat.com/e-books/devops-culture-and-practice-openshift
-https://developers.redhat.com/e-books/open-source-data-pipelines-intelligent-applications
-https://developers.redhat.com/e-books/kubernetes-native-microservices-quarkus-and-microprofile
-https://developers.redhat.com/e-books/modernizing-enterprise-java
-https://developers.redhat.com/e-books/openshift-for-developers
-https://developers.redhat.com/e-books/quarkus-spring-developers
-https://developers.redhat.com/e-books/red-hat-universal-base-images-ubi
-https://developers.redhat.com/e-books/quarkus-cookbook
-https://developers.redhat.com/e-books/understanding-quarkus
-https://developers.redhat.com/e-books/practising-quarkus
+## You can download and read these free ebooks 
+https://developers.redhat.com/e-books/openshift-for-developers<br>
+https://cloud.redhat.com/hubfs/pdfs/OpenShift_for_Developers_Red_Hat.pdf?hsLang=en&extIdCarryOver=true&sc_cid=701f2000001OH7JAAW<br>
+https://developers.redhat.com/e-books/kubernetes-native-microservices-quarkus-and-microprofile<br>
+https://developers.redhat.com/e-books/knative-cookbook-old<br>
+https://developers.redhat.com/e-books/practising-quarkus<br>
+https://developers.redhat.com/e-books/quarkus-cookbook<br>
+https://developers.redhat.com/e-books/quarkus-spring-developers<br>
+https://developers.redhat.com/e-books/red-hat-universal-base-images-ubi<br>
+https://developers.redhat.com/e-books/selinux-coloring-book<br>
+https://developers.redhat.com/e-books/devops-culture-and-practice-openshift<br>
+https://developers.redhat.com/e-books/open-source-data-pipelines-intelligent-applications<br>
+https://developers.redhat.com/e-books/kubernetes-native-microservices-quarkus-and-microprofile<br>
+https://developers.redhat.com/e-books/modernizing-enterprise-java<br>
+https://developers.redhat.com/e-books/openshift-for-developers<br>
+https://developers.redhat.com/e-books/quarkus-spring-developers<br>
+https://developers.redhat.com/e-books/red-hat-universal-base-images-ubi<br>
+https://developers.redhat.com/e-books/quarkus-cookbook<br>
+https://developers.redhat.com/e-books/understanding-quarkus<br>
+https://developers.redhat.com/e-books/practising-quarkus<br>
 
 OpenShift Cheatsheet
-https://cheatsheet.dennyzhang.com/cheatsheet-openshift-a4
+https://cheatsheet.dennyzhang.com/cheatsheet-openshift-a4<br>
 
 
 ## Don't miss a Kubernetes/OpenShift article ( Hit the clap button a few times and follow the author in medium )
