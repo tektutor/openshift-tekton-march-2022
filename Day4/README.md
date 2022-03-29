@@ -1,4 +1,4 @@
-# Installing a multi-pod application
+# Installing a multi-pod WordPress with maridb application
 ```
 oc delete project jegan
 oc new-project jegan
@@ -77,3 +77,42 @@ shell operator - https://github.com/flant/shell-operator<br>
 ## What is Operator Metering?
 - is used to analyze the resource usage of Operators running in Kubernetes/OpenShift
 - CPU Usage, memory usage, and other metrics
+
+## Tekton CI/CD Pipeline
+- Tekton is an opensource knative application that helps you create CI/CD 
+  pipeline within Kubernetes/OpenShift cluster.
+- Tekton supports both Kubernetes and OpenShift
+- is a set of custom kubernetes resources
+
+## Installing Tekton within OpenShift Webconsole
+
+🔴 Only one person can perform this task in a Cluster as Tekton is installed cluster wide. 🔴
+
+From the OpenShift web console, switch to Administrator view.  Navigate to Operators --> OperatorHub Menu on the Left side as shown in the screenshot below. In the search text box, you need to type "OpenShift Pipelines" to narrow down the search
+![Operators](OCP_Pipeline_Operator.png)
+
+Select "Red Hat OpenShift Pipelines" and Click on Install button.
+![Operators](OCP_Pipeline_Install.png)
+
+You may now click on the Install button
+![Operators](OCP_Pipeline_Install2.png)
+Once you Click on the Install button, you will be taken to below screen
+
+![Operators](OCP_Install3.png)
+Once the Installation is complete, it will take you the below page
+
+![Operators](OCP_View_Operator.png)
+You may now click on the View Operator button which then takes you to the final page.
+
+![Operators](OCP_View2.png)
+![Operators](OCP_View_Operator3.png)
+
+Congratulations! you have installed Tekton in your OpenShift Cluster.
+
+## Installing Tekton via CLI
+```
+oc new-project tekton-pipelines
+oc adm policy add-scc-to-user anyuid -z tekton-pipelines-controller
+oc adm policy add-scc-to-user anyuid -z tekton-pipelines-webhook
+oc apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.notags.yaml
+```
