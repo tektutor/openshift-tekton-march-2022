@@ -258,3 +258,104 @@ Expected output is
 
 [echo] Hello World !
 </pre>
+
+## Passing arguments to a Tekton Task
+Let's create a hello-task-with-params.yml file and paste the below content into the file
+
+<pre>
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: hello-task-with-params
+  namespace: tektutor
+spec:
+  params:
+    - name: message
+      type: string
+      description: this is an optional field that tells tells the use of this message param
+      default: Hello TekTon Task !
+  steps:
+    - name: echo
+      image: ubuntu
+      command:
+        - echo
+      args:
+        - $(params.message)
+</pre>
+
+Create the task
+```
+oc apply -f hello-task-with-params.yml
+```
+Expected output 
+<pre>
+(jegan@tektutor.org)$ <b>oc apply -f hello-task-with-params.yml</b>
+task.tekton.dev/hello-task-with-params created
+</pre>
+
+You can then list and see if the task is created successfully
+```
+oc get tasks
+tkn task list
+```
+Expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc get tasks</b>
+NAME                     AGE
+hello                    13m
+hello-task-with-params   4s
+(jegan@tektutor.org)$ <b>tkn task list</b>
+NAME                     DESCRIPTION   AGE
+hello                                  13 minutes ago
+hello-task-with-params                 14 seconds ago
+</pre>
+
+Now let's execute the task
+```
+tkn task start hello-task-with-params
+```
+
+Expected output is
+
+<pre>
+(jegan@tektutor.org)$ <b>tkn task start hello-task-with-params</b>
+? Value for param `message` of type `string`? (Default is `Hello TekTon Task !`) Hello TekTon Task !
+TaskRun started: hello-task-with-params-run-xz7c2
+
+In order to track the TaskRun progress run:
+tkn taskrun logs hello-task-with-params-run-xz7c2 -f -n tektutor
+</pre>
+
+See if the taskrun pods are running/completed
+```
+oc get pods
+oc get po -w
+```
+Expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc get po</b>
+NAME                                   READY   STATUS            RESTARTS   AGE
+hello-run-bdj8j-pod                    0/1     Completed         0          14m
+hello-task-with-params-run-xz7c2-pod   0/1     PodInitializing   0          7s
+(jegan@tektutor.org)$ <b>oc get po -w</b>
+NAME                                   READY   STATUS      RESTARTS   AGE
+hello-run-bdj8j-pod                    0/1     Completed   0          14m
+hello-task-with-params-run-xz7c2-pod   1/1     Running     0          10s
+hello-task-with-params-run-xz7c2-pod   0/1     Completed   0          10s
+</pre>
+
+You may check the output of the TaskRun as shown below
+```
+tkn taskrun logs hello-task-with-params-run-xz7c2 -f -n tektutor
+oc logs hello-task-with-params-run-xz7c2-pod
+```
+Expected output is
+<pre>
+(jegan@tektutor.org)$ tkn taskrun logs hello-task-with-params-run-xz7c2 -f -n tektutor
+[echo] Hello TekTon Task !
+
+(jegan@tektutor.org)$ oc logs hello-task-with-params-run-xz7c2-pod
+Hello TekTon Task !
+</pre>
+
+You may also check the output in the webconsole.
