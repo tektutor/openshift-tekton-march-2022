@@ -108,3 +108,125 @@ oc adm policy add-scc-to-user anyuid -z tekton-pipelines-controller
 oc adm policy add-scc-to-user anyuid -z tekton-pipelines-webhook
 oc apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.notags.yaml
 ```
+
+## ⛹️‍♀️ Lab - Creating your very firt Tekton task
+Create a file named hello.yml and paste the below content
+<pre>
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: hello
+  namespace: tektutor 
+spec:
+  steps:
+    - name: echo
+      image: ubuntu
+      command:
+        - echo
+      args:
+        - "Hello World !"
+</pre>
+
+Now try creating the task as shown below
+```
+oc apply -f hello.yml
+```
+Expected output is
+<pre>
+(jegan@tektutor.org)$ oc apply -f hello.yml 
+task.tekton.dev/hello created
+</pre>
+
+You can try listing the task
+```
+tkn task list
+oc get tasks
+```
+Expected output is
+<pre>
+(jegan@tektutor.org)$ tkn task list
+NAME    DESCRIPTION   AGE
+hello                 13 seconds ago
+(jegan@tektutor.org)$ oc get tasks
+NAME    AGE
+hello   23s
+</pre>
+
+You can try to find more details about the task
+```
+oc describe task/hello
+```
+Expected output is
+<pre>
+(jegan@tektutor.org)$ oc describe task/hello
+Name:         hello
+Namespace:    tektutor
+Labels:       <none>
+Annotations:  <none>
+API Version:  tekton.dev/v1beta1
+Kind:         Task
+Metadata:
+  Creation Timestamp:  2022-03-29T06:59:19Z
+  Generation:          1
+  Managed Fields:
+    API Version:  tekton.dev/v1beta1
+    Fields Type:  FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .:
+          f:kubectl.kubernetes.io/last-applied-configuration:
+      f:spec:
+        .:
+        f:steps:
+    Manager:         kubectl-client-side-apply
+    Operation:       Update
+    Time:            2022-03-29T06:59:19Z
+  Resource Version:  606975
+  UID:               32c0cbd4-f37e-4722-b316-c55f4093c66d
+Spec:
+  Steps:
+    Args:
+      Hello World !
+    Command:(jegan@tektutor.org)$ oc describe task/hello
+Name:         hello
+Namespace:    tektutor
+Labels:       <none>
+Annotations:  <none>
+API Version:  tekton.dev/v1beta1
+Kind:         Task
+Metadata:
+  Creation Timestamp:  2022-03-29T06:59:19Z
+  Generation:          1
+  Managed Fields:
+    API Version:  tekton.dev/v1beta1
+    Fields Type:  FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .:
+          f:kubectl.kubernetes.io/last-applied-configuration:
+      f:spec:
+        .:
+        f:steps:
+    Manager:         kubectl-client-side-apply
+    Operation:       Update
+    Time:            2022-03-29T06:59:19Z
+  Resource Version:  606975
+  UID:               32c0cbd4-f37e-4722-b316-c55f4093c66d
+Spec:
+  Steps:
+    Args:
+      Hello World !
+    Command:
+      echo
+    Image:  ubuntu
+    Name:   echo
+Events:     <none>
+
+      echo
+    Image:  ubuntu
+    Name:   echo
+Events:     <none>
+
+</pre>
