@@ -22,7 +22,7 @@ dancer-mysql-persistent                         An example Dancer application wi
 datagrid-service                                Red Hat Data Grid is an in-memory, distributed key/value store.                    7 (1 blank)       4
 datavirt64-basic-s2i                            Application template for JBoss Data Virtualization 6.4 services built using S2I.   20 (6 blank)      6
 datavirt64-extensions-support-s2i               An example JBoss Data Virtualization application. For more information about...    35 (9 blank)      10
-datavirt64-ldap-s2i                             Application template for JBoss Data Virtualization 6.4 services that configur...   21 (6 blank)      6
+datavirt64-ldap-s2i                             Application template for JBoss Data Virtualization 6.4 services that configur...   21 (6 blank)      6oc describe template/mariadb-ephemeral -n openshift
 datavirt64-secure-s2i                           An example JBoss Data Virtualization application. For more information about...    51 (22 blank)     8
 decisionserver64-amq-s2i                        An example BRMS decision server A-MQ application. For more information about...    30 (5 blank)      10
 decisionserver64-basic-s2i                      Application template for Red Hat JBoss BRMS 6.4 decision server applications...    17 (5 blank)      5
@@ -111,7 +111,7 @@ sso75-https                                     An example application based on 
 sso75-ocp4-x509-https                           An example application based on RH-SSO 7.5 on OpenJDK image. For more informa...   13 (7 blank)      5
 sso75-ocp4-x509-postgresql-persistent           An example application based on RH-SSO 7.5 on OpenJDK image. For more informa...   21 (9 blank)      8
 sso75-postgresql                                An example application based on RH-SSO 7.5 on OpenJDK image. For more informa...   34 (18 blank)     8
-sso75-postgresql-persistent                     An example application based on RH-SSO 7.5 on OpenJDK image. For more informa...   35 (18 blank)     9
+sso75-postgresql-persistent                     An example applicatiooc describe template/mariadb-ephemeral -n openshiftn based on RH-SSO 7.5 on OpenJDK image. For more informa...   35 (18 blank)     9
 </pre>
 
 If you would like to understand little more details of the mariadb-ephemeral template, you may do as shown below
@@ -130,7 +130,7 @@ Description:	MariaDB database service, without persistent storage. For more info
 		WARNING: Any data stored will be lost upon pod destruction. Only use this template for testing
 Annotations:	iconClass=icon-mariadb
 		openshift.io/display-name=MariaDB (Ephemeral)
-		openshift.io/documentation-url=https://github.com/sclorg/mariadb-container/blob/master/10.3/root/usr/share/container-scripts/mysql/README.md
+		openshift.io/documentation-url=https://github.com/scloc describe template/mariadb-ephemeral -n openshiftorg/mariadb-container/blob/master/10.3/root/usr/share/container-scripts/mysql/README.md
 		openshift.io/long-description=This template provides a standalone MariaDB server with a database created.  The database is not stored on persistent storage, so any restart of the service will result in all data being lost.  The database name, username, and password are chosen via parameters when provisioning this service.
 		openshift.io/provider-display-name=Red Hat, Inc.
 		openshift.io/support-url=https://access.redhat.com
@@ -221,9 +221,10 @@ oc get routes
 When you click on the wordpress route, it would prompt for certain details
 you need to give the database name shown in the terminal when you deployed mariadb
 <pre>
-username - root
-password - root password shown in the terminal
-hostname - mariadb.ocp.svc.cluster.local
+username - root or the userxx shown in the terminal
+password - root or connection password shown in the terminal
+hostname - mariadb.ocp.svc.cluster.local or mariadb
+database - sampledb
 </pre>
 
 The hostname you need to replace it with the hostname you see in Administrator --> Networking --> Services --> mariadb --> Hostname
