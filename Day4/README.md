@@ -478,3 +478,15 @@ Expected output is
 
 [step2] Message from Step2
 </pre>
+
+You can also see the logs the recently executed taskrun as shown below
+```
+tkn taskrun logs --last -f
+```
+Expected output is
+<pre>
+(jegan@tektutor.org)$ <b>tkn taskrun logs --last -f</b>
+[step1] Message from Step1
+
+[step2] Message from Step2
+</pre>
