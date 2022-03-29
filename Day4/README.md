@@ -230,4 +230,31 @@ Events:     <none>
 Events:     <none>
 </pre>
 
+## Running the Task
 
+We need to create a TaskRun to run the Task.  
+You can achieve this either by writing a TaskRun manifest(yaml) file or via this command
+```
+tkn task start hello
+```
+
+Expected output is
+<pre>
+(jegan@tektutor.org)$ tkn task start hello
+TaskRun started: hello-run-bdj8j
+
+In order to track the TaskRun progress run:
+tkn taskrun logs hello-run-bdj8j -f -n tektutor
+</pre>
+
+You may now check the output of the TaskRun as shown below
+```
+tkn taskrun logs hello-run-bdj8j -f -n tektutor
+```
+
+Expected output is
+<pre>
+(jegan@tektutor.org)$ tkn taskrun logs hello-run-bdj8j -f -n tektutor
+
+[echo] Hello World !
+</pre>
