@@ -280,18 +280,17 @@ shell operator - https://github.com/flant/shell-operator<br>
 - CPU Usage, memory usage, and other metrics
 
 ## Tekton CI/CD Pipeline
-- Tekton is an opensource knative application that helps you create CI/CD 
+- Tekton is an opensource knative application that helps you create CI/CD
   pipeline within Kubernetes/OpenShift cluster.
 - Tekton supports both Kubernetes and OpenShift
-- is a set of custom kubernetes resources
+- is a set of custom kubernetes resources with many Custom Controllers
 - Available as an operator or can be installed via manifest files from CLI
-- adds many custom resources
+- adds many custom resources, to name a few
      Task
      Pipeline
      TaskRun
      PipelineRun
      Workspace
-- comes with custom controllers to manage the above custom resources
 
 ## Installing Tekton within OpenShift Web console
 
