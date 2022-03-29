@@ -479,7 +479,7 @@ Expected output is
 [step2] Message from Step2
 </pre>
 
-You can also see the logs the recently executed taskrun as shown below
+You can also see the logs of the recently executed taskrun as shown below
 ```
 tkn taskrun logs --last -f
 ```
