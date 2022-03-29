@@ -133,7 +133,7 @@ oc apply -f hello.yml
 ```
 Expected output is
 <pre>
-(jegan@tektutor.org)$ oc apply -f hello.yml 
+(jegan@tektutor.org)$ <b>oc apply -f hello.yml</b>
 task.tekton.dev/hello created
 </pre>
 
@@ -144,10 +144,10 @@ oc get tasks
 ```
 Expected output is
 <pre>
-(jegan@tektutor.org)$ tkn task list
+(jegan@tektutor.org)$ <b>tkn task list</b>
 NAME    DESCRIPTION   AGE
 hello                 13 seconds ago
-(jegan@tektutor.org)$ oc get tasks
+(jegan@tektutor.org)$ <b>oc get tasks</b>
 NAME    AGE
 hello   23s
 </pre>
@@ -158,7 +158,7 @@ oc describe task/hello
 ```
 Expected output is
 <pre>
-(jegan@tektutor.org)$ oc describe task/hello
+(jegan@tektutor.org)$ <b>oc describe task/hello</b>
 Name:         hello
 Namespace:    tektutor
 Labels:       <none>
@@ -188,7 +188,7 @@ Spec:
   Steps:
     Args:
       Hello World !
-    Command:(jegan@tektutor.org)$ oc describe task/hello
+    Command:(jegan@tektutor.org)$ <b>oc describe task/hello</b>
 Name:         hello
 Namespace:    tektutor
 Labels:       <none>
@@ -228,5 +228,6 @@ Events:     <none>
     Image:  ubuntu
     Name:   echo
 Events:     <none>
-
 </pre>
+
+
