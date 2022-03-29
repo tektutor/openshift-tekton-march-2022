@@ -720,12 +720,14 @@ Check the output
 ```
 tkn taskrun logs task-with-onerror-run-mkxg7 -f -n tektutor
 ```
-Expected output 
+
+
+Hit Enter key to see the output 
 <pre>
-(jegan@tektutor.org)$ tkn taskrun logs task-with-onerror-run-mkxg7 -f -n tektutor
+(jegan@tektutor.org)$ <b>tkn taskrun logs task-with-onerror-run-mkxg7 -f -n tektutor</b>
 
 
 [step1-with-error] go: go.mod file not found in current directory or any parent directory; see 'go help modules'
 
-[step2-after-erro] 2022/03/29 14:27:02 Error executing command: <exec: <b>"echo \"Inspite of step had reported an error, this step2 executed !</b>\"": executable file not found in $PATH
+[step2-after-erro] 2022/03/29 14:27:02 Error executing command: <exec: "echo \"Inspite of step had reported an error, this step2 executed !\"": executable file not found in $PATH
 </pre>
