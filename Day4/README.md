@@ -671,3 +671,61 @@ Expected output
 (jegan@tektutor.org)$ <b>tkn taskrun logs hello-bash-run-9b86p -f -n tektutor</b>
 [unnamed-0] Hello from Bash!
 </pre>
+
+## How to control the task execution if a step errored out and you know it isn't a show-stopper?
+
+Create the task
+```
+cd ~
+cd openshift-tekton-march-2022
+git pull
+cd Day4
+oc apply -f task-with-onerror.yml
+```
+Expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc apply -f task-with-onerror.yml</b>
+task.tekton.dev/task-with-onerror created
+</pre>
+
+List the task
+```
+tkn task list
+```
+Expected output is
+<pre>
+(jegan@tektutor.org)$ tkn task list
+NAME                             DESCRIPTION   AGE
+hello                                          7 hours ago
+hello-bash                                     56 minutes ago
+hello-task-with-multiple-steps                 1 hour ago
+hello-task-with-params                         6 hours ago
+<b>task-with-onerror                              53 seconds ago</b>
+</pre>
+
+Execute the task
+```
+tkn task task-with-onerror
+```
+Expected output is
+<pre>
+(jegan@tektutor.org)$ tkn task start task-with-onerror
+TaskRun started: task-with-onerror-run-mkxg7
+
+In order to track the TaskRun progress run:
+tkn taskrun logs task-with-onerror-run-mkxg7 -f -n tektutor
+</pre>
+
+Check the output
+```
+tkn taskrun logs task-with-onerror-run-mkxg7 -f -n tektutor
+```
+Expected output 
+<pre>
+(jegan@tektutor.org)$ tkn taskrun logs task-with-onerror-run-mkxg7 -f -n tektutor
+
+
+[step1-with-error] go: go.mod file not found in current directory or any parent directory; see 'go help modules'
+
+[step2-after-erro] 2022/03/29 14:27:02 Error executing command: <exec: <b>"echo \"Inspite of step had reported an error, this step2 executed !</b>\"": executable file not found in $PATH
+</pre>
