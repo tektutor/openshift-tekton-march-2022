@@ -230,7 +230,7 @@ Events:     <none>
 Events:     <none>
 </pre>
 
-## Running the Task
+## ⛹️‍♀️ Lab - Running the Task
 
 We need to create a TaskRun to run the Task.  
 You can achieve this either by writing a TaskRun manifest(yaml) file or via this command
@@ -259,7 +259,7 @@ Expected output is
 [echo] Hello World !
 </pre>
 
-## Passing arguments to a Tekton Task
+## ⛹️ Lab - Passing arguments to a Tekton Task
 Let's create a hello-task-with-params.yml file and paste the below content into the file
 
 <pre>
@@ -361,7 +361,7 @@ Hello TekTon Task !
 You may also check the output in the webconsole.
 
 
-## Tasks with multiple steps
+## ⛹️‍♂️ Lab - Tasks with multiple steps
 <pre>
 apiVersion: tekton.dev/v1beta1
 kind: Task
@@ -389,4 +389,92 @@ spec:
         - echo
       args:
         - $(params.msg2)
+</pre>
+
+Creating a taskrun by dry-running the task
+```
+tkn task start hello-task-with-multiple-steps --dry-run
+```
+Expected output is
+<pre>
+(jegan@tektutor.org)$ <b>tkn task start hello-task-with-multiple-steps  --dry-run</b>
+? Value for param `msg1` of type `string`? (Default is `Message from Step1`) Message from Step1
+? Value for param `msg2` of type `string`? (Default is `Message from Step2`) Message from Step2
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  creationTimestamp: null
+  generateName: hello-task-with-multiple-steps-run-
+  namespace: tektutor
+spec:
+  params:
+  - name: msg1
+    value: Message from Step1
+  - name: msg2
+    value: Message from Step2
+  resources: {}
+  serviceAccountName: ""
+  taskRef:
+    name: hello-task-with-multiple-steps
+status:
+  podName: ""
+</pre>
+
+
+You may copy/paste the above code in a taskrun yaml file as shown below
+<pre>
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: hello-task-with-multiple-steps-taskrun
+  namespace: tektutor
+spec:
+  params:
+  - name: msg1
+    value: Message from Step1
+  - name: msg2
+    value: Message from Step2
+  taskRef:
+    name: hello-task-with-multiple-steps
+</pre>
+
+You can now execute the taskrun as shown below
+```
+tkn taskrun start hello-task-with-multiple-steps-run
+```
+The expected output is
+<pre>
+(jegan@tektutor.org)$ oc apply -f hello-multiple-steps-run.yml 
+taskrun.tekton.dev/hello-task-with-multiple-steps-run created
+</pre>
+
+You can check the status of the taskrun as shown below
+```
+tkn taskrun list
+```
+Expected output is
+<pre>
+(jegan@tektutor.org)$ tkn taskrun list
+NAME                                       STARTED          DURATION     STATUS
+<b>hello-task-with-multiple-steps-run         23 seconds ago   16 seconds   Succeeded</b>
+hello-python-run-9scjd                     1 hour ago       9 seconds    Succeeded
+hello-python-run-2sdd2                     1 hour ago       55 seconds   Succeeded
+hello-task-with-multiple-steps-run-cx2pm   4 hours ago      15 seconds   Succeeded
+hello-task-with-multiple-steps-run-9h2xs   4 hours ago      35 seconds   Succeeded
+hello-task-with-multiple-steps-run-7pn8b   4 hours ago      0 seconds    Failed(CouldntGetTask)
+hello-task-with-params-run-gm5kz           4 hours ago      11 seconds   Succeeded
+hello-task-with-params-run-xz7c2           4 hours ago      10 seconds   Succeeded
+hello-run-bdj8j                            5 hours ago      30 seconds   Succeeded
+</pre>
+
+If you wish to check the output, you can try this
+```
+tkn taskrun logs -f hello-task-with-multiple-steps-run
+```
+Expected output is
+<pre>
+(jegan@tektutor.org)$ <b>tkn taskrun logs -f hello-task-with-multiple-steps-run</b>
+[step1] Message from Step1
+
+[step2] Message from Step2
 </pre>
