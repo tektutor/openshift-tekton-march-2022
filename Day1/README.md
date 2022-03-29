@@ -5,6 +5,9 @@ For training/consulting/coaching, you may reach me
     +91 822-000-5626 (WhatsApp)
 </pre>
 
+You can refer these free book to brush up OpenShift commands
+https://cloud.redhat.com/hubfs/pdfs/OpenShift_for_Developers_Red_Hat.pdf?hsLang=en&extIdCarryOver=true&sc_cid=701f2000001OH7JAAW
+
 ## Don't miss a Kubernetes/OpenShift article ( Hit the clap button a few times and follow the author in medium )
 https://medium.com/tektutor
 
