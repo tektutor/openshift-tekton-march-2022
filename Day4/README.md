@@ -236,6 +236,8 @@ The DB hostname is nothing but the service name of mariadb DeploymentConfig.
   just like Deployment, ReplicaSet, Pod, etc.,
 - a Custom Resource Definition(CRD) defines a Custom Resource(CR)
 - once a CR is created using CRD it can be accessed using kubectl or oc commands
+- Existing Kubernetes/OpenShift Controllers will not be able to manage the Custom Resource we added
+- Hence, we also need to create Custom Controllers that can manage the Custom Resource for self-healing, scale up/down, etc.,
 
 ## What is an Operator in Kubernetes/OpenShift?
 Some references
