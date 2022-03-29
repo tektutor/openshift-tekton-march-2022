@@ -240,7 +240,7 @@ tkn task start hello
 
 Expected output is
 <pre>
-(jegan@tektutor.org)$ tkn task start hello
+(jegan@tektutor.org)$ <b>tkn task start hello</b>
 TaskRun started: hello-run-bdj8j
 
 In order to track the TaskRun progress run:
@@ -254,7 +254,7 @@ tkn taskrun logs hello-run-bdj8j -f -n tektutor
 
 Expected output is
 <pre>
-(jegan@tektutor.org)$ tkn taskrun logs hello-run-bdj8j -f -n tektutor
+(jegan@tektutor.org)$ <b>tkn taskrun logs hello-run-bdj8j -f -n tektutor</b>
 
 [echo] Hello World !
 </pre>
