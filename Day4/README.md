@@ -574,7 +574,7 @@ Expected output is
 Hello TekTon Task !
 </pre>
 
-You may also check the output in the webconsole.
+You may also check the output in the OpenShift webconsole, under Pipelines --> Tasks --> TaskRun(Tab).
 
 
 ## ⛹️‍♂️ Lab - Tasks with multiple steps
