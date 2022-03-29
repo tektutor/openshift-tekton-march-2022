@@ -114,6 +114,99 @@ sso75-postgresql                                An example application based on 
 sso75-postgresql-persistent                     An example application based on RH-SSO 7.5 on OpenJDK image. For more informa...   35 (18 blank)     9
 </pre>
 
+If you would like to understand little more details of the mariadb-ephemeral template, you may do as shown below
+```
+oc describe template/mariadb-ephemeral -n openshift
+```
+Expected output
+<pre>
+(jegan@tektutor.org)$ <b>oc describe template/mariadb-ephemeral -n openshift</b>
+Name:		mariadb-ephemeral
+Namespace:	openshift
+Created:	2 days ago
+Labels:		samples.operator.openshift.io/managed=true
+Description:	MariaDB database service, without persistent storage. For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/mariadb-container/blob/master/10.3/root/usr/share/container-scripts/mysql/README.md.
+		
+		WARNING: Any data stored will be lost upon pod destruction. Only use this template for testing
+Annotations:	iconClass=icon-mariadb
+		openshift.io/display-name=MariaDB (Ephemeral)
+		openshift.io/documentation-url=https://github.com/sclorg/mariadb-container/blob/master/10.3/root/usr/share/container-scripts/mysql/README.md
+		openshift.io/long-description=This template provides a standalone MariaDB server with a database created.  The database is not stored on persistent storage, so any restart of the service will result in all data being lost.  The database name, username, and password are chosen via parameters when provisioning this service.
+		openshift.io/provider-display-name=Red Hat, Inc.
+		openshift.io/support-url=https://access.redhat.com
+		samples.operator.openshift.io/version=4.10.5
+		tags=database,mariadb
+
+Parameters:		 
+    Name:		MEMORY_LIMIT
+    Display Name:	Memory Limit
+    Description:	Maximum amount of memory the container can use.
+    Required:		true
+    Value:		512Mi
+
+    Name:		NAMESPACE
+    Display Name:	Namespace
+    Description:	The OpenShift Namespace where the ImageStream resides.
+    Required:		false
+    Value:		openshift
+
+    Name:		DATABASE_SERVICE_NAME
+    Display Name:	Database Service Name
+    Description:	The name of the OpenShift Service exposed for the database.
+    Required:		true
+    Value:		mariadb
+
+    Name:		MYSQL_USER
+    Display Name:	MariaDB Connection Username
+    Description:	Username for MariaDB user that will be used for accessing the database.
+    Required:		true
+    Generated:		expression
+    From:		user[A-Z0-9]{3}
+
+    Name:		MYSQL_PASSWORD
+    Display Name:	MariaDB Connection Password
+    Description:	Password for the MariaDB connection user.
+    Required:		true
+    Generated:		expression
+    From:		[a-zA-Z0-9]{16}
+
+    Name:		MYSQL_ROOT_PASSWORD
+    Display Name:	MariaDB root Password
+    Description:	Password for the MariaDB root user.
+    Required:		true
+    Generated:		expression
+    From:		[a-zA-Z0-9]{16}
+
+    Name:		MYSQL_DATABASE
+    Display Name:	MariaDB Database Name
+    Description:	Name of the MariaDB database accessed.
+    Required:		true
+    Value:		sampledb
+
+    Name:		MARIADB_VERSION
+    Display Name:	Version of MariaDB Image
+    Description:	Version of MariaDB image to be used (10.3-el7, 10.3-el8, or latest).
+    Required:		true
+    Value:		10.3-el8
+
+
+Object Labels:	template=mariadb-ephemeral-template
+
+Message:	The following service(s) have been created in your project: ${DATABASE_SERVICE_NAME}.
+		
+		       Username: ${MYSQL_USER}
+		       Password: ${MYSQL_PASSWORD}
+		  Database Name: ${MYSQL_DATABASE}
+		 Connection URL: mysql://${DATABASE_SERVICE_NAME}:3306/
+		
+		For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/mariadb-container/blob/master/10.3/root/usr/share/container-scripts/mysql/README.md.
+
+Objects:				 
+    Secret				${DATABASE_SERVICE_NAME}
+    Service				${DATABASE_SERVICE_NAME}
+    DeploymentConfig.apps.openshift.io	${DATABASE_SERVICE_NAME}
+</pre>
+
 Execute the below commands in the order mentioned to deploy the multi-pod wordpress application
 ```
 oc delete project jegan
