@@ -1,0 +1,11 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: hello-bash
+  namespace: tektutor
+spec:
+  steps:
+  - image: ubuntu # contains bash
+    script: |
+      #!/usr/bin/env bash
+      echo "Hello from Bash!"  

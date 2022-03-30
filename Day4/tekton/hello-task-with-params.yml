@@ -1,0 +1,22 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: hello-task-with-params
+  namespace: tektutor
+spec:
+  params:
+    - name: msg1
+      type: string
+      default: Hello
+    - name: msg2
+      type: string
+      default: TekTon Task!
+  steps:
+    - name: echo
+      image: ubuntu
+      command:
+        - echo
+      args:
+        - $(params.msg1)
+        - $(params.msg2)
+

@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap 
+metadata:
+  name: tools-path-cm 
+type: Opaque
+data:
+  jdk_home: /usr/lib/jdk11 
+  m2_home: /usr/share/maven
+---
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  generateName: taskrun-with-configmap-
+spec:
+  workspaces:
+    - name: env-settings 
+      configMap:
+        name: tools-path-cm
+        items:
+          - key: jdk_home 
+            path: jdk_home.txt
+          - key: m2_home 
+            path: m2_home.txt
+  taskSpec:
+    steps:
+    - name: reads-tools-path-cm
+      image: ubuntu
+      script: cat $(workspaces.env-settings.path)/jdk_home.txt && echo "\n" && cat $(workspaces.env-settings.path)/m2_home.txt
+    workspaces:
+    - name: env-settings 
+      mountPath: /my/configmap

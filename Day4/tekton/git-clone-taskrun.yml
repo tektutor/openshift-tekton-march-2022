@@ -1,0 +1,18 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: clone-tektutor-repo
+  namespace: tektutor
+spec:
+  workspaces:
+    - git-repo
+  taskRef:
+    name: git-clone
+  params:
+    - name: url
+      value: https://github.com/tektutor/spring-ms.git
+    - name: revision
+      value: main
+  workspaces:
+    - name: output
+      workspace: git-repo

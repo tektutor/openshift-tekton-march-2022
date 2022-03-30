@@ -1,0 +1,13 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: hello-task-with-multiple-steps-run
+  namespace: tektutor
+spec:
+  params:
+  - name: msg1
+    value: Message from Step1
+  - name: msg2
+    value: Message from Step2
+  taskRef:
+    name: hello-task-with-multiple-steps

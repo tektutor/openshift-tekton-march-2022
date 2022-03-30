@@ -1,0 +1,22 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: hello-python
+  namespace: tektutor
+spec:
+  results:
+    - name: python-output 
+      description: The current date in unix timestamp format
+  steps:
+  - name: hello-python
+    image: python
+    shell: |
+      #!/usr/bin/python3
+      print( "Hello Python !" ) | tee $(results.python-output.path) 
+
+  - name: print-result
+    image: ubuntu
+    command: 
+       - echo 
+    args:
+      - $(results.python-output.path)

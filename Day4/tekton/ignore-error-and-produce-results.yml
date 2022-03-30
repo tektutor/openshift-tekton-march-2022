@@ -1,0 +1,13 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: ignore-error-and-continue
+  namespace: tektutor
+spec:
+  steps:
+  - name: ignore-failure-and-produce-a-result
+    onError: continue
+    image: busybox
+    script: |
+      echo -n 123 | tee $(results.result1.path)
+      exit 1   

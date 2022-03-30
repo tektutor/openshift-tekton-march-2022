@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  generateName: hello-task-with-multiple-steps-taskrun-
+spec:
+  params:
+  - name: msg1
+    value: My Step1
+  - name: msg2
+    value: My Step2
+  taskRef:
+    name: hello-task-with-multiple-steps
