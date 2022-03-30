@@ -822,7 +822,55 @@ Expected output
 [reads-mysql-login-crentials] root@123
 </pre>
 
+## ⛹️‍♂️ Lab - Using Workspace in a Task and Mounting Persistent Volume into the workspace
+```
+cd ~
+cd openshift-tekton-march-2022
+git pull
+cd Day4/tekton
+oc create -f task-with-persistent-volume.yml 
+```
 
+Expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc apply -f task-with-persistent-volume.yml</b>
+persistentvolume/my-pv unchanged
+persistentvolumeclaim/my-pvc unchanged
+taskrun.tekton.dev/task-with-persistentvolume created
+</pre>
+
+List the taskrun
+```
+tkn taskrun list
+```
+Expected output is
+<pre>
+(jegan@tektutor.org)$ <b>tkn taskrun list</b>
+NAME                                           STARTED          DURATION     STATUS
+<b>task-with-persistentvolume                     10 seconds ago   ---          Running(Pending)</b>
+task-with-secrets                              11 minutes ago   14 seconds   Succeeded
+taskrun-with-configmap-58z88                   1 hour ago       11 seconds   Succeeded
+taskrun-with-configmap-rnws9                   1 hour ago       17 seconds   Succeeded
+taskrun-with-configmap-7m7b6                   1 hour ago       12 seconds   Succeeded
+taskrun-with-configmap                         1 hour ago       11 seconds   Succeeded
+hello-task-with-multiple-steps-taskrun-sjvh4   2 hours ago      16 seconds   Succeeded
+hello-task-with-multiple-steps-taskrun-qm9gs   2 hours ago      15 seconds   Succeeded
+hello-task-with-multiple-steps-taskrun-gmrbd   2 hours ago      15 seconds   Succeeded
+hello-task-with-multiple-steps-run-qgsc5       2 hours ago      16 seconds   Succeeded
+hello-task-with-multiple-steps-run-85jj9       2 hours ago      16 seconds   Succeeded
+hello-task-with-multiple-steps-taskrun         2 hours ago      17 seconds   Succeeded
+</pre>
+
+Check the output by checking the logs
+```
+tkn taskrun logs --last
+```
+Expected output
+<pre>
+(jegan@tektutor.org)$ <b>tkn taskrun logs --last</b>
+
+[read-path] /my/myworkspace
+</pre>
 
 ## ⛹️‍♀️ Lab - Executing bash commands in a task shell
 
