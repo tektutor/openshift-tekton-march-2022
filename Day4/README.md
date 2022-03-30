@@ -33,7 +33,11 @@ eap74-basic-s2i                                 An example JBoss Enterprise Appl
 eap74-https-s2i                                 An example JBoss Enterprise Application Platform application configured with...    30 (11 blank)     10
 eap74-sso-s2i                                   An example JBoss Enterprise Application Platform application Single Sign-On a...   50 (21 blank)     10
 fuse710-console                                 The Red Hat Fuse Console eases the discovery and management of Fuse applicati...   8 (1 blank)       5
-httpd-example                                   An example Apache HTTP Server (httpd) application that serves static content....   9 (3 blank)       5
+httpd-example                                   An example Apa(jegan@tektutor.org)$ tkn taskrun logs --last
+[reads-mysql-login-crentials] root
+[reads-mysql-login-crentials] /n
+[reads-mysql-login-crentials] root@123
+che HTTP Server (httpd) application that serves static content....   9 (3 blank)       5
 jenkins-ephemeral                               Jenkins service, without persistent storage....                                    11 (all set)      7
 jenkins-ephemeral-monitored                     Jenkins service, without persistent storage. ...                                   12 (all set)      8
 jenkins-persistent                              Jenkins service, with persistent storage....                                       13 (all set)      8
@@ -43,7 +47,11 @@ jws31-tomcat7-https-s2i                         An example JBoss Web Server appl
 jws31-tomcat8-basic-s2i                         An example JBoss Web Server application. For more information about using thi...   12 (3 blank)      5
 jws31-tomcat8-https-s2i                         An example JBoss Web Server application. For more information about using thi...   17 (5 blank)      7
 jws56-openjdk11-tomcat9-ubi8-basic-s2i          An example JBoss Web Server application. For more information about using thi...   10 (3 blank)      5
-jws56-openjdk11-tomcat9-ubi8-https-s2i          An example JBoss Web Server application. For more information about using thi...   15 (5 blank)      7
+jws56-openjdk11-tomcat9-ubi8-https-s2i          An example JBoss Web Server application. For more information about using thi...   15 (5 blank)      7(jegan@tektutor.org)$ tkn taskrun logs --last
+[reads-mysql-login-crentials] root
+[reads-mysql-login-crentials] /n
+[reads-mysql-login-crentials] root@123
+
 jws56-openjdk8-tomcat9-ubi8-basic-s2i           An example JBoss Web Server application. For more information about using thi...   10 (3 blank)      5
 jws56-openjdk8-tomcat9-ubi8-https-s2i           An example JBoss Web Server application. For more information about using thi...   15 (5 blank)      7
 <b>mariadb-ephemeral                               MariaDB database service, without persistent storage. For more information ab...   8 (3 generated)   3</b>
@@ -252,7 +260,11 @@ https://kubernetes.io/docs/concepts/extend-kubernetes/operator/
   - engineers & developers who would like to extend Kubernetes API to manage their site 
     and software
 
-## Operator Framework Choices
+## Operator Framework Choices(jegan@tektutor.org)$ tkn taskrun logs --last
+[reads-mysql-login-crentials] root
+[reads-mysql-login-crentials] /n
+[reads-mysql-login-crentials] root@123
+
 
 Below is a short list of Operator Frameworks available, but there are many more that I haven't listed here
 
@@ -369,7 +381,11 @@ hello   23s
 </pre>
 
 You can try to find more details about the task
-```
+```(jegan@tektutor.org)$ tkn taskrun logs --last
+[reads-mysql-login-crentials] root
+[reads-mysql-login-crentials] /n
+[reads-mysql-login-crentials] root@123
+
 oc describe task/hello
 ```
 Expected output is
@@ -712,7 +728,7 @@ Expected output is
 cd ~
 cd openshift-tekton-march-2022
 git pull
-cd Day4
+cd Day4/tekton
 oc create -f task-with-configmap.yml 
 ```
 
@@ -762,7 +778,7 @@ Expected output
 cd ~
 cd openshift-tekton-march-2022
 git pull
-cd Day4
+cd Day4/tekton
 oc create -f task-with-secrets.yml 
 ```
 
