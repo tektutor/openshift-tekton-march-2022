@@ -160,7 +160,7 @@ Parameters:
     Display Name:	MariaDB Connection Username
     Description:	Username for MariaDB user that will be used for accessing the database.
     Required:		true
-    Generated:		expression
+    Generated:		expression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
     From:		user[A-Z0-9]{3}
 
     Name:		MYSQL_PASSWORD
@@ -706,6 +706,57 @@ Expected output is
 
 [step2] Message from Step2
 </pre>
+
+## Using Workspace in a Task and Mounting ConfigMap into the workspace
+```
+cd ~
+cd openshift-tekton-march-2022
+git pull
+cd Day4
+oc create -f task-with-configmap.yml 
+```
+
+Expected output is
+<pre>
+(jegan@tektutor.org)$ oc create -f task-with-configmap.yml 
+configmap/tools-path-cm created
+taskrun.tekton.dev/taskrun-with-configmap-rnws9 created
+</pre>
+
+List the taskrun
+```
+tkn taskrun list
+```
+Expected output
+<pre>
+(jegan@tektutor.org)$ tkn taskrun list
+NAME                                           STARTED          DURATION     STATUS
+<b>taskrun-with-configmap-58z88                   8 seconds ago    ---          Running(Pending)</b>
+taskrun-with-configmap-rnws9                   53 seconds ago   17 seconds   Succeeded
+taskrun-with-configmap-7m7b6                   1 minute ago     12 seconds   Succeeded
+taskrun-with-configmap                         8 minutes ago    11 seconds   Succeeded
+hello-task-with-multiple-steps-taskrun-sjvh4   1 hour ago       16 seconds   Succeeded
+hello-task-with-multiple-steps-taskrun-qm9gs   1 hour ago       15 seconds   Succeeded
+hello-task-with-multiple-steps-taskrun-gmrbd   1 hour ago       15 seconds   Succeeded
+hello-task-with-multiple-steps-run-qgsc5       1 hour ago       16 seconds   Succeeded
+hello-task-with-multiple-steps-run-85jj9       1 hour ago       16 seconds   Succeeded
+hello-task-with-multiple-steps-taskrun         1 hour ago       17 seconds   Succeeded
+</pre>
+
+
+Check the output
+```
+tkn taskrun logs -f --last
+```
+Expected output 
+<pre>
+(jegan@tektutor.org)$ tkn taskrun logs -f --last
+[reads-tools-path-cm] /usr/lib/jdk11
+[reads-tools-path-cm] 
+[reads-tools-path-cm] /usr/share/maven
+</pre>
+
+
 
 ## ⛹️‍♀️ Lab - Executing bash commands in a task shell
 
