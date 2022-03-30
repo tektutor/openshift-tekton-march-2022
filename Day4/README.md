@@ -707,7 +707,7 @@ Expected output is
 [step2] Message from Step2
 </pre>
 
-## Using Workspace in a Task and Mounting ConfigMap into the workspace
+## ⛹️‍♀️ Lab - Using Workspace in a Task and Mounting ConfigMap into the workspace
 ```
 cd ~
 cd openshift-tekton-march-2022
