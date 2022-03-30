@@ -12,5 +12,5 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain 
   nfs: 
-    server: "192.168.1.80"
-    path: "/mnt/nfs_share"
+    server: "192.168.1.80"  #Replace this to your NFS Server IP
+    path: "/mnt/nfs_share"  #Replace this with your NFS Share folder configured in NFS Server
