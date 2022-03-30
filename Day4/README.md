@@ -757,6 +757,56 @@ Expected output
 </pre>
 
 
+## ⛹️‍♂️ Lab - Using Workspace in a Task and Mounting Secret into the workspace
+```
+cd ~
+cd openshift-tekton-march-2022
+git pull
+cd Day4
+oc create -f task-with-secrets.yml 
+```
+
+Expected output is
+<pre>
+(jegan@tektutor.org)$ oc apply -f task-with-secrets.yml 
+secret/mysql-login-credentials unchanged
+taskrun.tekton.dev/task-with-secrets created
+</pre>
+
+List the taskrun
+```
+tkn taskrun list
+```
+Expected output is
+<pre>
+(jegan@tektutor.org)$ tkn taskrun list
+NAME                                           STARTED          DURATION     STATUS
+<b>task-with-secrets                              8 seconds ago    ---          Running(Pending)</b>
+taskrun-with-configmap-58z88                   48 minutes ago   11 seconds   Succeeded
+taskrun-with-configmap-rnws9                   49 minutes ago   17 seconds   Succeeded
+taskrun-with-configmap-7m7b6                   50 minutes ago   12 seconds   Succeeded
+taskrun-with-configmap                         56 minutes ago   11 seconds   Succeeded
+hello-task-with-multiple-steps-taskrun-sjvh4   1 hour ago       16 seconds   Succeeded
+hello-task-with-multiple-steps-taskrun-qm9gs   1 hour ago       15 seconds   Succeeded
+hello-task-with-multiple-steps-taskrun-gmrbd   1 hour ago       15 seconds   Succeeded
+hello-task-with-multiple-steps-run-qgsc5       2 hours ago      16 seconds   Succeeded
+hello-task-with-multiple-steps-run-85jj9       2 hours ago      16 seconds   Succeeded
+hello-task-with-multiple-steps-taskrun         2 hours ago      17 seconds   Succeeded
+</pre>
+
+Check the output by checking the logs
+```
+tkn taskrun logs --last
+```
+Expected output
+<pre>
+(jegan@tektutor.org)$ <b>tkn taskrun logs --last</b>
+[reads-mysql-login-crentials] root
+[reads-mysql-login-crentials] /n
+[reads-mysql-login-crentials] root@123
+</pre>
+
+
 
 ## ⛹️‍♀️ Lab - Executing bash commands in a task shell
 
