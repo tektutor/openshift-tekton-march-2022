@@ -236,3 +236,6 @@ Waiting for logs to be available...
 
 [task5 : step1] Step1
 </pre>
+
+## ⛹️‍♂️ Lab - Creating Java CI/CD pipeline using Tekton
+Refer this medium article here https://medium.com/@jegan_50867/openshift-ci-cd-with-tekton-faa88ba45656
