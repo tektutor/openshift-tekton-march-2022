@@ -16,6 +16,22 @@ Refresh the exports folders in NFS Server
 sudo exportfs -ra
 ```
 
+Double check if the newly added folder in the /etc/exports is really shared by NFS Server
+```
+sudo showmount -e 192.168.1.80
+```
+
+Expected output is
+<pre>
+(jegan@tektutor.org)$ sudo showmount -e 192.168.1.80
+Export list for 192.168.1.80:
+/mnt/maven     192.168.122.0/24
+/mnt/wordpress 192.168.122.0/24
+/mnt/mysql     192.168.122.0/24
+/mnt/nfs_share 192.168.122.0/24
+</pre>
+
+
 Tekton Persistent Volume - openshift-tekton-pv.yml
 ```
 # Reserve 500 MB disk space for Persistent Volume
