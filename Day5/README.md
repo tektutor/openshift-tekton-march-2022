@@ -127,7 +127,7 @@ tkn taskrun logs -f --last
 You can also watch the status and output in OpenShift webconsole.
 OpenShift webconsole --> Pipelines --> Task --> TaskRun(Tab) and select github-clone-taskrun-xxyyzz
 
-## Creating your first pipeline
+## ⛹️‍♀️ Lab - Creating your first pipeline
 ```
 cd ~
 cd openshift-tekton-march-2022
