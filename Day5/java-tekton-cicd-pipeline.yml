@@ -55,7 +55,7 @@ spec:
             gcr.io/cloud-builders/mvn@sha256:57523fc43394d6d9d2414ee8d1c85ed7a13460cbb268c3cd16d28cfb3859e641
         - name: GOALS
           value:
-            - -Dtektutor.repo.local=$(workspaces.tektutor-settings.path)
+            - -Dmaven.repo.local=$(workspaces.maven-settings.path)
             - compile
       runAfter:
         - clone-git-repo
@@ -76,7 +76,7 @@ spec:
             gcr.io/cloud-builders/mvn@sha256:57523fc43394d6d9d2414ee8d1c85ed7a13460cbb268c3cd16d28cfb3859e641
         - name: GOALS
           value:
-            - -Dtektutor.repo.local=$(workspaces.tektutor-settings.path)
+            - -Dmaven.repo.local=$(workspaces.maven-settings.path)
             - test
       runAfter:
         - compile
@@ -97,7 +97,7 @@ spec:
             gcr.io/cloud-builders/mvn@sha256:57523fc43394d6d9d2414ee8d1c85ed7a13460cbb268c3cd16d28cfb3859e641
         - name: GOALS
           value:
-            - -Dtektutor.repo.local=$(workspaces.tektutor-settings.path)
+            - -Dmaven.repo.local=$(workspaces.maven-settings.path)
             - package
       runAfter:
         - test
@@ -118,7 +118,7 @@ spec:
             gcr.io/cloud-builders/mvn@sha256:57523fc43394d6d9d2414ee8d1c85ed7a13460cbb268c3cd16d28cfb3859e641
         - name: GOALS
           value:
-            - -Dtektutor.repo.local=$(workspaces.tektutor-settings.path)
+            - -Dmaven.repo.local=$(workspaces.maven-settings.path)
             - install
       runAfter:
         - package
