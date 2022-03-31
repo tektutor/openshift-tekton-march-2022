@@ -126,3 +126,55 @@ tkn taskrun logs -f --last
 
 You can also watch the status and output in OpenShift webconsole.
 OpenShift webconsole --> Pipelines --> Task --> TaskRun(Tab) and select github-clone-taskrun-xxyyzz
+
+## Creating your first pipeline
+```
+cd ~
+cd openshift-tekton-march-2022
+git pull
+cd Day5
+oc create -f first-pipeline.yml
+```
+
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc create -f first-pipeline.yml</b>
+task.tekton.dev/task1 created
+task.tekton.dev/task2 created
+pipeline.tekton.dev/first-pipeline created
+</pre>
+
+You can then list and see if the pipeline is created successfully with one of the below commands.
+```
+tkn pipelines list
+tkn pipeline list
+tkn p list
+```
+
+Expected output is
+<pre>
+(jegan@tektutor.org)$ <b>tkn p list</b>
+NAME             AGE              LAST RUN   STARTED   DURATION   STATUS
+first-pipeline   13 seconds ago   ---        ---       ---        ---
+</pre>
+
+
+You may start running the pipeline as shown below
+```
+tkn p start first-pipeline  --showlog
+```
+Expected output is
+<pre>
+(jegan@tektutor.org)$ <b>tkn p start first-pipeline --showlog</b>
+PipelineRun started: first-pipeline-run-lkrrl
+Waiting for logs to be available...
+[task1 : step1] Step1
+
+[task1 : step2] Step2
+
+[task2 : step1] Step1
+
+[task2 : step2] Step2
+
+[task2 : step3] Step3
+</pre>
