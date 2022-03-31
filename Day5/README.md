@@ -178,3 +178,61 @@ Waiting for logs to be available...
 
 [task2 : step3] Step3
 </pre>
+
+## ⛹️‍♀️ Lab - Creating your second pipeline
+```
+cd ~
+cd openshift-tekton-march-2022
+git pull
+cd Day5
+oc create -f second-pipeline.yml
+```
+
+The expected output is
+<pre>
+(jegan@tektutor.org)$ <b>oc apply -f second-pipeline.yml</b>
+task.tekton.dev/task3 created
+task.tekton.dev/task4 created
+task.tekton.dev/task5 created
+pipeline.tekton.dev/second-pipeline created
+</pre>
+
+List and check if the second-pipeline is created successfully.
+```
+tkn p list
+```
+
+Expected output
+<pre>
+(jegan@tektutor.org)$ <b>tkn p list</b>
+NAME              AGE              LAST RUN                STARTED          DURATION     STATUS
+first-pipeline    52 minutes ago   first-pipeline-2f5v2u   45 minutes ago   36 seconds   Succeeded
+second-pipeline   9 seconds ago    ---                     ---              ---          ---
+</pre>
+
+Start the pipeline execution
+```
+tkn pipeline start second-pipeline --showlog
+```
+
+Expected output
+<pre>
+(jegan@tektutor.org)$ <b>tkn pipeline start second-pipeline --showlog</b>
+PipelineRun started: second-pipeline-run-sxrzv
+Waiting for logs to be available...
+[task1 : step1] Step1
+
+[task1 : step2] Step2
+
+[task2 : step1] Step1
+
+[task2 : step2] Step2
+
+[task2 : step3] Step3
+
+[task3 : step1] Step1
+[task4 : step1] Step1
+
+
+[task5 : step1] Step1
+</pre>
