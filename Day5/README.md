@@ -1,5 +1,5 @@
 ## ⛹️ Lab - Task that clones github repository
-We need create a PersistentVolume and PersistentVolumeClaim. Though we could technically use EmptyDir volume.  Using EmptyDir, will only store the data temporarily while PersistentVolume is considered permanent.
+We need to create a PersistentVolume and PersistentVolumeClaim. Though we could technically use EmptyDir volume.  Using EmptyDir, will only store the data temporarily while PersistentVolume is considered permanent.
 
 This lab assumes, you already have installed NFS Server.  In my case the NFS Server is running in a machine with IP 192.168.1.80 on my local network.
 
