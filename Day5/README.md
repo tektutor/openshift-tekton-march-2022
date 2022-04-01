@@ -243,7 +243,9 @@ Refer this medium article here https://medium.com/@jegan_50867/openshift-ci-cd-w
 ## ⛹️‍♀️ Lab - Triggering CI/CD pipeline based on Git Push using Tekton Triggers
 ```
 oc new-project gittea
+
 oc new-app -f https://raw.githubusercontent.com/wkulhanek/docker-openshift-gitea/master/openshift/gitea-ephemeral-template.yaml --param=HOSTNAME=gitea-demo.tektutor.org
+
 oc delete route gitea
 oc expose svc/gitea
 oc get route
