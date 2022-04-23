@@ -1,5 +1,4 @@
 # CI/CD with TekTon on OpenShift
-
 For training/consulting/coaching, you may reach me
 
 <pre>
